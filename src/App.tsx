@@ -1,7 +1,10 @@
+import { Providers } from '@/providers/Providers';
+import { Router } from '@/Router';
+
 export function App() {
   return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
+    <Providers>
+      <Router />
+    </Providers>
   );
 }
