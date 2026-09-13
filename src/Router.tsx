@@ -8,11 +8,17 @@ const HomePage = lazyImport({
   exportName: 'HomePage',
 });
 
+const RegisterPage = lazyImport({
+  importer: () => import('@/pages/register/Page'),
+  exportName: 'RegisterPage',
+});
+
 export function Router() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route index={true} element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </Suspense>
   );
