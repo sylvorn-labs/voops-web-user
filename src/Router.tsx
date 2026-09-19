@@ -24,6 +24,11 @@ const RoadmapPage = lazyImport({
   exportName: 'RoadmapPage',
 });
 
+const HelpPage = lazyImport({
+  importer: () => import('@/pages/help/Page'),
+  exportName: 'HelpPage',
+});
+
 const RegisterPage = lazyImport({
   importer: () => import('@/pages/register/Page'),
   exportName: 'RegisterPage',
@@ -70,6 +75,7 @@ export function Router() {
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
+        <Route path="/help" element={<HelpPage />} />
 
         {/* Authentication Routes wrapped with AuthLayout */}
         <Route element={<AuthLayout />}>

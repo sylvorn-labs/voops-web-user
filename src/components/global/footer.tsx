@@ -28,13 +28,14 @@ const defaultSections: FooterSection[] = [
   {
     title: 'Product',
     links: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Contact Us', href: '#contact' },
+      { name: 'About Us', href: '/#about' },
+      { name: 'Contact Us', href: '/#contact' },
     ],
   },
   {
     title: 'Resources',
     links: [
+      { name: 'Help Center', href: '/help' },
       { name: 'GitHub', href: 'https://github.com/sylvorn-labs' },
       { name: 'Road Map', href: '/roadmap' },
     ],
