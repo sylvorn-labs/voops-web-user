@@ -15,6 +15,7 @@ export const vendorGroups: Record<string, string[]> = {
   'react-vendor': ['react', 'react-dom', 'react-router', 'scheduler'],
   'query-vendor': ['@tanstack/react-query', '@tanstack/react-table'],
   'icon-vendor': ['@hugeicons/react', '@hugeicons/core-free-icons'],
+  'motion-vendor': ['motion'],
   'date-vendor': ['date-fns', 'react-day-picker'],
   'supabase-vendor': ['@supabase/supabase-js'],
   'state-vendor': ['zustand'],

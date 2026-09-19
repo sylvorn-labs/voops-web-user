@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { Logos } from './components/Logos';
 import { TrustStrip } from './components/TrustStrip';
 import { FeaturesMatrix } from './components/FeaturesMatrix';
+import { Industries } from './components/Industries';
 import { FeatureCardsGrid } from './components/FeatureCardsGrid';
 import { Testimonials } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
@@ -24,6 +25,7 @@ export function HomePage() {
         <Logos />
         <TrustStrip />
         <FeaturesMatrix />
+        <Industries />
         <FeatureCardsGrid />
         <Testimonials />
         <Pricing />
