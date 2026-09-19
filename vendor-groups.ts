@@ -1,6 +1,22 @@
 export const vendorGroups: Record<string, string[]> = {
+  'ui-vendor': [
+    'radix-ui',
+    '@base-ui/react',
+    '@shadcn/react',
+    'class-variance-authority',
+    'clsx',
+    'tailwind-merge',
+    'sonner',
+    'cmdk',
+    'next-themes',
+    'tinykeys',
+  ],
+  'form-vendor': ['react-hook-form', '@hookform/resolvers', 'input-otp'],
   'react-vendor': ['react', 'react-dom', 'react-router', 'scheduler'],
   'query-vendor': ['@tanstack/react-query', '@tanstack/react-table'],
+  'icon-vendor': ['@hugeicons/react', '@hugeicons/core-free-icons'],
+  'date-vendor': ['date-fns', 'react-day-picker'],
+  'supabase-vendor': ['@supabase/supabase-js'],
   'state-vendor': ['zustand'],
   'http-vendor': ['axios'],
 };
