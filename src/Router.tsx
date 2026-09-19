@@ -86,6 +86,11 @@ const ChangelogPage = lazyImport({
   exportName: 'ChangelogPage',
 });
 
+const BlogPage = lazyImport({
+  importer: () => import('@/pages/blog/Page'),
+  exportName: 'BlogPage',
+});
+
 const RegisterPage = lazyImport({
   importer: () => import('@/pages/register/Page'),
   exportName: 'RegisterPage',
@@ -145,6 +150,7 @@ export function Router() {
             element={<PeopleAnalyticsFeaturePage />}
           />
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />

@@ -20,6 +20,7 @@ export const defaultSections: FooterSection[] = [
   {
     title: 'Resources',
     links: [
+      { name: 'Blog', href: '/blog' },
       { name: 'Help Center', href: '/help' },
       { name: 'Changelog', href: '/changelog' },
       { name: 'Road Map', href: '/roadmap' },
