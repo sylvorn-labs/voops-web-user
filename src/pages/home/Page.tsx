@@ -7,6 +7,7 @@ import { TrustStrip } from './components/TrustStrip';
 import { FeaturesMatrix } from './components/FeaturesMatrix';
 import { FeatureCardsGrid } from './components/FeatureCardsGrid';
 import { Testimonials } from './components/Testimonials';
+import { Faq } from './components/Faq';
 import { Download } from './components/Download';
 
 export function HomePage() {
@@ -23,6 +24,7 @@ export function HomePage() {
         <FeaturesMatrix />
         <FeatureCardsGrid />
         <Testimonials />
+        <Faq />
         <Download />
       </main>
 
