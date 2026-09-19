@@ -7,6 +7,7 @@ import { RelatedFeatures } from '../components/related-features/RelatedFeatures'
 import { accountAnalyticsConfig } from './page.constants';
 
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 import { Download } from '@/components/global/download/Download';
 
 export function AccountAnalyticsFeaturePage() {
@@ -24,29 +25,29 @@ export function AccountAnalyticsFeaturePage() {
       <FeatureMetrics metrics={accountAnalyticsConfig.metrics} />
 
       <FeatureCapabilities
-        id="account-capabilities"
-        badge="Account Tools"
+        id="account-analytics-capabilities"
+        badge="Multi-Account Intelligence"
         heading={accountAnalyticsConfig.capabilitiesTitle}
         description={accountAnalyticsConfig.capabilitiesDescription}
         capabilities={accountAnalyticsConfig.capabilities}
       />
 
       <FeatureWorkflow
-        id="account-workflow"
+        id="account-analytics-workflow"
         heading={accountAnalyticsConfig.workflowTitle}
         description={accountAnalyticsConfig.workflowDescription}
         steps={accountAnalyticsConfig.workflowSteps}
       />
 
       <FeatureUseCases
-        id="account-use-cases"
+        id="account-analytics-use-cases"
         heading={accountAnalyticsConfig.useCasesTitle}
         description={accountAnalyticsConfig.useCasesDescription}
         useCases={accountAnalyticsConfig.useCases}
       />
 
       <Faq
-        id="account-faq"
+        id="account-analytics-faq"
         heading={accountAnalyticsConfig.faqsTitle}
         description={accountAnalyticsConfig.faqsDescription}
         items={accountAnalyticsConfig.faqs}
@@ -54,6 +55,7 @@ export function AccountAnalyticsFeaturePage() {
 
       <RelatedFeatures currentSlug={accountAnalyticsConfig.slug} />
 
+      <Cta />
       <Download />
     </>
   );

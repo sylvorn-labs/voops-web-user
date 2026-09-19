@@ -8,6 +8,7 @@ import { Industries } from '@/components/global/industries/Industries';
 import { Download } from '@/components/global/download/Download';
 import { Gallery } from '@/components/global/gallery/Gallery';
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 
 export function HomePage() {
   return (
@@ -20,6 +21,7 @@ export function HomePage() {
       <Gallery />
       <Testimonials />
       <Faq />
+      <Cta />
       <Download />
     </>
   );

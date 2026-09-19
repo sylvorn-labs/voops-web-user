@@ -7,6 +7,7 @@ import { RelatedFeatures } from '../components/related-features/RelatedFeatures'
 import { teamCollaborationConfig } from './page.constants';
 
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 import { Download } from '@/components/global/download/Download';
 
 export function TeamCollaborationFeaturePage() {
@@ -24,29 +25,29 @@ export function TeamCollaborationFeaturePage() {
       <FeatureMetrics metrics={teamCollaborationConfig.metrics} />
 
       <FeatureCapabilities
-        id="team-capabilities"
-        badge="Collaboration Tools"
+        id="team-collaboration-capabilities"
+        badge="Governance & RBAC"
         heading={teamCollaborationConfig.capabilitiesTitle}
         description={teamCollaborationConfig.capabilitiesDescription}
         capabilities={teamCollaborationConfig.capabilities}
       />
 
       <FeatureWorkflow
-        id="team-workflow"
+        id="team-collaboration-workflow"
         heading={teamCollaborationConfig.workflowTitle}
         description={teamCollaborationConfig.workflowDescription}
         steps={teamCollaborationConfig.workflowSteps}
       />
 
       <FeatureUseCases
-        id="team-use-cases"
+        id="team-collaboration-use-cases"
         heading={teamCollaborationConfig.useCasesTitle}
         description={teamCollaborationConfig.useCasesDescription}
         useCases={teamCollaborationConfig.useCases}
       />
 
       <Faq
-        id="team-faq"
+        id="team-collaboration-faq"
         heading={teamCollaborationConfig.faqsTitle}
         description={teamCollaborationConfig.faqsDescription}
         items={teamCollaborationConfig.faqs}
@@ -54,6 +55,7 @@ export function TeamCollaborationFeaturePage() {
 
       <RelatedFeatures currentSlug={teamCollaborationConfig.slug} />
 
+      <Cta />
       <Download />
     </>
   );

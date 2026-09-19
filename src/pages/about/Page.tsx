@@ -4,6 +4,7 @@ import { Team } from './components/team/Team';
 import { Community } from '@/components/global/community/Community';
 import { Gallery } from '@/components/global/gallery/Gallery';
 import { TrustStrip } from '@/components/global/trust-strip/TrustStrip';
+import { Cta } from '@/components/global/cta/Cta';
 import { aboutGalleryItems } from './page.constants';
 
 export function AboutPage() {
@@ -20,6 +21,7 @@ export function AboutPage() {
       />
       <Team />
       <Incentives />
+      <Cta />
       <Community />
     </>
   );

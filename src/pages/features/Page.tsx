@@ -6,6 +6,7 @@ import { FeaturesMatrix } from '@/components/global/features-matrix/FeaturesMatr
 import { Industries } from '@/components/global/industries/Industries';
 import { Faq } from '@/components/global/faq/Faq';
 import { Download } from '@/components/global/download/Download';
+import { Cta } from '@/components/global/cta/Cta';
 
 export function FeaturesPage() {
   return (
@@ -23,6 +24,7 @@ export function FeaturesPage() {
         heading="Feature & Workflow Questions"
         description="Deep dive into how Voops handles multi-company separation, permissions, and real-time ledger synchronization."
       />
+      <Cta />
       <Download />
     </>
   );

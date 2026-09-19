@@ -7,6 +7,7 @@ import { RelatedFeatures } from '../components/related-features/RelatedFeatures'
 import { projectAnalyticsConfig } from './page.constants';
 
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 import { Download } from '@/components/global/download/Download';
 
 export function ProjectAnalyticsFeaturePage() {
@@ -24,29 +25,29 @@ export function ProjectAnalyticsFeaturePage() {
       <FeatureMetrics metrics={projectAnalyticsConfig.metrics} />
 
       <FeatureCapabilities
-        id="project-capabilities"
-        badge="Project Tools"
+        id="project-analytics-capabilities"
+        badge="Initiative P&L"
         heading={projectAnalyticsConfig.capabilitiesTitle}
         description={projectAnalyticsConfig.capabilitiesDescription}
         capabilities={projectAnalyticsConfig.capabilities}
       />
 
       <FeatureWorkflow
-        id="project-workflow"
+        id="project-analytics-workflow"
         heading={projectAnalyticsConfig.workflowTitle}
         description={projectAnalyticsConfig.workflowDescription}
         steps={projectAnalyticsConfig.workflowSteps}
       />
 
       <FeatureUseCases
-        id="project-use-cases"
+        id="project-analytics-use-cases"
         heading={projectAnalyticsConfig.useCasesTitle}
         description={projectAnalyticsConfig.useCasesDescription}
         useCases={projectAnalyticsConfig.useCases}
       />
 
       <Faq
-        id="project-faq"
+        id="project-analytics-faq"
         heading={projectAnalyticsConfig.faqsTitle}
         description={projectAnalyticsConfig.faqsDescription}
         items={projectAnalyticsConfig.faqs}
@@ -54,6 +55,7 @@ export function ProjectAnalyticsFeaturePage() {
 
       <RelatedFeatures currentSlug={projectAnalyticsConfig.slug} />
 
+      <Cta />
       <Download />
     </>
   );

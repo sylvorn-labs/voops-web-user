@@ -7,6 +7,7 @@ import { RelatedFeatures } from '../components/related-features/RelatedFeatures'
 import { peopleAnalyticsConfig } from './page.constants';
 
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 import { Download } from '@/components/global/download/Download';
 
 export function PeopleAnalyticsFeaturePage() {
@@ -24,29 +25,29 @@ export function PeopleAnalyticsFeaturePage() {
       <FeatureMetrics metrics={peopleAnalyticsConfig.metrics} />
 
       <FeatureCapabilities
-        id="people-capabilities"
-        badge="People Tools"
+        id="people-analytics-capabilities"
+        badge="Individual Attribution"
         heading={peopleAnalyticsConfig.capabilitiesTitle}
         description={peopleAnalyticsConfig.capabilitiesDescription}
         capabilities={peopleAnalyticsConfig.capabilities}
       />
 
       <FeatureWorkflow
-        id="people-workflow"
+        id="people-analytics-workflow"
         heading={peopleAnalyticsConfig.workflowTitle}
         description={peopleAnalyticsConfig.workflowDescription}
         steps={peopleAnalyticsConfig.workflowSteps}
       />
 
       <FeatureUseCases
-        id="people-use-cases"
+        id="people-analytics-use-cases"
         heading={peopleAnalyticsConfig.useCasesTitle}
         description={peopleAnalyticsConfig.useCasesDescription}
         useCases={peopleAnalyticsConfig.useCases}
       />
 
       <Faq
-        id="people-faq"
+        id="people-analytics-faq"
         heading={peopleAnalyticsConfig.faqsTitle}
         description={peopleAnalyticsConfig.faqsDescription}
         items={peopleAnalyticsConfig.faqs}
@@ -54,6 +55,7 @@ export function PeopleAnalyticsFeaturePage() {
 
       <RelatedFeatures currentSlug={peopleAnalyticsConfig.slug} />
 
+      <Cta />
       <Download />
     </>
   );

@@ -2,6 +2,7 @@ import { Contact } from './components/contact/Contact';
 
 import { Faq } from '@/components/global/faq/Faq';
 import { Community } from '@/components/global/community/Community';
+import { Cta } from '@/components/global/cta/Cta';
 
 const contactFaqs = [
   {
@@ -34,6 +35,7 @@ export function ContactPage() {
         description="Quick answers about how our engineering and support teams collaborate with users."
         items={contactFaqs}
       />
+      <Cta />
       <Community />
     </>
   );

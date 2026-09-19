@@ -7,6 +7,7 @@ import { RelatedFeatures } from '../components/related-features/RelatedFeatures'
 import { categoryOrganizationConfig } from './page.constants';
 
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 import { Download } from '@/components/global/download/Download';
 
 export function CategoryOrganizationFeaturePage() {
@@ -24,29 +25,29 @@ export function CategoryOrganizationFeaturePage() {
       <FeatureMetrics metrics={categoryOrganizationConfig.metrics} />
 
       <FeatureCapabilities
-        id="category-capabilities"
-        badge="Category Tools"
+        id="category-organization-capabilities"
+        badge="Taxonomy & Tagging"
         heading={categoryOrganizationConfig.capabilitiesTitle}
         description={categoryOrganizationConfig.capabilitiesDescription}
         capabilities={categoryOrganizationConfig.capabilities}
       />
 
       <FeatureWorkflow
-        id="category-workflow"
+        id="category-organization-workflow"
         heading={categoryOrganizationConfig.workflowTitle}
         description={categoryOrganizationConfig.workflowDescription}
         steps={categoryOrganizationConfig.workflowSteps}
       />
 
       <FeatureUseCases
-        id="category-use-cases"
+        id="category-organization-use-cases"
         heading={categoryOrganizationConfig.useCasesTitle}
         description={categoryOrganizationConfig.useCasesDescription}
         useCases={categoryOrganizationConfig.useCases}
       />
 
       <Faq
-        id="category-faq"
+        id="category-organization-faq"
         heading={categoryOrganizationConfig.faqsTitle}
         description={categoryOrganizationConfig.faqsDescription}
         items={categoryOrganizationConfig.faqs}
@@ -54,6 +55,7 @@ export function CategoryOrganizationFeaturePage() {
 
       <RelatedFeatures currentSlug={categoryOrganizationConfig.slug} />
 
+      <Cta />
       <Download />
     </>
   );

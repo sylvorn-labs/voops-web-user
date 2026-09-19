@@ -15,6 +15,7 @@ import {
 import { Button } from '@/components/ui/button/Button';
 import { Community } from '@/components/global/community/Community';
 import { Download } from '@/components/global/download/Download';
+import { Cta } from '@/components/global/cta/Cta';
 import { defaultBlogPosts } from '../components/blog/blog.constants';
 
 export function BlogPostPage() {
@@ -183,6 +184,7 @@ export function BlogPostPage() {
         </p>
       </BlogPostLayout>
 
+      <Cta />
       <Download />
       <Community />
     </>

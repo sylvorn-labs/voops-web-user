@@ -1,6 +1,7 @@
 import { Pricing } from './components/pricing/Pricing';
 import { Community } from '@/components/global/community/Community';
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 import { pricingFaqs } from './page.constants';
 
 export function PricingPage() {
@@ -13,6 +14,7 @@ export function PricingPage() {
         description="Everything you need to know about our beta access and future managed cloud options."
         items={pricingFaqs}
       />
+      <Cta />
       <Community />
     </>
   );

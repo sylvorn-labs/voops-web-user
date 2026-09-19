@@ -7,6 +7,7 @@ import { RelatedFeatures } from '../components/related-features/RelatedFeatures'
 import { multiBusinessConfig } from './page.constants';
 
 import { Faq } from '@/components/global/faq/Faq';
+import { Cta } from '@/components/global/cta/Cta';
 import { Download } from '@/components/global/download/Download';
 
 export function MultiBusinessFeaturePage() {
@@ -54,6 +55,7 @@ export function MultiBusinessFeaturePage() {
 
       <RelatedFeatures currentSlug={multiBusinessConfig.slug} />
 
+      <Cta />
       <Download />
     </>
   );
