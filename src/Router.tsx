@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router';
 import { Suspense } from 'react';
 
-import { lazyImport } from '@/utils/lazy-import';
-import { AuthLayout } from '@/layouts/auth/AuthLayout';
-import { MainLayout } from '@/layouts/main/MainLayout';
 import { LoadingFallback } from '@/components/global/loading-fallback/LoadingFallback';
-import { DashboardLayout } from './layouts/dashboard/Layout';
+import { DashboardLayout } from '@/layouts/dashboard/Layout';
+import { MainLayout } from '@/layouts/main/MainLayout';
+import { AuthLayout } from '@/layouts/auth/AuthLayout';
+import { lazyImport } from '@/utils/lazy-import';
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -15,11 +15,6 @@ const HomePage = lazyImport({
 const AboutPage = lazyImport({
   importer: () => import('@/pages/about/Page'),
   exportName: 'AboutPage',
-});
-
-const ContactPage = lazyImport({
-  importer: () => import('@/pages/contact/Page'),
-  exportName: 'ContactPage',
 });
 
 const FeaturesPage = lazyImport({
@@ -70,6 +65,11 @@ const TermsPage = lazyImport({
 const PrivacyPage = lazyImport({
   importer: () => import('@/pages/privacy/Page'),
   exportName: 'PrivacyPage',
+});
+
+const ContactPage = lazyImport({
+  importer: () => import('@/pages/contact/Page'),
+  exportName: 'ContactPage',
 });
 
 const RoadmapPage = lazyImport({
@@ -130,16 +130,6 @@ const DashboardPage = lazyImport({
 const BusinessListPage = lazyImport({
   importer: () => import('@/pages/dashboard/businesses/Page'),
   exportName: 'BusinessListPage',
-});
-
-const BusinessCreatePage = lazyImport({
-  importer: () => import('@/pages/dashboard/businesses/create/Page'),
-  exportName: 'BusinessCreatePage',
-});
-
-const BusinessUpdatePage = lazyImport({
-  importer: () => import('@/pages/dashboard/businesses/update/Page'),
-  exportName: 'BusinessUpdatePage',
 });
 
 const NotFoundPage = lazyImport({
@@ -211,12 +201,6 @@ export function Router() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<DashboardPage />} />
           <Route path="businesses" element={<BusinessListPage />} />
-          <Route path="businesses/create" element={<BusinessCreatePage />} />
-          <Route path="businesses/:id/edit" element={<BusinessUpdatePage />} />
-          <Route
-            path="businesses/:id/update"
-            element={<BusinessUpdatePage />}
-          />
         </Route>
       </Routes>
     </Suspense>

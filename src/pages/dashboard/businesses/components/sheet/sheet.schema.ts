@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const businessCreateSchema = z.object({
+export const businessFormSchema = z.object({
   name: z
     .string()
     .trim()

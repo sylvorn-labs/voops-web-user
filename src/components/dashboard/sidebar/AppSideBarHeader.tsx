@@ -1,5 +1,4 @@
 import { useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
@@ -29,11 +28,12 @@ import {
   useActiveBusinessId,
   useSetActiveBusinessId,
 } from '@/stores/business/business.selectors';
+import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 
 export function AppSideBarHeader() {
   const { data, isLoading } = useQuery(listBusinessesOptions());
   const { isMobile } = useSidebar();
-  const navigate = useNavigate();
+  const openSheet = useSheetOpen();
 
   const businessId = useActiveBusinessId();
   const setActiveBusinessId = useSetActiveBusinessId();
@@ -60,7 +60,12 @@ export function AppSideBarHeader() {
   };
 
   const handleAddBusiness = () => {
-    navigate('/dashboard/businesses/create');
+    openSheet({
+      sheetKey: 'business',
+      mode: 'add',
+      title: 'Add Business',
+      description: 'Create a new business workspace to track finances.',
+    });
   };
 
   return (

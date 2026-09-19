@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { BuildingIcon, PlusSignIcon } from '@hugeicons/core-free-icons';
@@ -21,12 +20,13 @@ import {
   useActiveBusinessId,
   useSetActiveBusinessId,
 } from '@/stores/business/business.selectors';
+import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import type { BusinessListItem } from '@/types/api/business.d';
 import { BusinessGrid } from './components/business-grid/BusinessGrid';
 import { BusinessDeleteDialog } from './components/business-delete-dialog/BusinessDeleteDialog';
 
 export function BusinessListPage() {
-  const navigate = useNavigate();
+  const openSheet = useSheetOpen();
   const { data, isLoading, isError, error } = useQuery(listBusinessesOptions());
 
   const activeBusinessId = useActiveBusinessId();
@@ -43,8 +43,23 @@ export function BusinessListPage() {
     toast.success(`Switched active workspace to "${business.name}"`);
   };
 
+  const handleAddBusiness = () => {
+    openSheet({
+      sheetKey: 'business',
+      mode: 'add',
+      title: 'Add Business',
+      description: 'Create a new business workspace to track finances.',
+    });
+  };
+
   const handleEdit = (business: BusinessListItem) => {
-    navigate(`/dashboard/businesses/${business.id}/edit`);
+    openSheet({
+      sheetKey: 'business',
+      mode: 'edit',
+      id: business.id,
+      title: 'Edit Business',
+      description: 'Update business workspace name and currency.',
+    });
   };
 
   const handleDelete = (business: BusinessListItem) => {
@@ -58,11 +73,9 @@ export function BusinessListPage() {
         title="Businesses"
         description="Manage your business profiles, switch active workspace, or register new ones."
         opposite={
-          <Button asChild>
-            <Link to="/dashboard/businesses/create">
-              <HugeiconsIcon icon={PlusSignIcon} className="mr-1 size-4" />
-              Add Business
-            </Link>
+          <Button onClick={handleAddBusiness}>
+            <HugeiconsIcon icon={PlusSignIcon} className="mr-1 size-4" />
+            Add Business
           </Button>
         }
       />
@@ -116,11 +129,9 @@ export function BusinessListPage() {
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
-              <Button asChild>
-                <Link to="/dashboard/businesses/create">
-                  <HugeiconsIcon icon={PlusSignIcon} className="mr-1 size-4" />
-                  Create Business
-                </Link>
+              <Button onClick={handleAddBusiness}>
+                <HugeiconsIcon icon={PlusSignIcon} className="mr-1 size-4" />
+                Create Business
               </Button>
             </EmptyContent>
           </Empty>

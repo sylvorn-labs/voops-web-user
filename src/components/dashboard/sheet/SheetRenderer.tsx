@@ -5,13 +5,25 @@ import type {
   ViewSheetProps,
   EditSheetProps,
   AddSheetProps,
-} from '@/types/sheet';
+} from '@/types/sheet.d';
 
 import { SheetLoadingSkeleton } from './SheetLoadingSkeleton';
 
-// ─── Lazy Sheet Imports ──────────────────────────────────────────────
+// ─── Lazy Sheet Imports ──────────────────────────────────────
 
-// ─── Registry ────────────────────────────────────────────────────────
+const BusinessAddSheet = React.lazy(() =>
+  import('@/pages/dashboard/businesses/components/sheet/BusinessAddSheet').then(
+    m => ({ default: m.BusinessAddSheet }),
+  ),
+);
+
+const BusinessEditSheet = React.lazy(() =>
+  import('@/pages/dashboard/businesses/components/sheet/BusinessEditSheet').then(
+    m => ({ default: m.BusinessEditSheet }),
+  ),
+);
+
+// ─── Registry ────────────────────────────────────────────────
 //
 // Add a new entry here whenever a new feature needs sheet support.
 // The key must match the `sheetKey` passed to `useSheetStore().open(...)`.
@@ -19,9 +31,14 @@ import { SheetLoadingSkeleton } from './SheetLoadingSkeleton';
 // Any of the three mode keys can be omitted if the feature doesn't support
 // that mode — the renderer will fall back to <SheetNotConfigured />.
 
-const SHEET_REGISTRY: SheetRegistry = {};
+const SHEET_REGISTRY: SheetRegistry = {
+  business: {
+    add: BusinessAddSheet,
+    edit: BusinessEditSheet,
+  },
+};
 
-// ─── Not-Configured Fallback ─────────────────────────────────────────
+// ─── Not-Configured Fallback ─────────────────────────────────
 
 function SheetNotConfigured({
   sheetKey,
@@ -78,7 +95,7 @@ function SheetNotConfigured({
   );
 }
 
-// ─── Props ───────────────────────────────────────────────────────────
+// ─── Props ───────────────────────────────────────────────────
 
 interface SheetRendererProps {
   sheetKey: string;
@@ -91,7 +108,7 @@ interface SheetRendererProps {
   onSuccess?: () => void;
 }
 
-// ─── Renderer ────────────────────────────────────────────────────────
+// ─── Renderer ────────────────────────────────────────────────
 
 export function SheetRenderer({
   sheetKey,
@@ -103,7 +120,7 @@ export function SheetRenderer({
 }: SheetRendererProps) {
   const config = SHEET_REGISTRY[sheetKey];
 
-  // ─── View ────────────────────────────────────────────────────────────
+  // ─── View ──────────────────────────────────────────────────
 
   if (mode === 'view') {
     const ViewComponent = config?.view as
@@ -120,7 +137,7 @@ export function SheetRenderer({
     );
   }
 
-  // ─── Edit ────────────────────────────────────────────────────────────
+  // ─── Edit ──────────────────────────────────────────────────
 
   if (mode === 'edit') {
     const EditComponent = config?.edit as
@@ -137,7 +154,7 @@ export function SheetRenderer({
     );
   }
 
-  // ─── Add ─────────────────────────────────────────────────────────────
+  // ─── Add ───────────────────────────────────────────────────
 
   if (mode === 'add') {
     const AddComponent = config?.add as
