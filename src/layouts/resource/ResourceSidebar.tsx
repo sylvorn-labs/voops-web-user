@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BookOpen, Download, Printer, Share2, Check, Copy } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button/button';
 import type { ResourceSidebarProps } from './ResourceSidebar.d';
 
 export function ResourceSidebar({ sidebar, title }: ResourceSidebarProps) {

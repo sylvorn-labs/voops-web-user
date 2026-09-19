@@ -1,6 +1,6 @@
-import { Pricing } from './components/Pricing';
-import { Community } from '@/components/global/Community';
-import { Faq } from '@/components/global/Faq';
+import { Pricing } from './components/Pricing/Pricing';
+import { Community } from '@/components/global/Community/Community';
+import { Faq } from '@/components/global/Faq/Faq';
 import { pricingFaqs } from './Page.constants';
 
 export function PricingPage() {

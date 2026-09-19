@@ -1,4 +1,4 @@
-import type { GalleryItem } from '@/components/global/Gallery.d';
+import type { GalleryItem } from '@/components/global/Gallery/Gallery.d';
 
 export const aboutGalleryItems: GalleryItem[] = [
   {

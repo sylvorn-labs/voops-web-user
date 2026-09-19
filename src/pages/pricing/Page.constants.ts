@@ -1,4 +1,4 @@
-import type { FaqItem } from '@/components/global/Faq.d';
+import type { FaqItem } from '@/components/global/Faq/Faq.d';
 
 export const pricingFaqs: FaqItem[] = [
   {

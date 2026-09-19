@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router';
 
-import { Navbar } from '@/components/global/Navbar';
-import { Footer } from '@/components/global/Footer';
+import { Navbar } from '@/components/global/Navbar/Navbar';
+import { Footer } from '@/components/global/Footer/Footer';
 import type { MainLayoutProps } from './MainLayout.d';
 
 export function MainLayout({ children }: MainLayoutProps = {}) {

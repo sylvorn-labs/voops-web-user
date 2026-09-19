@@ -1,7 +1,7 @@
-import { Help } from './components/Help';
+import { Help } from './components/Help/Help';
 
-import { Faq } from '@/components/global/Faq';
-import { Community } from '@/components/global/Community';
+import { Faq } from '@/components/global/Faq/Faq';
+import { Community } from '@/components/global/Community/Community';
 
 export function HelpPage() {
   return (

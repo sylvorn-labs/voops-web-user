@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { AuthBrandLogo } from '@/components/auth/auth-brand-logo';
+import { AuthBrandLogo } from '@/components/auth/auth-brand-logo/auth-brand-logo';
 import type { AuthLayoutProps } from './AuthLayout.d';
 
 export function AuthLayout({ children }: AuthLayoutProps = {}) {
