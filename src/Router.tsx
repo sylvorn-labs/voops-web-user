@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 
 import { lazyImport } from '@/utils/lazy-import';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
+import { MainLayout } from '@/layouts/main/MainLayout';
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -74,14 +75,15 @@ export function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        <Route index={true} element={<HomePage />} />
-
-        {/* Informational / Legal & Resource Routes */}
-        <Route path="/terms" element={<TermsPage />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="/roadmap" element={<RoadmapPage />} />
-        <Route path="/changelog" element={<ChangelogPage />} />
-        <Route path="/help" element={<HelpPage />} />
+        {/* Main Layout routes (Navbar + Footer) */}
+        <Route element={<MainLayout />}>
+          <Route index={true} element={<HomePage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/roadmap" element={<RoadmapPage />} />
+          <Route path="/changelog" element={<ChangelogPage />} />
+          <Route path="/help" element={<HelpPage />} />
+        </Route>
 
         {/* Authentication Routes wrapped with AuthLayout */}
         <Route element={<AuthLayout />}>

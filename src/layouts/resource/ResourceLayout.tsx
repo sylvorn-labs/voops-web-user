@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router';
 import { BookOpen, Download, Printer, Share2, Check, Copy } from 'lucide-react';
 import { cn } from 'cn';
 
@@ -26,7 +27,7 @@ export interface ResourceLayoutProps {
   title?: string;
   subtitle?: string;
   badge?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export function ResourceLayout({
@@ -98,8 +99,8 @@ export function ResourceLayout({
                   <div className="border-border/60 bg-muted/40 flex items-center border-b px-5 py-3.5">
                     <h3 className="text-muted-foreground flex items-center text-xs font-semibold tracking-wider uppercase">
                       <Download className="mr-2 size-3.5" />
-                      {sidebar.downloadLabel || 'Options & Export'}
-                    </h3>
+                      {sidebar.downloadLabel || 'Options & Export'
+                    }</h3>
                   </div>
                   <div className="space-y-4 p-5">
                     <p className="text-muted-foreground text-xs leading-relaxed">
@@ -222,7 +223,7 @@ export function ResourceLayout({
                   {subtitle}
                 </p>
               )}
-              {children}
+              {children ?? <Outlet />}
             </article>
           </div>
         </div>

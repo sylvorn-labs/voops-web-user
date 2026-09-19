@@ -1,4 +1,4 @@
-import { ResourceLayout } from '@/components/global/ResourceLayout';
+import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
 
 interface Resource1Props {
   className?: string;
