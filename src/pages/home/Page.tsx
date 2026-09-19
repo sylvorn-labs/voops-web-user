@@ -12,6 +12,7 @@ import { Gallery } from './components/Gallery';
 import { Compliance } from './components/Compliance';
 import { Testimonials } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
+import { About } from './components/About';
 import { Team } from './components/Team';
 import { Faq } from './components/Faq';
 import { Contact } from './components/Contact';
@@ -37,6 +38,7 @@ export function HomePage() {
         <Compliance />
         <Testimonials />
         <Pricing />
+        <About />
         <Team />
         <Faq />
         <Contact />
