@@ -69,7 +69,7 @@ export function ForgotPasswordForm() {
   if (isSuccess) {
     return (
       <div className="flex flex-col gap-6 text-center">
-        <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+        <div className="bg-income/10 text-income mx-auto flex size-12 items-center justify-center rounded-2xl">
           <HugeiconsIcon icon={CheckmarkCircle02Icon} className="size-6" />
         </div>
 

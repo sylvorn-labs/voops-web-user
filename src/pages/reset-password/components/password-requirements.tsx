@@ -37,18 +37,14 @@ export function PasswordRequirements({ password }: PasswordRequirementsProps) {
             key={idx}
             className={cn(
               'flex items-center gap-2 transition-colors',
-              req.valid
-                ? 'font-medium text-emerald-600 dark:text-emerald-400'
-                : 'text-muted-foreground',
+              req.valid ? 'text-income font-medium' : 'text-muted-foreground',
             )}
           >
             <HugeiconsIcon
               icon={req.valid ? CheckmarkCircle02Icon : Tick02Icon}
               className={cn(
                 'size-3.5 shrink-0',
-                req.valid
-                  ? 'text-emerald-600 dark:text-emerald-400'
-                  : 'text-muted-foreground/40',
+                req.valid ? 'text-income' : 'text-muted-foreground/40',
               )}
             />
             <span>{req.label}</span>

@@ -77,17 +77,17 @@ export function Hero({ className }: HeroProps) {
             {/* Platform Status Byline */}
             <div className="text-muted-foreground flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-xs font-medium">
               <span className="flex items-center gap-1.5">
-                <span className="size-1.5 rounded-full bg-emerald-500" />
+                <span className="bg-income size-1.5 rounded-full" />
                 Mobile App (Flutter)
               </span>
               <span>•</span>
               <span className="flex items-center gap-1.5">
-                <span className="size-1.5 rounded-full bg-blue-500" />
+                <span className="bg-info size-1.5 rounded-full" />
                 Web App (React)
               </span>
               <span>•</span>
               <span className="flex items-center gap-1.5">
-                <span className="size-1.5 rounded-full bg-emerald-500" />
+                <span className="bg-income size-1.5 rounded-full" />
                 Backend (Supabase)
               </span>
             </div>
