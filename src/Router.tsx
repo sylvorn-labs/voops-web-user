@@ -127,11 +127,26 @@ const DashboardPage = lazyImport({
   exportName: 'DashboardPage',
 });
 
+const BusinessListPage = lazyImport({
+  importer: () => import('@/pages/dashboard/businesses/Page'),
+  exportName: 'BusinessListPage',
+});
+
+const BusinessCreatePage = lazyImport({
+  importer: () => import('@/pages/dashboard/businesses/create/Page'),
+  exportName: 'BusinessCreatePage',
+});
+
+const BusinessUpdatePage = lazyImport({
+  importer: () => import('@/pages/dashboard/businesses/update/Page'),
+  exportName: 'BusinessUpdatePage',
+});
+
 export function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        {/* Main Layout routes (Navbar + Footer) */}
+        \n {/* Main Layout routes (Navbar + Footer) */}
         <Route element={<MainLayout />}>
           <Route index={true} element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -170,7 +185,6 @@ export function Router() {
           <Route path="/changelog" element={<ChangelogPage />} />
           <Route path="/help" element={<HelpPage />} />
         </Route>
-
         {/* Authentication Routes wrapped with AuthLayout */}
         <Route element={<AuthLayout />}>
           <Route path="/register" element={<RegisterPage />} />
@@ -179,10 +193,16 @@ export function Router() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
         </Route>
-
         {/* Dashboard Routes wrapped with DashboardLayout */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<DashboardPage />} />
+          <Route path="businesses" element={<BusinessListPage />} />
+          <Route path="businesses/create" element={<BusinessCreatePage />} />
+          <Route path="businesses/:id/edit" element={<BusinessUpdatePage />} />
+          <Route
+            path="businesses/:id/update"
+            element={<BusinessUpdatePage />}
+          />
         </Route>
       </Routes>
     </Suspense>
