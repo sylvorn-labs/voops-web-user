@@ -4,6 +4,7 @@ import { Footer } from '@/components/global/Footer';
 import { Hero } from './components/Hero';
 import { Logos } from './components/Logos';
 import { FeaturesMatrix } from './components/FeaturesMatrix';
+import { FeatureCardsGrid } from './components/FeatureCardsGrid';
 import { Download } from './components/Download';
 
 export function HomePage() {
@@ -17,6 +18,7 @@ export function HomePage() {
         <Hero />
         <Logos />
         <FeaturesMatrix />
+        <FeatureCardsGrid />
         <Download />
       </main>
 
