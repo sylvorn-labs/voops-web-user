@@ -1,10 +1,14 @@
+import type { BlogPostAuthor } from '@/layouts/blog/blog-post-layout.d';
+
 export interface BlogPost {
   id: string;
+  slug: string;
   title: string;
   summary: string;
   label: string;
-  author: string;
+  author: BlogPostAuthor;
   published: string;
+  pubDate: string;
   url: string;
   image: string;
 }

@@ -63,7 +63,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
           )}
         </h3>
         <p className="text-muted-foreground mt-2 text-sm font-medium">
-          {post.author} · {post.published}
+          {post.author.name} · {post.published}
         </p>
       </CardHeader>
 
