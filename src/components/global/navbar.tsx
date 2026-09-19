@@ -53,10 +53,10 @@ interface NavbarProps {
 
 const defaultMenuItems: MenuItem[] = [
   { title: 'Home', url: '/' },
-  { title: 'About', url: '#about' },
+  { title: 'About', url: '/about' },
   {
     title: 'Features',
-    url: '#features',
+    url: '/features',
     items: [
       {
         title: 'Multi-Business',
@@ -64,7 +64,7 @@ const defaultMenuItems: MenuItem[] = [
         icon: (
           <HugeiconsIcon icon={Building03Icon} className="size-5 shrink-0" />
         ),
-        url: '#features',
+        url: '/features',
       },
       {
         title: 'Team Collaboration',
@@ -72,39 +72,40 @@ const defaultMenuItems: MenuItem[] = [
         icon: (
           <HugeiconsIcon icon={UserGroupIcon} className="size-5 shrink-0" />
         ),
-        url: '#features',
+        url: '/features',
       },
       {
         title: 'Account Analytics',
         description:
           'Single business, multiple accounts for financial analysis',
         icon: <HugeiconsIcon icon={Wallet02Icon} className="size-5 shrink-0" />,
-        url: '#features',
+        url: '/features',
       },
       {
         title: 'Category Organization',
         description:
           'Single business, multiple categories for organized transactions',
         icon: <HugeiconsIcon icon={Tag01Icon} className="size-5 shrink-0" />,
-        url: '#features',
+        url: '/features',
       },
       {
         title: 'Project Analytics',
         description:
           'Single business, multiple projects with start/end dates & P&L',
         icon: <HugeiconsIcon icon={Folder02Icon} className="size-5 shrink-0" />,
-        url: '#features',
+        url: '/features',
       },
       {
         title: 'People Analytics',
         description:
           'Single business, multiple people for person-level analytics',
         icon: <HugeiconsIcon icon={UserIcon} className="size-5 shrink-0" />,
-        url: '#features',
+        url: '/features',
       },
     ],
   },
-  { title: 'Contact', url: '#contact' },
+  { title: 'Pricing', url: '/pricing' },
+  { title: 'Contact', url: '/contact' },
 ];
 
 export function Navbar({ className }: NavbarProps) {

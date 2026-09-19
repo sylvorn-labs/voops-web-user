@@ -10,6 +10,26 @@ const HomePage = lazyImport({
   exportName: 'HomePage',
 });
 
+const AboutPage = lazyImport({
+  importer: () => import('@/pages/about/Page'),
+  exportName: 'AboutPage',
+});
+
+const ContactPage = lazyImport({
+  importer: () => import('@/pages/contact/Page'),
+  exportName: 'ContactPage',
+});
+
+const FeaturesPage = lazyImport({
+  importer: () => import('@/pages/features/Page'),
+  exportName: 'FeaturesPage',
+});
+
+const PricingPage = lazyImport({
+  importer: () => import('@/pages/pricing/Page'),
+  exportName: 'PricingPage',
+});
+
 const TermsPage = lazyImport({
   importer: () => import('@/pages/terms/Page'),
   exportName: 'TermsPage',
@@ -78,6 +98,10 @@ export function Router() {
         {/* Main Layout routes (Navbar + Footer) */}
         <Route element={<MainLayout />}>
           <Route index={true} element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/roadmap" element={<RoadmapPage />} />
