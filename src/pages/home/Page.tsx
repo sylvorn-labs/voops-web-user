@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/global/Navbar';
 import { Footer } from '@/components/global/Footer';
+import { Incentives1 } from '@/components/shadcnblocks/incentives1';
 
 import { Hero } from './components/Hero';
 import { Logos } from './components/Logos';
@@ -27,6 +28,7 @@ export function HomePage() {
         <FeaturesMatrix />
         <Industries />
         <FeatureCardsGrid />
+        <Incentives1 />
         <Testimonials />
         <Pricing />
         <Team />
