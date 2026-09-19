@@ -24,21 +24,21 @@ const BusinessEditSheet = React.lazy(() =>
 );
 
 const CategoryAddSheet = React.lazy(() =>
-  import('@/pages/dashboard/categories/components/sheets/CategoryAddSheet').then(
-    m => ({ default: m.CategoryAddSheet }),
-  ),
+  import('@/pages/categories/components/sheets/CategoryAddSheet').then(m => ({
+    default: m.CategoryAddSheet,
+  })),
 );
 
 const CategoryEditSheet = React.lazy(() =>
-  import('@/pages/dashboard/categories/components/sheets/CategoryEditSheet').then(
-    m => ({ default: m.CategoryEditSheet }),
-  ),
+  import('@/pages/categories/components/sheets/CategoryEditSheet').then(m => ({
+    default: m.CategoryEditSheet,
+  })),
 );
 
 const CategoryViewSheet = React.lazy(() =>
-  import('@/pages/dashboard/categories/components/sheets/CategoryViewSheet').then(
-    m => ({ default: m.CategoryViewSheet }),
-  ),
+  import('@/pages/categories/components/sheets/CategoryViewSheet').then(m => ({
+    default: m.CategoryViewSheet,
+  })),
 );
 
 // ─── Registry ────────────────────────────────────────────────────────────────

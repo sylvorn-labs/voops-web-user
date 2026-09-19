@@ -9,7 +9,7 @@ import { SheetDetailRow } from '@/components/dashboard/sheet/SheetDetailRow';
 import { SheetActionBar } from '@/components/dashboard/sheet/SheetActionBar';
 import { useSheetStore } from '@/stores/sheet/sheet.store';
 import { getCategoryByIdOptions } from '@/hooks/api/category.hook';
-import { Badge } from '@/components/ui/badge/Badge';
+import { CategoryBadge } from '@/pages/categories/list/components/category-badge/CategoryBadge';
 import type { ViewSheetProps } from '@/types/sheet.d';
 
 export function CategoryViewSheet({ id }: ViewSheetProps) {
@@ -39,17 +39,6 @@ export function CategoryViewSheet({ id }: ViewSheetProps) {
   const handleOpenDetails = () => {
     closeSheet();
     navigate(`/dashboard/categories/${category.id}`);
-  };
-
-  const getKindBadgeVariant = (kind: string) => {
-    switch (kind) {
-      case 'income':
-        return 'income';
-      case 'expense':
-        return 'expense';
-      default:
-        return 'secondary';
-    }
   };
 
   const formattedCreatedAt = new Date(category.created_at).toLocaleString(
@@ -96,14 +85,7 @@ export function CategoryViewSheet({ id }: ViewSheetProps) {
           <SheetDetailRow label="Name" value={category.name} />
           <SheetDetailRow
             label="Type"
-            value={
-              <Badge
-                variant={getKindBadgeVariant(category.kind)}
-                className="capitalize"
-              >
-                {category.kind}
-              </Badge>
-            }
+            value={<CategoryBadge kind={category.kind} />}
           />
         </div>
 

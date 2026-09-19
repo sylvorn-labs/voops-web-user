@@ -31,13 +31,13 @@ import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
 import { useUpdateCategory } from '@/hooks/api/category.hook';
 
-import { CategoryBadge } from '@/pages/dashboard/categories/list/components/category-badge/CategoryBadge';
+import { CategoryBadge } from '@/pages/categories/list/components/category-badge/CategoryBadge';
 import {
   categoryFormSchema,
   CATEGORY_COLOR_PRESETS,
   CATEGORY_KIND_OPTIONS,
   type CategoryFormValues,
-} from '@/pages/dashboard/categories/components/schema';
+} from '@/pages/categories/components/schema';
 import type { CategoryBasicTabProps } from './category-basic-tab.d';
 
 export function CategoryBasicTab({ category }: CategoryBasicTabProps) {
@@ -210,9 +210,7 @@ export function CategoryBasicTab({ category }: CategoryBasicTabProps) {
           />
           <DataCardPropertyRow
             label="Category Type"
-            value={
-              <CategoryBadge kind={category.kind} color={category.color} />
-            }
+            value={<CategoryBadge kind={category.kind} />}
           />
           <DataCardPropertyRow
             label="Accent Color"

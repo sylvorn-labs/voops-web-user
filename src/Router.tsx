@@ -135,12 +135,12 @@ const BusinessListPage = lazyImport({
 });
 
 const CategoryListPage = lazyImport({
-  importer: () => import('@/pages/dashboard/categories/list/Page'),
+  importer: () => import('@/pages/categories/list/Page'),
   exportName: 'CategoryListPage',
 });
 
 const CategoryDetailsPage = lazyImport({
-  importer: () => import('@/pages/dashboard/categories/details/Page'),
+  importer: () => import('@/pages/categories/details/Page'),
   exportName: 'CategoryDetailsPage',
 });
 

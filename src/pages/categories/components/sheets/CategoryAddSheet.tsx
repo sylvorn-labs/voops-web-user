@@ -1,7 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 
 import {
   Form,
@@ -18,16 +16,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select/Select';
-import { SheetLoadingSkeleton } from '@/components/dashboard/sheet/SheetLoadingSkeleton';
 import { SheetFieldGroup } from '@/components/dashboard/sheet/SheetFieldGroup';
-import { SheetErrorState } from '@/components/dashboard/sheet/SheetErrorState';
 import { useSheetDirty } from '@/components/dashboard/sheet/useSheetDirty';
-import {
-  getCategoryByIdOptions,
-  useUpdateCategory,
-} from '@/hooks/api/category.hook';
+import { useCreateCategory } from '@/hooks/api/category.hook';
+import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { Input } from '@/components/ui/input/Input';
-import type { EditSheetProps } from '@/types/sheet.d';
+import type { AddSheetProps } from '@/types/sheet.d';
 
 import {
   CATEGORY_COLOR_PRESETS,
@@ -35,42 +29,35 @@ import {
   CATEGORY_KIND_OPTIONS,
   categoryFormSchema,
   type CategoryFormValues,
-} from '@/pages/dashboard/categories/components/schema';
+} from '@/pages/categories/components/schema';
 
-export function CategoryEditSheet({ id, formId, onSuccess }: EditSheetProps) {
-  const { data, isLoading, isError, refetch } = useQuery(
-    getCategoryByIdOptions(id),
-  );
-  const updateMutation = useUpdateCategory();
-
-  const category = data?.data;
+export function CategoryAddSheet({
+  formId,
+  prefill,
+  onSuccess,
+}: AddSheetProps) {
+  const activeBusinessId = useActiveBusinessId();
+  const createMutation = useCreateCategory();
 
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(categoryFormSchema),
-    defaultValues: CATEGORY_FORM_DEFAULT_VALUES,
+    defaultValues: {
+      ...CATEGORY_FORM_DEFAULT_VALUES,
+      ...(prefill as Partial<CategoryFormValues>),
+    },
   });
-
-  useEffect(() => {
-    if (category) {
-      form.reset({
-        name: category.name,
-        kind: category.kind,
-        color: category.color || '',
-      });
-    }
-  }, [category, form]);
 
   useSheetDirty(form.formState.isDirty);
 
   const onSubmit = (values: CategoryFormValues) => {
-    updateMutation.mutate(
+    if (!activeBusinessId) return;
+
+    createMutation.mutate(
       {
-        id,
-        data: {
-          name: values.name,
-          kind: values.kind,
-          color: values.color || null,
-        },
+        business_id: activeBusinessId,
+        name: values.name,
+        kind: values.kind,
+        color: values.color || null,
       },
       {
         onSuccess: () => {
@@ -79,19 +66,6 @@ export function CategoryEditSheet({ id, formId, onSuccess }: EditSheetProps) {
       },
     );
   };
-
-  if (isLoading) {
-    return <SheetLoadingSkeleton rows={4} />;
-  }
-
-  if (isError || !category) {
-    return (
-      <SheetErrorState
-        message="Failed to load category details."
-        onRetry={() => void refetch()}
-      />
-    );
-  }
 
   return (
     <Form {...form}>
@@ -111,7 +85,7 @@ export function CategoryEditSheet({ id, formId, onSuccess }: EditSheetProps) {
                 <FormControl>
                   <Input
                     placeholder="e.g. Office Supplies, Travel, Consulting"
-                    disabled={updateMutation.isPending}
+                    disabled={createMutation.isPending}
                     {...field}
                   />
                 </FormControl>
@@ -131,7 +105,7 @@ export function CategoryEditSheet({ id, formId, onSuccess }: EditSheetProps) {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                     value={field.value}
-                    disabled={updateMutation.isPending}
+                    disabled={createMutation.isPending}
                   >
                     <FormControl>
                       <SelectTrigger className="w-full">
@@ -165,7 +139,7 @@ export function CategoryEditSheet({ id, formId, onSuccess }: EditSheetProps) {
                     <FormControl>
                       <Input
                         placeholder="#6366F1"
-                        disabled={updateMutation.isPending}
+                        disabled={createMutation.isPending}
                         {...field}
                       />
                     </FormControl>

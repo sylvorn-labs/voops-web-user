@@ -25,7 +25,7 @@ import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { getCategoryByIdOptions } from '@/hooks/api/category.hook';
 
-import { CategoryDeleteDialog } from '@/pages/dashboard/categories/components/category-delete-dialog/CategoryDeleteDialog';
+import { CategoryDeleteDialog } from '@/pages/categories/components/category-delete-dialog/CategoryDeleteDialog';
 import { CategoryBasicTab } from './components/category-basic-tab/CategoryBasicTab';
 
 export function CategoryDetailsPage() {
