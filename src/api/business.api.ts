@@ -14,6 +14,8 @@ import type { ApiResponse, PaginatedResponse } from '@/types/api.d';
 export class BusinessAPI implements IBusinessAPI {
   private static instance: BusinessAPI;
 
+  private constructor() {}
+
   public static getInstance(): BusinessAPI {
     if (!BusinessAPI.instance) {
       BusinessAPI.instance = new BusinessAPI();
@@ -26,34 +28,32 @@ export class BusinessAPI implements IBusinessAPI {
   ): Promise<PaginatedResponse<BusinessListItem>> {
     const page = params?.page ?? 1;
     const limit = params?.limit ?? 10;
-    const from = (page - 1) * limit;
-    const to = from + limit - 1;
+    const offset = (page - 1) * limit;
 
     let query = supabase
       .from('businesses')
-      .select('*', { count: 'exact' })
+      .select('id, name, currency_code, created_at, updated_at', {
+        count: 'exact',
+      })
       .is('deleted_at', null);
 
     if (params?.search) {
       query = query.ilike('name', `%${params.search}%`);
     }
 
-    if (params?.startDate && params?.endDate) {
-      const dateField = params.dateField ?? 'created_at';
-      query = query
-        .gte(dateField, params.startDate)
-        .lte(dateField, params.endDate);
+    if (params?.startDate) {
+      query = query.gte('created_at', params.startDate);
     }
 
-    if (params?.sortBy) {
-      query = query.order(params.sortBy, {
-        ascending: params.sortOrder === 'asc',
-      });
-    } else {
-      query = query.order('created_at', { ascending: false });
+    if (params?.endDate) {
+      query = query.lte('created_at', params.endDate);
     }
 
-    query = query.range(from, to);
+    const sortBy = params?.sortBy ?? 'created_at';
+    const sortOrder = params?.sortOrder ?? 'desc';
+    query = query.order(sortBy, { ascending: sortOrder === 'asc' });
+
+    query = query.range(offset, offset + limit - 1);
 
     const { data, count, error } = await query;
 
@@ -68,9 +68,9 @@ export class BusinessAPI implements IBusinessAPI {
       success: true,
       data: {
         items: (data as BusinessListItem[]) || [],
-        total,
         page,
         limit,
+        total,
         totalPages,
       },
     };
@@ -106,6 +106,11 @@ export class BusinessAPI implements IBusinessAPI {
       throw new Error(authError?.message || 'User is not authenticated');
     }
 
+    // Ensure the profile exists defensively for foreign key constraints
+    await supabase
+      .from('profiles')
+      .upsert({ id: user.id }, { onConflict: 'id' });
+
     const { data: newBusiness, error: insertError } = await supabase
       .from('businesses')
       .insert({
@@ -121,17 +126,6 @@ export class BusinessAPI implements IBusinessAPI {
       throw new Error(insertError.message);
     }
 
-    // Attempt to add user to business_members if no DB trigger does it automatically
-    try {
-      await supabase.from('business_members').insert({
-        business_id: newBusiness.id,
-        user_id: user.id,
-        role: 'owner',
-      });
-    } catch {
-      // If a trigger already added the member or policy rejects duplicate, continue
-    }
-
     return {
       success: true,
       data: {
@@ -145,12 +139,15 @@ export class BusinessAPI implements IBusinessAPI {
     id: string,
     data: UpdateBusinessRequest,
   ): Promise<ApiResponse<Business>> {
-    const { data: updated, error } = await supabase
+    const updatePayload: Partial<Business> = {};
+
+    if (data.name !== undefined) updatePayload.name = data.name;
+    if (data.currency_code !== undefined)
+      updatePayload.currency_code = data.currency_code;
+
+    const { data: updatedBusiness, error } = await supabase
       .from('businesses')
-      .update({
-        ...data,
-        updated_at: new Date().toISOString(),
-      })
+      .update(updatePayload)
       .eq('id', id)
       .select('*')
       .single();
@@ -161,8 +158,7 @@ export class BusinessAPI implements IBusinessAPI {
 
     return {
       success: true,
-      data: updated as Business,
-      message: 'Business updated successfully',
+      data: updatedBusiness as Business,
     };
   }
 
@@ -171,9 +167,7 @@ export class BusinessAPI implements IBusinessAPI {
   ): Promise<ApiResponse<DeleteBusinessResponse>> {
     const { error } = await supabase
       .from('businesses')
-      .update({
-        deleted_at: new Date().toISOString(),
-      })
+      .update({ deleted_at: new Date().toISOString() })
       .eq('id', id);
 
     if (error) {
