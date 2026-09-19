@@ -2,6 +2,7 @@ import { Navbar } from '@/components/global/Navbar';
 import { Footer } from '@/components/global/Footer';
 
 import { Hero } from './components/Hero';
+import { Logos } from './components/Logos';
 
 export function HomePage() {
   return (
@@ -12,6 +13,7 @@ export function HomePage() {
 
       <main className="flex-1">
         <Hero />
+        <Logos />
       </main>
 
       <Footer />
