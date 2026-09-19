@@ -26,6 +26,36 @@ const FeaturesPage = lazyImport({
   exportName: 'FeaturesPage',
 });
 
+const MultiBusinessFeaturePage = lazyImport({
+  importer: () => import('@/pages/features/multi-business/Page'),
+  exportName: 'MultiBusinessFeaturePage',
+});
+
+const TeamCollaborationFeaturePage = lazyImport({
+  importer: () => import('@/pages/features/team-collaboration/Page'),
+  exportName: 'TeamCollaborationFeaturePage',
+});
+
+const AccountAnalyticsFeaturePage = lazyImport({
+  importer: () => import('@/pages/features/account-analytics/Page'),
+  exportName: 'AccountAnalyticsFeaturePage',
+});
+
+const CategoryOrganizationFeaturePage = lazyImport({
+  importer: () => import('@/pages/features/category-organization/Page'),
+  exportName: 'CategoryOrganizationFeaturePage',
+});
+
+const ProjectAnalyticsFeaturePage = lazyImport({
+  importer: () => import('@/pages/features/project-analytics/Page'),
+  exportName: 'ProjectAnalyticsFeaturePage',
+});
+
+const PeopleAnalyticsFeaturePage = lazyImport({
+  importer: () => import('@/pages/features/people-analytics/Page'),
+  exportName: 'PeopleAnalyticsFeaturePage',
+});
+
 const PricingPage = lazyImport({
   importer: () => import('@/pages/pricing/Page'),
   exportName: 'PricingPage',
@@ -90,6 +120,30 @@ export function Router() {
           <Route index={true} element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/features" element={<FeaturesPage />} />
+          <Route
+            path="/features/multi-business"
+            element={<MultiBusinessFeaturePage />}
+          />
+          <Route
+            path="/features/team-collaboration"
+            element={<TeamCollaborationFeaturePage />}
+          />
+          <Route
+            path="/features/account-analytics"
+            element={<AccountAnalyticsFeaturePage />}
+          />
+          <Route
+            path="/features/category-organization"
+            element={<CategoryOrganizationFeaturePage />}
+          />
+          <Route
+            path="/features/project-analytics"
+            element={<ProjectAnalyticsFeaturePage />}
+          />
+          <Route
+            path="/features/people-analytics"
+            element={<PeopleAnalyticsFeaturePage />}
+          />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/terms" element={<TermsPage />} />

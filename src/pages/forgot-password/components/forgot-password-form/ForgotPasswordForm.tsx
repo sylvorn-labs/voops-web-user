@@ -13,7 +13,11 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert/Alert';
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from '@/components/ui/alert/Alert';
 import {
   Form,
   FormControl,

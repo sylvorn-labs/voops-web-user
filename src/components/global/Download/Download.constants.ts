@@ -1,6 +1,8 @@
 import type { DownloadProps } from './download.d';
 
-export const defaultPlatforms: Required<NonNullable<DownloadProps['platforms']>> = {
+export const defaultPlatforms: Required<
+  NonNullable<DownloadProps['platforms']>
+> = {
   desktop: {
     title: 'Web Application',
     subtitle: 'Desktop & Web',

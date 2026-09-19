@@ -5,5 +5,6 @@ import type { VariantProps } from 'class-variance-authority';
 import type { labelVariants } from './label.constants';
 
 export interface LabelProps
-  extends ComponentProps<typeof RadixLabel.Root>,
+  extends
+    ComponentProps<typeof RadixLabel.Root>,
     VariantProps<typeof labelVariants> {}

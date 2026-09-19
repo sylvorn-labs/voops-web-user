@@ -23,7 +23,7 @@ export const defaultMenuItems: MenuItem[] = [
         icon: (
           <HugeiconsIcon icon={Building03Icon} className="size-5 shrink-0" />
         ),
-        url: '/features',
+        url: '/features/multi-business',
       },
       {
         title: 'Team Collaboration',
@@ -31,35 +31,35 @@ export const defaultMenuItems: MenuItem[] = [
         icon: (
           <HugeiconsIcon icon={UserGroupIcon} className="size-5 shrink-0" />
         ),
-        url: '/features',
+        url: '/features/team-collaboration',
       },
       {
         title: 'Account Analytics',
         description:
           'Single business, multiple accounts for financial analysis',
         icon: <HugeiconsIcon icon={Wallet02Icon} className="size-5 shrink-0" />,
-        url: '/features',
+        url: '/features/account-analytics',
       },
       {
         title: 'Category Organization',
         description:
           'Single business, multiple categories for organized transactions',
         icon: <HugeiconsIcon icon={Tag01Icon} className="size-5 shrink-0" />,
-        url: '/features',
+        url: '/features/category-organization',
       },
       {
         title: 'Project Analytics',
         description:
           'Single business, multiple projects with start/end dates & P&L',
         icon: <HugeiconsIcon icon={Folder02Icon} className="size-5 shrink-0" />,
-        url: '/features',
+        url: '/features/project-analytics',
       },
       {
         title: 'People Analytics',
         description:
           'Single business, multiple people for person-level analytics',
         icon: <HugeiconsIcon icon={UserIcon} className="size-5 shrink-0" />,
-        url: '/features',
+        url: '/features/people-analytics',
       },
     ],
   },

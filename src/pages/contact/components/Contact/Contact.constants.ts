@@ -4,7 +4,8 @@ export const defaultContactValues = {
   description:
     'Have questions, need technical support, or want to contribute? Reach out to the Sylvorn Labs team through any channel below.',
   emailLabel: 'Email Support',
-  emailDescription: 'Reach us directly for general queries and technical support.',
+  emailDescription:
+    'Reach us directly for general queries and technical support.',
   email: 'support@labs.sylvorn.com',
   officeLabel: 'Office Address',
   officeDescription: 'Sylvorn Labs engineering headquarters.',

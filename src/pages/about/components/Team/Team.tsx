@@ -1,6 +1,10 @@
 import { cn } from 'cn';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/components/ui/avatar/Avatar';
 import { defaultMembers } from './team.constants';
 import type { TeamProps } from './team.d';
 

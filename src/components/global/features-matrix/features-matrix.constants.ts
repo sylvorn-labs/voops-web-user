@@ -1,6 +1,8 @@
 import type { FeaturesMatrixProps } from './features-matrix.d';
 
-export const defaultProps: Required<Omit<FeaturesMatrixProps, 'className' | 'id'>> = {
+export const defaultProps: Required<
+  Omit<FeaturesMatrixProps, 'className' | 'id'>
+> = {
   title: 'Engineered for Complete Financial Clarity',
   description:
     'Voops is designed to give you total visibility across every business venture, team member, project budget, and spending category in real time.',

@@ -1,4 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/components/ui/avatar/Avatar';
 import { Card } from '@/components/ui/card/Card';
 import type { TestimonialCardProps } from './testimonial-card.d';
 
