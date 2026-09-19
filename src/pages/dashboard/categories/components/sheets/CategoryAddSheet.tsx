@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 
 import {
   Form,
@@ -19,8 +18,8 @@ import {
 } from '@/components/ui/select/Select';
 import { SheetFieldGroup } from '@/components/dashboard/sheet/SheetFieldGroup';
 import { useSheetDirty } from '@/components/dashboard/sheet/useSheetDirty';
-import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { useCreateCategory } from '@/hooks/api/category.hook';
+import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { Input } from '@/components/ui/input/Input';
 import type { AddSheetProps } from '@/types/sheet.d';
 
@@ -28,9 +27,9 @@ import {
   CATEGORY_COLOR_PRESETS,
   CATEGORY_FORM_DEFAULT_VALUES,
   CATEGORY_KIND_OPTIONS,
-} from './sheet.constants';
-import { categoryFormSchema } from './sheet.schema';
-import type { CategoryFormValues } from './sheet.d';
+  categoryFormSchema,
+  type CategoryFormValues,
+} from '@/pages/dashboard/categories/components/schema';
 
 export function CategoryAddSheet({
   formId,
@@ -44,17 +43,14 @@ export function CategoryAddSheet({
     resolver: zodResolver(categoryFormSchema),
     defaultValues: {
       ...CATEGORY_FORM_DEFAULT_VALUES,
-      ...(prefill as Partial<CategoryFormValues> | undefined),
+      ...(prefill as Partial<CategoryFormValues>),
     },
   });
 
   useSheetDirty(form.formState.isDirty);
 
   const onSubmit = (values: CategoryFormValues) => {
-    if (!activeBusinessId) {
-      toast.error('Please select an active business first.');
-      return;
-    }
+    if (!activeBusinessId) return;
 
     createMutation.mutate(
       {

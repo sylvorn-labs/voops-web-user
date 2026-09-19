@@ -5,19 +5,27 @@ import {
   ArrowLeft01Icon,
   Delete02Icon,
   Edit02Icon,
+  MoreHorizontalIcon,
   RefreshIcon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
 import { DetailsLayout } from '@/layouts/dashboard-detail/DetailsLayout';
 import { Button } from '@/components/ui/button/Button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu/DropdownMenu';
 import { Loading } from '@/components/global/Loading';
 import { Error } from '@/components/global/Error';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { getCategoryByIdOptions } from '@/hooks/api/category.hook';
 
-import { CategoryDeleteDialog } from '../components/category-delete-dialog/CategoryDeleteDialog';
+import { CategoryDeleteDialog } from '@/pages/dashboard/categories/components/category-delete-dialog/CategoryDeleteDialog';
 import { CategoryBasicTab } from './components/category-basic-tab/CategoryBasicTab';
 
 export function CategoryDetailsPage() {
@@ -97,7 +105,7 @@ export function CategoryDetailsPage() {
       <DetailsLayout
         header={{
           title: category.name,
-          description: `Category configuration and audit details.`,
+          description: 'Category configuration and audit details.',
           opposite: (
             <div className="flex items-center gap-2">
               <Button
@@ -108,18 +116,39 @@ export function CategoryDetailsPage() {
                 <HugeiconsIcon icon={ArrowLeft01Icon} className="mr-1 size-4" />
                 Back
               </Button>
-              <Button variant="outline" size="sm" onClick={handleEditInSheet}>
-                <HugeiconsIcon icon={Edit02Icon} className="mr-1 size-4" />
-                Edit in Sheet
-              </Button>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => setIsDeleteDialogOpen(true)}
-              >
-                <HugeiconsIcon icon={Delete02Icon} className="mr-1 size-4" />
-                Delete
-              </Button>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm" className="size-8 p-0">
+                    <HugeiconsIcon
+                      icon={MoreHorizontalIcon}
+                      className="size-4"
+                    />
+                    <span className="sr-only">Open actions menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  className="w-fit min-w-[160px]"
+                >
+                  <DropdownMenuItem
+                    onClick={handleEditInSheet}
+                    className="w-full"
+                  >
+                    <HugeiconsIcon icon={Edit02Icon} className="size-4" />
+                    Edit category
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => setIsDeleteDialogOpen(true)}
+                    variant="destructive"
+                    className="w-full"
+                  >
+                    <HugeiconsIcon icon={Delete02Icon} className="size-4" />
+                    Delete category
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           ),
         }}

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import type { ColumnDef } from '@tanstack/react-table';
 import {
+  ArrowRight01Icon,
   Delete02Icon,
   Edit02Icon,
   PlusSignIcon,
@@ -30,8 +31,8 @@ import type {
   CategorySortBy,
 } from '@/types/api/category.d';
 
+import { CategoryDeleteDialog } from '@/pages/dashboard/categories/components/category-delete-dialog/CategoryDeleteDialog';
 import { CategoryBadge } from './components/category-badge/CategoryBadge';
-import { CategoryDeleteDialog } from './components/category-delete-dialog/CategoryDeleteDialog';
 
 export function CategoryListPage() {
   const navigate = useNavigate();
@@ -54,8 +55,8 @@ export function CategoryListPage() {
   const rowActions: RowActionConfig<CategoryListItem>[] = useMemo(
     () => [
       {
-        id: 'view',
-        label: 'View details',
+        id: 'quick-view',
+        label: 'Quick View',
         icon: ViewIcon,
         separatorBefore: false,
         onClick: category => {
@@ -66,6 +67,15 @@ export function CategoryListPage() {
             title: category.name,
             description: 'Category Information',
           });
+        },
+      },
+      {
+        id: 'view-details',
+        label: 'View Details',
+        icon: ArrowRight01Icon,
+        separatorBefore: false,
+        onClick: category => {
+          navigate(`/dashboard/categories/${category.id}`);
         },
       },
       {
@@ -95,7 +105,7 @@ export function CategoryListPage() {
         },
       },
     ],
-    [openSheet],
+    [navigate, openSheet],
   );
 
   const columns = useMemo<ColumnDef<CategoryListItem>[]>(
@@ -272,7 +282,13 @@ export function CategoryListPage() {
             <DataTableRowContextMenuContent row={row} actions={rowActions} />
           ),
           onRowClick: category =>
-            navigate(`/dashboard/categories/${category.id}`),
+            openSheet({
+              sheetKey: 'category',
+              mode: 'view',
+              id: category.id,
+              title: category.name,
+              description: 'Category Information',
+            }),
           emptyTitle: 'No categories found',
           emptyDescription:
             'Start classifying your transactions by adding your first category.',

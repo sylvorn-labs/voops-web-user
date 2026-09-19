@@ -33,9 +33,9 @@ import {
   CATEGORY_COLOR_PRESETS,
   CATEGORY_FORM_DEFAULT_VALUES,
   CATEGORY_KIND_OPTIONS,
-} from './sheet.constants';
-import { categoryFormSchema } from './sheet.schema';
-import type { CategoryFormValues } from './sheet.d';
+  categoryFormSchema,
+  type CategoryFormValues,
+} from '@/pages/dashboard/categories/components/schema';
 
 export function CategoryEditSheet({ id, formId, onSuccess }: EditSheetProps) {
   const { data, isLoading, isError, refetch } = useQuery(

@@ -31,13 +31,13 @@ import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
 import { useUpdateCategory } from '@/hooks/api/category.hook';
 
-import { CategoryBadge } from '@/pages/dashboard/categories/components/category-badge/CategoryBadge';
-import { categoryFormSchema } from '@/pages/dashboard/categories/components/sheet/sheet.schema';
+import { CategoryBadge } from '@/pages/dashboard/categories/list/components/category-badge/CategoryBadge';
 import {
+  categoryFormSchema,
   CATEGORY_COLOR_PRESETS,
   CATEGORY_KIND_OPTIONS,
-} from '@/pages/dashboard/categories/components/sheet/sheet.constants';
-import type { CategoryFormValues } from '@/pages/dashboard/categories/components/sheet/sheet.d';
+  type CategoryFormValues,
+} from '@/pages/dashboard/categories/components/schema';
 import type { CategoryBasicTabProps } from './category-basic-tab.d';
 
 export function CategoryBasicTab({ category }: CategoryBasicTabProps) {
