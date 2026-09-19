@@ -1,9 +1,10 @@
-import { FeaturesMatrix } from '@/pages/home/components/FeaturesMatrix';
-import { FeatureCardsGrid } from '@/pages/home/components/FeatureCardsGrid';
-import { Industries } from '@/pages/home/components/Industries';
-import { Compliance } from '@/pages/home/components/Compliance';
-import { Faq } from '@/pages/home/components/Faq';
-import { Download } from '@/pages/home/components/Download';
+import { FeatureCardsGrid } from './components/FeatureCardsGrid';
+import { Compliance } from './components/Compliance';
+
+import { FeaturesMatrix } from '@/components/global/FeaturesMatrix';
+import { Industries } from '@/components/global/Industries';
+import { Faq } from '@/components/global/Faq';
+import { Download } from '@/components/global/Download';
 
 export function FeaturesPage() {
   return (

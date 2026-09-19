@@ -1,20 +1,21 @@
-import { FeaturesMatrix } from './components/FeaturesMatrix';
-import { Testimonials } from './components/Testimonials';
-import { TrustStrip } from './components/TrustStrip';
-import { Industries } from './components/Industries';
-import { Download } from './components/Download';
-import { Gallery } from './components/Gallery';
-import { Logos } from './components/Logos';
 import { Hero } from './components/Hero';
-import { Faq } from './components/Faq';
+import { Logos } from './components/Logos';
+import { Testimonials } from './components/Testimonials';
+
+import { TrustStrip } from '@/components/global/TrustStrip';
+import { FeaturesMatrix } from '@/components/global/FeaturesMatrix';
+import { Industries } from '@/components/global/Industries';
+import { Gallery } from '@/components/global/Gallery';
+import { Faq } from '@/components/global/Faq';
+import { Download } from '@/components/global/Download';
 
 export function HomePage() {
   return (
     <>
       <Hero />
+      <Logos />
       <TrustStrip />
       <FeaturesMatrix />
-      <Logos />
       <Industries />
       <Gallery />
       <Testimonials />

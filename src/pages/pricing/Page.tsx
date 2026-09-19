@@ -1,6 +1,7 @@
-import { Pricing } from '@/pages/home/components/Pricing';
-import { Faq } from '@/pages/home/components/Faq';
-import { Community } from '@/pages/home/components/Community';
+import { Pricing } from './components/Pricing';
+
+import { Faq } from '@/components/global/Faq';
+import { Community } from '@/components/global/Community';
 
 const pricingFaqs = [
   {

@@ -1,9 +1,10 @@
-import { About } from '@/pages/home/components/About';
-import { Gallery } from '@/pages/home/components/Gallery';
-import { Incentives } from '@/pages/home/components/Incentives';
-import { TrustStrip } from '@/pages/home/components/TrustStrip';
-import { Team } from '@/pages/home/components/Team';
-import { Community } from '@/pages/home/components/Community';
+import { About } from './components/About';
+import { Incentives } from './components/Incentives';
+import { Team } from './components/Team';
+
+import { TrustStrip } from '@/components/global/TrustStrip';
+import { Gallery } from '@/components/global/Gallery';
+import { Community } from '@/components/global/Community';
 
 const aboutGalleryItems = [
   {
