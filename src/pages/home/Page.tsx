@@ -4,6 +4,7 @@ import { Footer } from '@/components/global/Footer';
 import { Hero } from './components/Hero';
 import { Logos } from './components/Logos';
 import { FeaturesMatrix } from './components/FeaturesMatrix';
+import { Download } from './components/Download';
 
 export function HomePage() {
   return (
@@ -16,6 +17,7 @@ export function HomePage() {
         <Hero />
         <Logos />
         <FeaturesMatrix />
+        <Download />
       </main>
 
       <Footer />
