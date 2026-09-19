@@ -5,6 +5,7 @@ import { lazyImport } from '@/utils/lazy-import';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { MainLayout } from '@/layouts/main/MainLayout';
 import { LoadingFallback } from '@/components/global/loading-fallback/LoadingFallback';
+import { DashboardLayout } from './layouts/dashboard/Layout';
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -121,6 +122,11 @@ const ResetPasswordPage = lazyImport({
   exportName: 'ResetPasswordPage',
 });
 
+const DashboardPage = lazyImport({
+  importer: () => import('@/pages/dashboard/Page'),
+  exportName: 'DashboardPage',
+});
+
 export function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
@@ -172,6 +178,11 @@ export function Router() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
+        </Route>
+
+        {/* Dashboard Routes wrapped with DashboardLayout */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index={true} element={<DashboardPage />} />
         </Route>
       </Routes>
     </Suspense>

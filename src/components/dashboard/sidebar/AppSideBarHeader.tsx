@@ -16,8 +16,10 @@ export function AppSideBarHeader() {
               <img src="/logo.png" alt="DoFoods Logo" className="size-8" />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">DoFoods</span>
-              <span className="truncate text-xs">Hungry We Are Ready</span>
+              <span className="truncate font-medium">Voops</span>
+              <span className="truncate text-xs">
+                Oops! Here goes the money
+              </span>
             </div>
           </Link>
         </SidebarMenuButton>

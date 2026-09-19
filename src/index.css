@@ -148,9 +148,9 @@
   /* Base Semantic Tokens */
   --background: var(--gray-1);
   --foreground: var(--brand-1);
-  --card: #ffffff;
+  --card: var(--gray-1);
   --card-foreground: var(--brand-1);
-  --popover: #ffffff;
+  --popover: var(--gray-1);
   --popover-foreground: var(--brand-1);
   --primary: var(--brand-1);
   --primary-foreground: var(--brand-12);
@@ -200,7 +200,7 @@
 
 .dark {
   /* Base Semantic Tokens */
-  --background: var(--brand-2);
+  --background: var(--gray-12);
   --foreground: var(--gray-1);
   --card: var(--brand-1);
   --card-foreground: var(--gray-1);
