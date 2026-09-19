@@ -8,6 +8,7 @@ import { FeaturesMatrix } from './components/FeaturesMatrix';
 import { Industries } from './components/Industries';
 import { FeatureCardsGrid } from './components/FeatureCardsGrid';
 import { Incentives } from './components/Incentives';
+import { Gallery } from './components/Gallery';
 import { Testimonials } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
 import { Team } from './components/Team';
@@ -30,6 +31,7 @@ export function HomePage() {
         <Industries />
         <FeatureCardsGrid />
         <Incentives />
+        <Gallery />
         <Testimonials />
         <Pricing />
         <Team />
