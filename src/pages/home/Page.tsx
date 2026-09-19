@@ -1,6 +1,5 @@
 import { Navbar } from '@/components/global/Navbar';
 import { Footer } from '@/components/global/Footer';
-import { Incentives1 } from '@/components/shadcnblocks/incentives1';
 
 import { Hero } from './components/Hero';
 import { Logos } from './components/Logos';
@@ -8,6 +7,7 @@ import { TrustStrip } from './components/TrustStrip';
 import { FeaturesMatrix } from './components/FeaturesMatrix';
 import { Industries } from './components/Industries';
 import { FeatureCardsGrid } from './components/FeatureCardsGrid';
+import { Incentives } from './components/Incentives';
 import { Testimonials } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
 import { Team } from './components/Team';
@@ -28,7 +28,7 @@ export function HomePage() {
         <FeaturesMatrix />
         <Industries />
         <FeatureCardsGrid />
-        <Incentives1 />
+        <Incentives />
         <Testimonials />
         <Pricing />
         <Team />
