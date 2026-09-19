@@ -1,37 +1,23 @@
 import * as React from 'react';
+import { ArrowLeft01Icon, ArrowRight01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from 'embla-carousel-react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import { Button } from '@/components/ui/button';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { ArrowLeft01Icon, ArrowRight01Icon } from '@hugeicons/core-free-icons';
-
-type CarouselApi = UseEmblaCarouselType[1];
-type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
-type CarouselOptions = UseCarouselParameters[0];
-type CarouselPlugin = UseCarouselParameters[1];
-
-type CarouselProps = {
-  opts?: CarouselOptions;
-  plugins?: CarouselPlugin;
-  orientation?: 'horizontal' | 'vertical';
-  setApi?: (api: CarouselApi) => void;
-};
-
-type CarouselContextProps = {
-  carouselRef: ReturnType<typeof useEmblaCarousel>[0];
-  api: ReturnType<typeof useEmblaCarousel>[1];
-  scrollPrev: () => void;
-  scrollNext: () => void;
-  canScrollPrev: boolean;
-  canScrollNext: boolean;
-} & CarouselProps;
+import type {
+  CarouselApi,
+  CarouselContentProps,
+  CarouselContextProps,
+  CarouselItemProps,
+  CarouselNextProps,
+  CarouselPreviousProps,
+  CarouselProps,
+} from './carousel.d';
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
-function useCarousel() {
+export function useCarousel() {
   const context = React.useContext(CarouselContext);
 
   if (!context) {
@@ -41,7 +27,7 @@ function useCarousel() {
   return context;
 }
 
-function Carousel({
+export function Carousel({
   orientation = 'horizontal',
   opts,
   setApi,
@@ -49,7 +35,7 @@ function Carousel({
   className,
   children,
   ...props
-}: React.ComponentProps<'div'> & CarouselProps) {
+}: CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -131,7 +117,7 @@ function Carousel({
   );
 }
 
-function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
+export function CarouselContent({ className, ...props }: CarouselContentProps) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -152,7 +138,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
+export function CarouselItem({ className, ...props }: CarouselItemProps) {
   const { orientation } = useCarousel();
 
   return (
@@ -170,12 +156,12 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function CarouselPrevious({
+export function CarouselPrevious({
   className,
   variant = 'outline',
   size = 'icon-sm',
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: CarouselPreviousProps) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -200,12 +186,12 @@ function CarouselPrevious({
   );
 }
 
-function CarouselNext({
+export function CarouselNext({
   className,
   variant = 'outline',
   size = 'icon-sm',
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: CarouselNextProps) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
@@ -230,12 +216,4 @@ function CarouselNext({
   );
 }
 
-export {
-  type CarouselApi,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-  useCarousel,
-};
+export type { CarouselApi };

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { Link, useNavigate } from 'react-router';
 import {
   AlertCircleIcon,
@@ -25,29 +24,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { PasswordRequirements } from './password-requirements';
-
-const resetPasswordSchema = z
-  .object({
-    password: z
-      .string()
-      .min(8, { message: 'Password must be at least 8 characters long.' })
-      .regex(/[A-Z]/, {
-        message: 'Password must contain at least one uppercase letter.',
-      })
-      .regex(/[0-9]/, { message: 'Password must contain at least one number.' })
-      .regex(/[^A-Za-z0-9]/, {
-        message: 'Password must contain at least one special character.',
-      }),
-    confirmPassword: z
-      .string()
-      .min(1, { message: 'Please confirm your password.' }),
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'Passwords do not match.',
-    path: ['confirmPassword'],
-  });
-
-type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
+import { resetPasswordSchema } from './reset-password-form.constants';
+import type { ResetPasswordFormValues } from './reset-password-form.d';
 
 export function ResetPasswordForm() {
   const navigate = useNavigate();

@@ -3,74 +3,9 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
 import { Button } from '@/components/ui/button';
-
-export interface FeatureCardListItem {
-  title: string;
-  description: string;
-  image: {
-    src: string;
-    alt: string;
-    srcDark?: string;
-  };
-  href?: string;
-  label?: string;
-}
-
-export interface FeatureCardsGridProps {
-  id?: string;
-  heading?: string;
-  description?: string;
-  primaryAction?: {
-    text: string;
-    url: string;
-    isExternal?: boolean;
-  };
-  features?: FeatureCardListItem[];
-  className?: string;
-}
-
-const defaultFeatures: FeatureCardListItem[] = [
-  {
-    title: 'Real-Time Reactive Cloud Sync',
-    description:
-      'Instant bidirectional data synchronization between Flutter mobile clients and React web dashboard powered by Supabase.',
-    image: {
-      src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-1-4x3.svg',
-      alt: 'Real-Time Cloud Sync',
-    },
-    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
-  },
-  {
-    title: 'Multi-Currency & Custom Accounts',
-    description:
-      'Manage multiple bank accounts, cash drawers, and custom balance accounts with automated currency conversions.',
-    image: {
-      src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-2-4x3.svg',
-      alt: 'Multi-Currency & Custom Accounts',
-    },
-    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
-  },
-  {
-    title: 'Granular Role-Based Access Control',
-    description:
-      'Protect sensitive business finances by assigning granular viewing, editing, and approval permissions to team members.',
-    image: {
-      src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-3-4x3.svg',
-      alt: 'Granular Role-Based Access Control',
-    },
-    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
-  },
-  {
-    title: 'Automated Financial Reports & Exports',
-    description:
-      'Generate audit-ready CSV, Excel, and PDF reports for tax filings, stakeholder presentations, and accountant handoffs.',
-    image: {
-      src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-4-4x3.svg',
-      alt: 'Automated Financial Reports & Exports',
-    },
-    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
-  },
-];
+import { defaultFeatures } from './FeatureCardsGrid.constants';
+import type { FeatureCardsGridProps } from './FeatureCardsGrid.d';
+import { FeatureCardGridItem } from './FeatureCardGridItem';
 
 export function FeatureCardsGrid({
   id = 'capabilities',
@@ -124,40 +59,10 @@ export function FeatureCardsGrid({
         {/* 2-Column Responsive Grid */}
         <div className="grid gap-8 sm:gap-10 md:grid-cols-2">
           {features.slice(0, 4).map((feature, i) => (
-            <div
-              key={i}
-              className="border-border bg-card text-card-foreground flex flex-col overflow-hidden rounded-2xl border shadow-xs transition-shadow hover:shadow-md"
-            >
-              <a
-                href={feature.href || '#'}
-                target={feature.href?.startsWith('http') ? '_blank' : undefined}
-                rel={
-                  feature.href?.startsWith('http')
-                    ? 'noreferrer noopener'
-                    : undefined
-                }
-                className="bg-muted/30 block overflow-hidden"
-              >
-                <img
-                  src={feature.image.src}
-                  alt={feature.image.alt}
-                  className="aspect-4/3 h-full w-full object-cover object-top transition-transform duration-300 hover:scale-102"
-                />
-              </a>
-              <div className="flex flex-1 flex-col p-6 sm:p-8 lg:p-10">
-                <h3 className="text-foreground mb-2 text-xl font-bold tracking-tight sm:text-2xl">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">
-                  {feature.description}
-                </p>
-              </div>
-            </div>
+            <FeatureCardGridItem key={i} feature={feature} />
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-export { FeatureCardsGrid as Feature72 };

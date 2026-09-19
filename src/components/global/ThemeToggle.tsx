@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
-export function ThemeToggle({ className }: { className?: string }) {
+import { Button } from '@/components/ui/button';
+import type { ThemeToggleProps } from './ThemeToggle.d';
+
+export function ThemeToggle({ className }: ThemeToggleProps) {
   const [theme, setTheme] = React.useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');

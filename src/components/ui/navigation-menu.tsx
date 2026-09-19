@@ -1,18 +1,26 @@
-import * as React from 'react';
-import { cva } from 'class-variance-authority';
-import { cn } from 'cn';
 import { NavigationMenu as NavigationMenuPrimitive } from 'radix-ui';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+import { cn } from 'cn';
 
-function NavigationMenu({
+import { navigationMenuTriggerStyle } from './navigation-menu.constants';
+import type {
+  NavigationMenuContentProps,
+  NavigationMenuIndicatorProps,
+  NavigationMenuItemProps,
+  NavigationMenuLinkProps,
+  NavigationMenuListProps,
+  NavigationMenuProps,
+  NavigationMenuTriggerProps,
+  NavigationMenuViewportProps,
+} from './navigation-menu.d';
+
+export function NavigationMenu({
   className,
   children,
   viewport = true,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
-  viewport?: boolean;
-}) {
+}: NavigationMenuProps) {
   return (
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
@@ -29,10 +37,10 @@ function NavigationMenu({
   );
 }
 
-function NavigationMenuList({
+export function NavigationMenuList({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.List>) {
+}: NavigationMenuListProps) {
   return (
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
@@ -45,10 +53,10 @@ function NavigationMenuList({
   );
 }
 
-function NavigationMenuItem({
+export function NavigationMenuItem({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
+}: NavigationMenuItemProps) {
   return (
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-item"
@@ -58,15 +66,11 @@ function NavigationMenuItem({
   );
 }
 
-const navigationMenuTriggerStyle = cva(
-  'group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted',
-);
-
-function NavigationMenuTrigger({
+export function NavigationMenuTrigger({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {
+}: NavigationMenuTriggerProps) {
   return (
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
@@ -84,10 +88,10 @@ function NavigationMenuTrigger({
   );
 }
 
-function NavigationMenuContent({
+export function NavigationMenuContent({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Content>) {
+}: NavigationMenuContentProps) {
   return (
     <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
@@ -100,10 +104,10 @@ function NavigationMenuContent({
   );
 }
 
-function NavigationMenuViewport({
+export function NavigationMenuViewport({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
+}: NavigationMenuViewportProps) {
   return (
     <div
       className={cn(
@@ -122,10 +126,10 @@ function NavigationMenuViewport({
   );
 }
 
-function NavigationMenuLink({
+export function NavigationMenuLink({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
+}: NavigationMenuLinkProps) {
   return (
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
@@ -138,10 +142,10 @@ function NavigationMenuLink({
   );
 }
 
-function NavigationMenuIndicator({
+export function NavigationMenuIndicator({
   className,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Indicator>) {
+}: NavigationMenuIndicatorProps) {
   return (
     <NavigationMenuPrimitive.Indicator
       data-slot="navigation-menu-indicator"
@@ -156,14 +160,4 @@ function NavigationMenuIndicator({
   );
 }
 
-export {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuContent,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
-  NavigationMenuIndicator,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
-};
+export { navigationMenuTriggerStyle };

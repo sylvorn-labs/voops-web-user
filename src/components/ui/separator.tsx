@@ -1,13 +1,14 @@
-import * as React from 'react';
-import { cn } from 'cn';
 import { Separator as RadixSeparator } from 'radix-ui';
+import { cn } from 'cn';
 
-function Separator({
+import type { SeparatorProps } from './separator.d';
+
+export function Separator({
   className,
   orientation = 'horizontal',
   decorative = true,
   ...props
-}: React.ComponentProps<typeof RadixSeparator.Root>) {
+}: SeparatorProps) {
   return (
     <RadixSeparator.Root
       data-slot="separator"
@@ -22,5 +23,3 @@ function Separator({
     />
   );
 }
-
-export { Separator };

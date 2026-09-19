@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { Link } from 'react-router';
 import {
   AlertCircleIcon,
@@ -23,16 +22,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-
-const forgotPasswordSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .min(1, { message: 'Email address is required.' })
-    .email({ message: 'Please enter a valid email address.' }),
-});
-
-type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
+import { forgotPasswordSchema } from './forgot-password-form.constants';
+import type { ForgotPasswordFormValues } from './forgot-password-form.d';
 
 export function ForgotPasswordForm() {
   const [serverError, setServerError] = React.useState<string | null>(null);

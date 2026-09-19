@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { lazyImport } from '@/utils/lazy-import';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { MainLayout } from '@/layouts/main/MainLayout';
+import { LoadingFallback } from '@/components/global/LoadingFallback';
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -79,17 +80,6 @@ const ResetPasswordPage = lazyImport({
   importer: () => import('@/pages/reset-password/Page'),
   exportName: 'ResetPasswordPage',
 });
-
-function LoadingFallback() {
-  return (
-    <div className="bg-background text-muted-foreground flex h-dvh w-dvw items-center justify-center text-sm">
-      <div className="flex items-center gap-2">
-        <div className="border-primary size-4 animate-spin rounded-full border-2 border-t-transparent" />
-        <span>Loading...</span>
-      </div>
-    </div>
-  );
-}
 
 export function Router() {
   return (

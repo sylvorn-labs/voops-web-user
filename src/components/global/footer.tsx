@@ -3,62 +3,8 @@ import { SparklesIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-interface FooterLink {
-  name: string;
-  href: string;
-}
-
-interface FooterSection {
-  title: string;
-  links: FooterLink[];
-}
-
-interface FooterProps {
-  className?: string;
-}
-
-const defaultSections: FooterSection[] = [
-  {
-    title: 'Legal',
-    links: [
-      { name: 'Terms & Conditions', href: '/terms' },
-      { name: 'Privacy & Policy', href: '/privacy' },
-    ],
-  },
-  {
-    title: 'Product',
-    links: [
-      { name: 'Features', href: '/features' },
-      { name: 'Pricing', href: '/pricing' },
-      { name: 'About Us', href: '/about' },
-      { name: 'Contact Us', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { name: 'Help Center', href: '/help' },
-      { name: 'Changelog', href: '/changelog' },
-      { name: 'Road Map', href: '/roadmap' },
-      {
-        name: 'GitHub (Web)',
-        href: 'https://github.com/Sylvorn-Labs/voops-web-user',
-      },
-      {
-        name: 'GitHub (Mobile)',
-        href: 'https://github.com/sylvorn-labs/voops-mobile-user',
-      },
-    ],
-  },
-  {
-    title: 'Pages',
-    links: [
-      { name: 'Dashboard', href: '/' },
-      { name: 'Login', href: '/login' },
-      { name: 'Register', href: '/register' },
-    ],
-  },
-];
+import { defaultSections } from './Footer.constants';
+import type { FooterProps } from './Footer.d';
 
 export function Footer({ className }: FooterProps) {
   return (

@@ -1,18 +1,12 @@
 import type { ComponentType } from 'react';
 import { lazy } from 'react';
 
-type ComponentPropsOf<C> = C extends ComponentType<infer P> ? P : never;
+import type { ComponentPropsOf, LazyImportOptions } from './lazy-import.d';
 
 export function lazyImport<
   TModule extends object,
   TExport extends keyof TModule,
->({
-  importer,
-  exportName,
-}: {
-  importer: () => Promise<TModule>;
-  exportName: TExport;
-}) {
+>({ importer, exportName }: LazyImportOptions<TModule, TExport>) {
   return lazy(async () => {
     const module = await importer();
 

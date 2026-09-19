@@ -1,6 +1,7 @@
-import { Compass, CheckCircle2, Clock, Sparkles } from 'lucide-react';
+import { CheckCircle2, Clock, Sparkles } from 'lucide-react';
 
 import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
+import { roadmapSidebarConfig } from './Page.constants';
 
 export function RoadmapPage() {
   return (
@@ -8,16 +9,7 @@ export function RoadmapPage() {
       title="Product Road Map"
       subtitle="Discover what we're building next at Sylvorn Labs for Voops."
       badge="Product & Innovation"
-      sidebar={{
-        badgeLabel: 'Public Roadmap',
-        badgeIcon: <Compass className="mr-2 size-3.5" />,
-        cardTitle: 'Voops 2026-2027 Engineering Vision',
-        cardDescription:
-          'A transparent overview of completed releases, active developments, and planned upcoming features.',
-        readTime: '4 minutes',
-        pdfButtonText: 'Download Roadmap Summary',
-        printButtonText: 'Print Roadmap',
-      }}
+      sidebar={roadmapSidebarConfig}
     >
       <div className="space-y-10">
         {/* Overview / Introduction */}

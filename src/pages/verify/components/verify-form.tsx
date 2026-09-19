@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useSearchParams, Link, useNavigate } from 'react-router';
 import {
   AlertCircleIcon,
@@ -26,16 +25,8 @@ import {
 } from '@/components/ui/form';
 import { useAuthIsAuthenticated } from '@/stores/auth/auth.selectors';
 import { ResendTimer } from './resend-timer';
-
-const emailSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .min(1, { message: 'Email address is required.' })
-    .email({ message: 'Please enter a valid email address.' }),
-});
-
-type EmailFormValues = z.infer<typeof emailSchema>;
+import { emailSchema } from './verify-form.constants';
+import type { EmailFormValues } from './verify-form.d';
 
 export function VerifyForm() {
   const navigate = useNavigate();

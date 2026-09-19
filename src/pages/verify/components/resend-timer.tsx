@@ -4,11 +4,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
-
-interface ResendTimerProps {
-  email: string;
-  onMessage?: (msg: { type: 'success' | 'error'; text: string }) => void;
-}
+import type { ResendTimerProps } from './resend-timer.d';
 
 export function ResendTimer({ email, onMessage }: ResendTimerProps) {
   const [countdown, setCountdown] = React.useState(0);

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import { supabase } from '@/lib/supabase';
 
-import type { AuthStore } from './auth.types';
+import type { AuthStore } from './auth.d';
 
 export const useAuthStore = create<AuthStore>(set => {
   const fetchSession = async (isRefetch = false) => {

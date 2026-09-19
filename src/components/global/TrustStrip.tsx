@@ -1,46 +1,7 @@
-import * as React from 'react';
-import {
-  Building01Icon,
-  FlashIcon,
-  GithubIcon,
-  SecurityCheckIcon,
-} from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-export interface TrustItem {
-  icon: React.ReactNode;
-  title: string;
-  description?: string;
-}
-
-export interface TrustStripProps {
-  items?: TrustItem[];
-  className?: string;
-}
-
-const defaultItems: TrustItem[] = [
-  {
-    icon: <HugeiconsIcon icon={GithubIcon} className="size-5" />,
-    title: '100% Open Source',
-    description: 'Public codebase by Sylvorn Labs',
-  },
-  {
-    icon: <HugeiconsIcon icon={SecurityCheckIcon} className="size-5" />,
-    title: 'Strict Privacy',
-    description: 'Your financial data stays yours',
-  },
-  {
-    icon: <HugeiconsIcon icon={Building01Icon} className="size-5" />,
-    title: 'Multi-Business',
-    description: 'Unlimited ventures & accounts',
-  },
-  {
-    icon: <HugeiconsIcon icon={FlashIcon} className="size-5" />,
-    title: 'Real-Time Sync',
-    description: 'Instant Supabase cloud sync',
-  },
-];
+import { defaultItems } from './TrustStrip.constants';
+import type { TrustStripProps } from './TrustStrip.d';
 
 export function TrustStrip({
   items = defaultItems,
@@ -77,5 +38,3 @@ export function TrustStrip({
     </section>
   );
 }
-
-export { TrustStrip as TrustStrip1 };

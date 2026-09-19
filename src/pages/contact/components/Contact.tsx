@@ -7,43 +7,26 @@ import {
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-export interface ContactProps {
-  id?: string;
-  title?: string;
-  description?: string;
-  emailLabel?: string;
-  emailDescription?: string;
-  email?: string;
-  officeLabel?: string;
-  officeDescription?: string;
-  officeAddress?: string;
-  phoneLabel?: string;
-  phoneDescription?: string;
-  phone?: string;
-  chatLabel?: string;
-  chatDescription?: string;
-  chatLink?: string;
-  chatUrl?: string;
-  className?: string;
-}
+import { defaultContactValues } from './Contact.constants';
+import type { ContactProps } from './Contact.d';
 
 export function Contact({
-  id = 'contact',
-  title = 'Contact Us & Community',
-  description = 'Have questions, need technical support, or want to contribute? Reach out to the Sylvorn Labs team through any channel below.',
-  emailLabel = 'Email Support',
-  emailDescription = 'Reach us directly for general queries and technical support.',
-  email = 'support@labs.sylvorn.com',
-  officeLabel = 'Office Address',
-  officeDescription = 'Sylvorn Labs engineering headquarters.',
-  officeAddress = '123-124, Golden Plaza, Tagore Road, Rajkot - 360002, Gujarat, India',
-  phoneLabel = 'General Contact',
-  phoneDescription = 'For partnership, inquiries, and team discussions.',
-  phone = 'hello@labs.sylvorn.com',
-  chatLabel = 'Community & Discussions',
-  chatDescription = 'Explore our GitHub repository and open discussions.',
-  chatLink = 'GitHub Repository',
-  chatUrl = 'https://github.com/Sylvorn-Labs/voops-web-user',
+  id = defaultContactValues.id,
+  title = defaultContactValues.title,
+  description = defaultContactValues.description,
+  emailLabel = defaultContactValues.emailLabel,
+  emailDescription = defaultContactValues.emailDescription,
+  email = defaultContactValues.email,
+  officeLabel = defaultContactValues.officeLabel,
+  officeDescription = defaultContactValues.officeDescription,
+  officeAddress = defaultContactValues.officeAddress,
+  phoneLabel = defaultContactValues.phoneLabel,
+  phoneDescription = defaultContactValues.phoneDescription,
+  phone = defaultContactValues.phone,
+  chatLabel = defaultContactValues.chatLabel,
+  chatDescription = defaultContactValues.chatDescription,
+  chatLink = defaultContactValues.chatLink,
+  chatUrl = defaultContactValues.chatUrl,
   className,
 }: ContactProps) {
   return (
@@ -133,5 +116,3 @@ export function Contact({
     </section>
   );
 }
-
-export { Contact as Contact7 };

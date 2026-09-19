@@ -1,17 +1,10 @@
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from 'cn';
 import { Label as RadixLabel } from 'radix-ui';
+import { cn } from 'cn';
 
-const labelVariants = cva(
-  'text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70 select-none',
-);
+import { labelVariants } from './label.constants';
+import type { LabelProps } from './label.d';
 
-function Label({
-  className,
-  ...props
-}: React.ComponentProps<typeof RadixLabel.Root> &
-  VariantProps<typeof labelVariants>) {
+export function Label({ className, ...props }: LabelProps) {
   return (
     <RadixLabel.Root
       data-slot="label"
@@ -21,4 +14,4 @@ function Label({
   );
 }
 
-export { Label };
+export { labelVariants };

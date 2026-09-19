@@ -1,12 +1,9 @@
 import * as React from 'react';
 import { cn } from 'cn';
 
-export interface InputProps extends React.ComponentProps<'input'> {
-  startSlot?: React.ReactNode;
-  endSlot?: React.ReactNode;
-}
+import type { InputProps } from './input.d';
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, startSlot, endSlot, ...props }, ref) => {
     if (startSlot || endSlot) {
       return (
@@ -53,5 +50,3 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
-
-export { Input };

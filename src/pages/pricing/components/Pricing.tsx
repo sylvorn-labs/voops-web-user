@@ -5,53 +5,8 @@ import { cn } from 'cn';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-
-export interface PricingPlan {
-  name: string;
-  description: string;
-  price: string;
-  period?: string;
-  features?: string[];
-  buttonText?: string;
-  buttonUrl?: string;
-}
-
-export interface PricingProps {
-  id?: string;
-  heading?: string;
-  description?: string;
-  plan?: PricingPlan;
-  featureGroups?: string[][];
-  className?: string;
-}
-
-const defaultPlan: PricingPlan = {
-  name: 'Free Beta Access',
-  description:
-    'All features are completely free during our active development & beta testing period.',
-  price: '0',
-  period: '/free during beta',
-  buttonText: 'Start Free Beta Access',
-  buttonUrl: '/register',
-};
-
-const defaultFeatureGroups: string[][] = [
-  [
-    'Unlimited businesses & company ledgers',
-    'Multiple money stores (cash, wallets, bank accounts)',
-    'Sub-second Supabase cloud sync',
-  ],
-  [
-    'Multi-member team collaboration & roles',
-    'Granular permissions & protected balances',
-    'Project budgets, milestones & P&L analytics',
-  ],
-  [
-    'Category & people-level analytics',
-    'Audit-ready CSV, Excel & PDF exports',
-    'Cross-platform Web (React) & Mobile (Flutter)',
-  ],
-];
+import { defaultFeatureGroups, defaultPlan } from './Pricing.constants';
+import type { PricingProps } from './Pricing.d';
 
 export function Pricing({
   id = 'pricing',
@@ -131,5 +86,3 @@ export function Pricing({
     </section>
   );
 }
-
-export { Pricing as Pricing6 };

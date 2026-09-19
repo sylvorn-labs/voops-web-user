@@ -1,67 +1,7 @@
 import { cn } from 'cn';
-import {
-  Figma,
-  Flutter,
-  Google,
-  React as ReactIcon,
-  Supabase,
-  TailwindCss,
-} from '@thesvg/react';
 
-export interface LogoItem {
-  name: string;
-  icon?: React.ComponentType<{ className?: string }>;
-  src?: string;
-  alt?: string;
-  srcDark?: string;
-  className?: string;
-  href?: string;
-}
-
-export interface LogosProps {
-  logos?: LogoItem[];
-  className?: string;
-  maxLogos?: number;
-}
-
-const defaultLogos: LogoItem[] = [
-  {
-    name: 'Supabase',
-    icon: Supabase,
-    className: 'h-7 w-auto',
-    href: 'https://supabase.com',
-  },
-  {
-    name: 'React',
-    icon: ReactIcon,
-    className: 'h-7 w-auto',
-    href: 'https://react.dev',
-  },
-  {
-    name: 'Tailwind CSS',
-    icon: TailwindCss,
-    className: 'h-7 w-auto',
-    href: 'https://tailwindcss.com',
-  },
-  {
-    name: 'Flutter',
-    icon: Flutter,
-    className: 'h-7 w-auto',
-    href: 'https://flutter.dev',
-  },
-  {
-    name: 'Google Icon',
-    icon: Google,
-    className: 'h-7 w-auto',
-    href: 'https://fonts.google.com/icons',
-  },
-  {
-    name: 'Figma',
-    icon: Figma,
-    className: 'h-7 w-auto',
-    href: 'https://figma.com',
-  },
-];
+import { defaultLogos } from './Logos.constants';
+import type { LogosProps } from './Logos.d';
 
 export function Logos({
   logos = defaultLogos,
@@ -135,5 +75,3 @@ export function Logos({
     </section>
   );
 }
-
-export { Logos as Logos18 };

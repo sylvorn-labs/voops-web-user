@@ -1,44 +1,14 @@
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from 'cn';
 
-const badgeVariants = cva(
-  'inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none transition-colors focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
-  {
-    variants: {
-      variant: {
-        default:
-          'border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90',
-        secondary:
-          'border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90',
-        destructive:
-          'border-transparent bg-destructive text-destructive-foreground [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40',
-        outline:
-          'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
-        income:
-          'border-transparent bg-income/15 text-income [a&]:hover:bg-income/25',
-        expense:
-          'border-transparent bg-expense/15 text-expense [a&]:hover:bg-expense/25',
-        warning:
-          'border-transparent bg-warning/15 text-warning [a&]:hover:bg-warning/25',
-        info: 'border-transparent bg-info/15 text-info [a&]:hover:bg-info/25',
-        balance:
-          'border-transparent bg-balance/15 text-balance [a&]:hover:bg-balance/25',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  },
-);
+import { badgeVariants } from './badge.constants';
+import type { BadgeProps } from './badge.d';
 
-function Badge({
+export function Badge({
   className,
   variant,
   asChild = false,
   ...props
-}: React.ComponentProps<'span'> &
-  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+}: BadgeProps) {
   return (
     <span
       data-slot="badge"
@@ -48,4 +18,4 @@ function Badge({
   );
 }
 
-export { Badge, badgeVariants };
+export { badgeVariants };

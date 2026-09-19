@@ -15,71 +15,9 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
-
-export interface GalleryItem {
-  id: string;
-  title: string;
-  summary: string;
-  url: string;
-  image: string;
-}
-
-export interface GalleryProps {
-  id?: string;
-  heading?: string;
-  demoUrl?: string;
-  demoText?: string;
-  items?: GalleryItem[];
-  className?: string;
-}
-
-const defaultItems: GalleryItem[] = [
-  {
-    id: 'item-1',
-    title: 'Multi-Business Master Dashboard',
-    summary:
-      'Switch effortlessly between corporate entities, agencies, and side projects with instant balance aggregation.',
-    url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape1.jpeg',
-  },
-  {
-    id: 'item-2',
-    title: 'Real-Time Project P&L & Budgeting',
-    summary:
-      'Track client project profitability, milestones, contractor expenses, and revenue margins without messy spreadsheets.',
-    url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape2.jpeg',
-  },
-  {
-    id: 'item-3',
-    title: 'Category Intelligence & Cash Flow Analytics',
-    summary:
-      'Deep dive into recurring SaaS subscriptions, operating costs, and tax-deductible expense distributions.',
-    url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape3.jpeg',
-  },
-  {
-    id: 'item-4',
-    title: 'Granular Role-Based Team Permissions',
-    summary:
-      'Invite teammates, managers, and external accountants with strict role restrictions and comprehensive audit logs.',
-    url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape4.jpeg',
-  },
-  {
-    id: 'item-5',
-    title: 'Sub-Second Cross-Platform Sync',
-    summary:
-      'Snap receipts on iOS and Android via Flutter with instant synchronization directly to your React desktop workspace.',
-    url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape5.jpeg',
-  },
-];
+import { defaultItems } from './Gallery.constants';
+import type { GalleryProps } from './Gallery.d';
+import { GalleryCard } from './GalleryCard';
 
 export function Gallery({
   id = 'gallery',
@@ -191,73 +129,17 @@ export function Gallery({
           className="relative w-full max-w-full"
         >
           <CarouselContent className="px-4 md:px-8">
-            {items.map(item => {
-              const isItemInternal =
-                item.url.startsWith('/') && !item.url.startsWith('/#');
-
-              const CardContent = (
-                <div className="border-border/60 bg-card text-card-foreground group flex h-full flex-col justify-between overflow-hidden rounded-2xl border p-5 shadow-xs transition-all duration-300 hover:shadow-md">
-                  <div>
-                    <div className="bg-muted/30 aspect-3/2 overflow-hidden rounded-xl">
-                      <div className="relative h-full w-full origin-bottom transition-transform duration-300 group-hover:scale-105">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="h-full w-full object-cover object-center"
-                        />
-                      </div>
-                    </div>
-                    <h3 className="text-foreground mt-5 text-lg font-bold tracking-tight md:text-xl">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground mt-2 line-clamp-2 text-sm leading-relaxed">
-                      {item.summary}
-                    </p>
-                  </div>
-
-                  <div className="text-primary group-hover:text-primary/80 mt-6 inline-flex items-center text-sm font-semibold transition-colors">
-                    <span>Learn more</span>
-                    <HugeiconsIcon
-                      icon={ArrowRight01Icon}
-                      className="ml-1.5 size-4 transition-transform group-hover:translate-x-1"
-                    />
-                  </div>
-                </div>
-              );
-
-              return (
-                <CarouselItem
-                  key={item.id}
-                  className="basis-[85%] sm:basis-[60%] md:basis-[45%] lg:basis-[36%] xl:basis-[30%]"
-                >
-                  {isItemInternal ? (
-                    <Link to={item.url} className="block h-full">
-                      {CardContent}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.url}
-                      target={
-                        item.url.startsWith('http') ? '_blank' : undefined
-                      }
-                      rel={
-                        item.url.startsWith('http')
-                          ? 'noreferrer noopener'
-                          : undefined
-                      }
-                      className="block h-full"
-                    >
-                      {CardContent}
-                    </a>
-                  )}
-                </CarouselItem>
-              );
-            })}
+            {items.map(item => (
+              <CarouselItem
+                key={item.id}
+                className="basis-[85%] sm:basis-[60%] md:basis-[45%] lg:basis-[36%] xl:basis-[30%]"
+              >
+                <GalleryCard item={item} />
+              </CarouselItem>
+            ))}
           </CarouselContent>
         </Carousel>
       </div>
     </section>
   );
 }
-
-export { Gallery as Gallery6 };

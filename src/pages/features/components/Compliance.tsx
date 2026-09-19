@@ -1,71 +1,8 @@
 import { cn } from 'cn';
-import { Github, Postgresql, Supabase } from '@thesvg/react';
 
 import { Badge } from '@/components/ui/badge';
-
-export interface ComplianceBadge {
-  title: string;
-  icon?: React.ComponentType<{ className?: string }>;
-  image?: string;
-  alt?: string;
-}
-
-export interface ComplianceFeature {
-  title: string;
-  description: string;
-  icon?: React.ComponentType<{ className?: string }>;
-  badgeImage?: string;
-  badgeAlt?: string;
-}
-
-export interface ComplianceProps {
-  id?: string;
-  tagline?: string;
-  heading?: string;
-  description?: string;
-  badges?: ComplianceBadge[];
-  features?: ComplianceFeature[];
-  className?: string;
-}
-
-const defaultBadges: ComplianceBadge[] = [
-  {
-    title: 'PostgreSQL RLS',
-    icon: Postgresql,
-  },
-  {
-    title: 'Supabase Security',
-    icon: Supabase,
-  },
-  {
-    title: 'Open Source GitHub',
-    icon: Github,
-  },
-];
-
-const defaultFeatures: ComplianceFeature[] = [
-  {
-    title: 'Row-Level Security (RLS) Isolation',
-    description:
-      'Database-level tenant isolation powered by Supabase PostgreSQL RLS guarantees zero cross-organization data leakage.',
-    icon: Postgresql,
-    badgeAlt: 'PostgreSQL RLS',
-  },
-  {
-    title: 'Open-Source & Permissive License',
-    description:
-      '100% open source under a permissive license. No proprietary black boxes or vendor lock-in — inspect and audit every line of code.',
-    icon: Github,
-    badgeAlt: 'Open Source',
-  },
-  {
-    title: 'Self-Hostable & Full Data Sovereignty',
-    description:
-      'Retain complete ownership of your business financials. Self-host on your own infrastructure or run on your own Supabase instance.',
-    icon: Supabase,
-    badgeAlt: 'Self Hostable',
-  },
-];
+import { defaultBadges, defaultFeatures } from './Compliance.constants';
+import type { ComplianceProps } from './Compliance.d';
 
 export function Compliance({
   id = 'compliance',
@@ -166,5 +103,3 @@ export function Compliance({
     </section>
   );
 }
-
-export { Compliance as Compliance1 };

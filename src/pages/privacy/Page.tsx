@@ -1,6 +1,5 @@
-import { Lock } from 'lucide-react';
-
 import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
+import { privacySidebarConfig } from './Page.constants';
 
 export function PrivacyPage() {
   return (
@@ -8,16 +7,7 @@ export function PrivacyPage() {
       title="Privacy & Policy"
       subtitle="Last updated: September 19, 2026 • Privacy Commitment by Sylvorn Labs"
       badge="Data Protection & Privacy"
-      sidebar={{
-        badgeLabel: 'Privacy Notice',
-        badgeIcon: <Lock className="mr-2 size-3.5" />,
-        cardTitle: 'Voops Privacy & Security Charter',
-        cardDescription:
-          'How Voops and Sylvorn Labs collect, encrypt, isolate, and safeguard your personal and multi-business financial data.',
-        readTime: '5 minutes',
-        pdfButtonText: 'Download Policy PDF',
-        printButtonText: 'Print Policy',
-      }}
+      sidebar={privacySidebarConfig}
     >
       <div className="space-y-8">
         <section>

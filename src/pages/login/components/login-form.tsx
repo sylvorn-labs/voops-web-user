@@ -9,7 +9,6 @@ import {
   ViewOffSlashIcon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { z } from 'zod';
 
 import { supabase } from '@/lib/supabase';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -24,17 +23,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { AuthSocialButtons } from '@/components/auth/auth-social-buttons';
-
-const loginSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .min(1, { message: 'Email address is required.' })
-    .email({ message: 'Please enter a valid email address.' }),
-  password: z.string().min(1, { message: 'Password is required.' }),
-});
-
-type LoginFormValues = z.infer<typeof loginSchema>;
+import { loginSchema } from './login-form.constants';
+import type { LoginFormValues } from './login-form.d';
 
 export function LoginForm() {
   const navigate = useNavigate();

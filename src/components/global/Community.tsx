@@ -1,43 +1,10 @@
-import React from 'react';
-import { FaDiscord, FaGithub, FaXTwitter } from 'react-icons/fa6';
 import { SparklesIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
 import { Button } from '@/components/ui/button';
-
-export interface SocialLink {
-  icon: React.ReactNode;
-  url: string;
-  name: string;
-}
-
-export interface CommunityProps {
-  id?: string;
-  logo?: React.ReactNode;
-  heading?: string;
-  headingHighlight?: string;
-  socialLinks?: SocialLink[];
-  className?: string;
-}
-
-const defaultSocialLinks: SocialLink[] = [
-  {
-    name: 'X (Twitter)',
-    icon: <FaXTwitter className="size-5" />,
-    url: 'https://x.com/sylvornlabs',
-  },
-  {
-    name: 'GitHub',
-    icon: <FaGithub className="size-5" />,
-    url: 'https://github.com/Sylvorn-Labs/voops-web-user',
-  },
-  {
-    name: 'Discord',
-    icon: <FaDiscord className="size-5" />,
-    url: 'https://discord.gg',
-  },
-];
+import { defaultSocialLinks } from './Community.constants';
+import type { CommunityProps } from './Community.d';
 
 export function Community({
   id = 'community',
@@ -91,5 +58,3 @@ export function Community({
     </section>
   );
 }
-
-export { Community as Community1 };

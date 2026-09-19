@@ -2,9 +2,7 @@ import { CheckmarkCircle02Icon, Tick02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-interface PasswordRequirementsProps {
-  password: string;
-}
+import type { PasswordRequirementsProps } from './password-requirements.d';
 
 export function PasswordRequirements({ password }: PasswordRequirementsProps) {
   const requirements = [

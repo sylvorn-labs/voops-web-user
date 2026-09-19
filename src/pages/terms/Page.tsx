@@ -1,6 +1,5 @@
-import { ShieldCheck } from 'lucide-react';
-
 import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
+import { termsSidebarConfig } from './Page.constants';
 
 export function TermsPage() {
   return (
@@ -8,16 +7,7 @@ export function TermsPage() {
       title="Terms & Conditions"
       subtitle="Last updated: September 19, 2026 • Effective Date: January 1, 2026"
       badge="Legal & Compliance"
-      sidebar={{
-        badgeLabel: 'Legal Terms',
-        badgeIcon: <ShieldCheck className="mr-2 size-3.5" />,
-        cardTitle: 'Voops Master Terms of Service',
-        cardDescription:
-          'Official terms governing your use of Voops multi-business financial tracking applications and cloud services.',
-        readTime: '6 minutes',
-        pdfButtonText: 'Export PDF Agreement',
-        printButtonText: 'Print Terms',
-      }}
+      sidebar={termsSidebarConfig}
     >
       <div className="space-y-8">
         <section>

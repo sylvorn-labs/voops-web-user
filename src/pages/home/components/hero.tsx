@@ -5,12 +5,9 @@ import { cn } from 'cn';
 
 import { useAuthIsAuthenticated } from '@/stores/auth/auth.selectors';
 import { Button } from '@/components/ui/button';
+import type { HeroProps } from './Hero.d';
 
-interface HeroProps {
-  className?: string;
-}
-
-export function Hero({ className }: HeroProps) {
+export function Hero({ className }: HeroProps = {}) {
   const isAuthenticated = useAuthIsAuthenticated();
 
   return (
