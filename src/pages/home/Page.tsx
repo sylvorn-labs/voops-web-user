@@ -3,6 +3,7 @@ import { Footer } from '@/components/global/Footer';
 
 import { Hero } from './components/Hero';
 import { Logos } from './components/Logos';
+import { FeaturesMatrix } from './components/FeaturesMatrix';
 
 export function HomePage() {
   return (
@@ -14,6 +15,7 @@ export function HomePage() {
       <main className="flex-1">
         <Hero />
         <Logos />
+        <FeaturesMatrix />
       </main>
 
       <Footer />
