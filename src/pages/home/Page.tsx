@@ -3,6 +3,7 @@ import { Footer } from '@/components/global/Footer';
 
 import { Hero } from './components/Hero';
 import { Logos } from './components/Logos';
+import { TrustStrip } from './components/TrustStrip';
 import { FeaturesMatrix } from './components/FeaturesMatrix';
 import { FeatureCardsGrid } from './components/FeatureCardsGrid';
 import { Download } from './components/Download';
@@ -17,6 +18,7 @@ export function HomePage() {
       <main className="flex-1">
         <Hero />
         <Logos />
+        <TrustStrip />
         <FeaturesMatrix />
         <FeatureCardsGrid />
         <Download />
