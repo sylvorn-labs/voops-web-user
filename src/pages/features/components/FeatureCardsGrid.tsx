@@ -38,7 +38,7 @@ const defaultFeatures: FeatureCardListItem[] = [
       src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-1-4x3.svg',
       alt: 'Real-Time Cloud Sync',
     },
-    href: 'https://github.com/sylvorn-labs',
+    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
   },
   {
     title: 'Multi-Currency & Custom Accounts',
@@ -48,7 +48,7 @@ const defaultFeatures: FeatureCardListItem[] = [
       src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-2-4x3.svg',
       alt: 'Multi-Currency & Custom Accounts',
     },
-    href: 'https://github.com/sylvorn-labs',
+    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
   },
   {
     title: 'Granular Role-Based Access Control',
@@ -58,7 +58,7 @@ const defaultFeatures: FeatureCardListItem[] = [
       src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-3-4x3.svg',
       alt: 'Granular Role-Based Access Control',
     },
-    href: 'https://github.com/sylvorn-labs',
+    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
   },
   {
     title: 'Automated Financial Reports & Exports',
@@ -68,7 +68,7 @@ const defaultFeatures: FeatureCardListItem[] = [
       src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/saas-details/saas-card-detail-4-4x3.svg',
       alt: 'Automated Financial Reports & Exports',
     },
-    href: 'https://github.com/sylvorn-labs',
+    href: 'https://github.com/Sylvorn-Labs/voops-web-user',
   },
 ];
 
@@ -78,7 +78,7 @@ export function FeatureCardsGrid({
   description = 'Open-source expense tracking engineered by Sylvorn Labs with strict data privacy, enterprise-grade architecture, and zero bloat.',
   primaryAction = {
     text: 'Explore open source code',
-    url: 'https://github.com/sylvorn-labs',
+    url: 'https://github.com/Sylvorn-Labs/voops-web-user',
     isExternal: true,
   },
   features = defaultFeatures,

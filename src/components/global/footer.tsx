@@ -40,7 +40,10 @@ const defaultSections: FooterSection[] = [
       { name: 'Help Center', href: '/help' },
       { name: 'Changelog', href: '/changelog' },
       { name: 'Road Map', href: '/roadmap' },
-      { name: 'GitHub', href: 'https://github.com/sylvorn-labs' },
+      {
+        name: 'GitHub',
+        href: 'https://github.com/Sylvorn-Labs/voops-web-user',
+      },
     ],
   },
   {
@@ -67,7 +70,7 @@ export function Footer({ className }: FooterProps) {
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
             <p className="text-foreground mt-3 text-sm font-semibold">
-              Oops! Here goes the money.
+              Oops! There goes the money.
             </p>
             <p className="text-muted-foreground mt-1 text-xs font-medium">
               Open source multi-business expense tracker engineered by Sylvorn

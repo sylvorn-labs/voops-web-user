@@ -20,52 +20,31 @@ export interface TeamProps {
 const defaultMembers: TeamMember[] = [
   {
     id: 'member-1',
-    name: 'Olivia Rhye',
-    role: 'Founder & Lead Architect',
+    name: 'Parth Kachhela',
+    role: 'Idea & Vision',
     avatar:
       'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop',
   },
   {
     id: 'member-2',
-    name: 'Phoenix Baker',
-    role: 'Head of Mobile (Flutter)',
+    name: 'Jenil Desai',
+    role: 'Idea to Development / Lead Architect',
     avatar:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop',
   },
   {
     id: 'member-3',
-    name: 'Lana Steiner',
-    role: 'Frontend Lead (React)',
+    name: 'Jaydeep Gohil',
+    role: 'Mobile Application (Flutter)',
     avatar:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop',
-  },
-  {
-    id: 'member-4',
-    name: 'Demi Wilkinson',
-    role: 'Backend & Supabase Architect',
-    avatar:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop',
-  },
-  {
-    id: 'member-5',
-    name: 'Candice Wu',
-    role: 'UI/UX & Brand Designer',
-    avatar:
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=256&auto=format&fit=crop',
-  },
-  {
-    id: 'member-6',
-    name: 'Natali Craig',
-    role: 'Open Source Community Lead',
-    avatar:
-      'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=256&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop',
   },
 ];
 
 export function Team({
   id = 'team',
   heading = 'Meet the Minds Behind Voops',
-  description = 'The engineering, design, and product team at Sylvorn Labs dedicated to crafting transparent, modern financial tools.',
+  description = 'The creators and collaborators behind the architecture, web, and mobile platforms of Voops.',
   members = defaultMembers,
   className,
 }: TeamProps) {
@@ -81,7 +60,7 @@ export function Team({
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-5xl gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-4xl gap-x-8 gap-y-12 sm:grid-cols-3">
           {members.map(member => {
             const initials = member.name
               .split(' ')

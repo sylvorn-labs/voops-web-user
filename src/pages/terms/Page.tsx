@@ -152,14 +152,15 @@ export function TermsPage() {
           </h2>
           <p className="text-muted-foreground mt-2 leading-relaxed">
             For questions or inquiries regarding these Terms and Conditions,
-            please contact Sylvorn Labs legal support at{' '}
+            please contact Sylvorn Labs at{' '}
             <a
-              href="mailto:legal@sylvorn.com"
+              href="mailto:hello@labs.sylvorn.com"
               className="text-primary underline"
             >
-              legal@sylvorn.com
-            </a>
-            .
+              hello@labs.sylvorn.com
+            </a>{' '}
+            or write to us at 123-124, Golden Plaza, Tagore Road, Rajkot -
+            360002, Gujarat, India.
           </p>
         </section>
       </div>

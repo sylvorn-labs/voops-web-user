@@ -32,18 +32,18 @@ export function Contact({
   title = 'Contact Us & Community',
   description = 'Have questions, need technical support, or want to contribute? Reach out to the Sylvorn Labs team through any channel below.',
   emailLabel = 'Email Support',
-  emailDescription = 'We respond to all inquiries and feedback within 24 hours.',
-  email = 'support@sylvornlabs.com',
-  officeLabel = 'Headquarters',
-  officeDescription = 'Sylvorn Labs open-source development hub.',
-  officeAddress = 'Gujarat, India (Remote First)',
-  phoneLabel = 'Enterprise & Inquiries',
-  phoneDescription = 'Available Mon-Fri, 9:00 AM - 6:00 PM IST.',
-  phone = '+91 98765 43210',
+  emailDescription = 'Reach us directly for general queries and technical support.',
+  email = 'support@labs.sylvorn.com',
+  officeLabel = 'Office Address',
+  officeDescription = 'Sylvorn Labs engineering headquarters.',
+  officeAddress = '123-124, Golden Plaza, Tagore Road, Rajkot - 360002, Gujarat, India',
+  phoneLabel = 'General Contact',
+  phoneDescription = 'For partnership, inquiries, and team discussions.',
+  phone = 'hello@labs.sylvorn.com',
   chatLabel = 'Community & Discussions',
-  chatDescription = 'Join our GitHub Discussions and developer chat.',
-  chatLink = 'Join GitHub Community',
-  chatUrl = 'https://github.com/sylvorn-labs',
+  chatDescription = 'Explore our GitHub repository and open discussions.',
+  chatLink = 'GitHub Repository',
+  chatUrl = 'https://github.com/Sylvorn-Labs/voops-web-user',
   className,
 }: ContactProps) {
   return (
@@ -60,7 +60,7 @@ export function Contact({
           </div>
 
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
-            {/* Email */}
+            {/* Support Email */}
             <div className="border-border/60 bg-card text-card-foreground flex flex-col rounded-2xl border p-8 shadow-xs transition-shadow hover:shadow-md">
               <div className="bg-primary/10 text-primary mb-5 flex size-12 items-center justify-center rounded-xl">
                 <HugeiconsIcon icon={Mail01Icon} className="size-6" />
@@ -77,7 +77,7 @@ export function Contact({
               </a>
             </div>
 
-            {/* Office */}
+            {/* Office Address */}
             <div className="border-border/60 bg-card text-card-foreground flex flex-col rounded-2xl border p-8 shadow-xs transition-shadow hover:shadow-md">
               <div className="bg-income/10 text-income mb-5 flex size-12 items-center justify-center rounded-xl">
                 <HugeiconsIcon icon={Location01Icon} className="size-6" />
@@ -91,7 +91,7 @@ export function Contact({
               </span>
             </div>
 
-            {/* Phone */}
+            {/* General Contact Email */}
             <div className="border-border/60 bg-card text-card-foreground flex flex-col rounded-2xl border p-8 shadow-xs transition-shadow hover:shadow-md">
               <div className="bg-warning/10 text-warning mb-5 flex size-12 items-center justify-center rounded-xl">
                 <HugeiconsIcon icon={Call02Icon} className="size-6" />
@@ -101,14 +101,14 @@ export function Contact({
                 {phoneDescription}
               </p>
               <a
-                href={`tel:${phone}`}
+                href={`mailto:${phone}`}
                 className="text-primary hover:text-primary/80 mt-auto text-sm font-semibold transition-colors hover:underline"
               >
                 {phone}
               </a>
             </div>
 
-            {/* Live Chat / Community */}
+            {/* Live Chat / GitHub Community */}
             <div className="border-border/60 bg-card text-card-foreground flex flex-col rounded-2xl border p-8 shadow-xs transition-shadow hover:shadow-md">
               <div className="bg-primary/10 text-primary mb-5 flex size-12 items-center justify-center rounded-xl">
                 <HugeiconsIcon icon={Comment01Icon} className="size-6" />

@@ -181,10 +181,10 @@ export function PrivacyPage() {
             If you have questions about this policy or wish to exercise your
             data protection rights, please reach out to{' '}
             <a
-              href="mailto:privacy@sylvorn.com"
+              href="mailto:support@labs.sylvorn.com"
               className="text-primary underline"
             >
-              privacy@sylvorn.com
+              support@labs.sylvorn.com
             </a>
             .
           </p>

@@ -28,72 +28,77 @@ export interface ChangelogProps {
 
 const defaultEntries: ChangelogEntry[] = [
   {
-    version: 'v1.3.0',
-    date: '18 September 2026',
-    title: 'Multi-Business Master Dashboards & Project P&L',
+    version: 'Web Dev',
+    date: '13 September 2026',
+    title: 'Kick Started Web Application Development',
     description:
-      'A landmark update introducing multi-entity aggregation, sub-second project profit & loss calculations, and audit-ready data export.',
+      'Commenced official React web application development with full Supabase integration, OAuth authentication, and multi-business workspace management.',
     items: [
-      'Multi-business workspace switching with dedicated bank accounts',
-      'Interactive project milestone tracking and margin analysis',
-      'Direct CSV, Excel, and PDF tax report generation',
-      'Advanced category intelligence and recurring SaaS subscription alerts',
-      'Improved dark & light mode token performance',
+      'Engineered React web frontend using modern web standards',
+      'Integrated Supabase PostgreSQL database and real-time synchronization',
+      'Implemented Row-Level Security (RLS) and authentication flows',
+      'Built multi-business and multi-store money management interfaces',
     ],
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-aspect-video-1.svg',
     button: {
-      url: 'https://github.com/sylvorn-labs',
-      text: 'View Release Notes on GitHub',
+      url: 'https://github.com/Sylvorn-Labs/voops-web-user',
+      text: 'View GitHub Repository',
     },
   },
   {
-    version: 'v1.2.0',
-    date: '20 August 2026',
-    title: 'Flutter Mobile Companion Launch (iOS & Android)',
+    version: 'Rebrand',
+    date: '10 September 2026',
+    title: 'Rebranded to Voops',
     description:
-      'We officially launched our native Flutter companion apps for fast on-the-go expense capture and real-time Supabase cloud synchronization.',
+      'Transitioned from the initial working name "Expense Tracker" to our official brand "Voops" — inspired by our own problem statement: "Oops! There goes the money."',
     items: [
-      'Instant offline receipt and expense logging with automatic sync',
-      'Biometric authentication support (FaceID and Fingerprint)',
-      'Sub-second real-time sync with desktop React workspace',
-      'Granular camera receipt uploads and PDF attachment viewer',
+      'Formulated brand identity and tagline: "Oops! There goes the money."',
+      'Unified design system and visual theme guidelines',
+      'Established open-source product strategy under Sylvorn Labs',
     ],
   },
   {
-    version: 'v1.1.0',
-    date: '15 July 2026',
-    title: 'Granular Role-Based Permissions & Audit Trails',
+    version: 'Mobile Dev',
+    date: '31 August 2026',
+    title: 'Kick Started Mobile Application Development',
     description:
-      'Added full team collaboration capabilities allowing business owners to invite members, accountants, and managers with custom permission scopes.',
+      'Collaborated with Jaydeep Gohil to kick off cross-platform mobile application development using Flutter for iOS and Android.',
     items: [
-      'Owner, Admin, Member, and View-only role hierarchy',
-      'Comprehensive ledger audit trail tracking every modification',
-      'Protected balance hiding for standard team members',
-      'Automated email invitations and membership management',
+      'Setup Flutter cross-platform architecture for iOS and Android',
+      'Connected Supabase real-time client with local caching',
+      'Designed frictionless daily transaction and receipt capture flows',
     ],
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-aspect-video-1.svg',
   },
   {
-    version: 'v1.0.0',
-    date: '10 June 2026',
-    title: 'Official Voops Open-Source Public Release',
+    version: 'Planning',
+    date: '26 - 30 August 2026',
+    title: 'Planning & Architecture Brainstorming',
     description:
-      'Initial public release of Voops by Sylvorn Labs. Built to give founders and operators an open-source, multi-entity financial tracking platform without paywalls.',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-aspect-video-1.svg',
-    button: {
-      url: 'https://github.com/sylvorn-labs',
-      text: 'Read Announcement',
-    },
+      'Brainstormed daily routines to eliminate friction and addressed core questions around timelines, maintenance, scale, and economics.',
+    items: [
+      'Selected Supabase for SQL Postgres, tried & tested OAuth, and RLS security',
+      'Configured S3-compatible Object Storage for bills and invoices',
+      'Designed schemas for multiple money stores (cash, wallets, bank accounts)',
+      'Defined project P&L and multi-person transaction architectures',
+    ],
+  },
+  {
+    version: 'Conception',
+    date: '20 - 25 August 2026',
+    title: 'Idea Conception by Parth Kachhela',
+    description:
+      'Identified the critical need for a dedicated expense tracker after evaluating existing apps (including Khata book via AI search) that failed to match multi-business requirements.',
+    items: [
+      'Identified pain points in tracking multi-project incomes and expenses',
+      'Addressed lack of clarity during client and outsourcing meetings',
+      'Committed to building a lightweight, internal-first, open-source platform',
+    ],
   },
 ];
 
 export function Changelog({
   id = 'changelog',
-  title = 'Product Changelog',
-  description = 'Discover the latest releases, performance improvements, and feature updates shipped by the Sylvorn Labs team.',
+  title = 'Project Timeline & Changelog',
+  description = 'A transparent record of our journey from initial problem statement and architecture brainstorming to active mobile and web development.',
   entries = defaultEntries,
   className,
 }: ChangelogProps) {

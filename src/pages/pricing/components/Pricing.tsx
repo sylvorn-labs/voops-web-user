@@ -26,37 +26,37 @@ export interface PricingProps {
 }
 
 const defaultPlan: PricingPlan = {
-  name: 'Community Open Source',
+  name: 'Free Beta Access',
   description:
-    'Full-featured multi-business tracking for founders, freelancers, and growing teams.',
+    'All features are completely free during our active development & beta testing period.',
   price: '0',
-  period: '/forever',
-  buttonText: 'Start Tracking for Free',
+  period: '/free during beta',
+  buttonText: 'Start Free Beta Access',
   buttonUrl: '/register',
 };
 
 const defaultFeatureGroups: string[][] = [
   [
-    'Unlimited businesses & companies',
-    'Multi-currency & bank accounts',
+    'Unlimited businesses & company ledgers',
+    'Multiple money stores (cash, wallets, bank accounts)',
     'Sub-second Supabase cloud sync',
   ],
   [
-    'Multi-member team collaboration',
-    'Granular role-based permissions',
-    'Project budgets & P&L analytics',
+    'Multi-member team collaboration & roles',
+    'Granular permissions & protected balances',
+    'Project budgets, milestones & P&L analytics',
   ],
   [
-    'Category & people intelligence',
+    'Category & people-level analytics',
     'Audit-ready CSV, Excel & PDF exports',
-    'Native iOS & Android mobile apps',
+    'Cross-platform Web (React) & Mobile (Flutter)',
   ],
 ];
 
 export function Pricing({
   id = 'pricing',
-  heading = 'Simple, Transparent, Free Forever',
-  description = 'No paywalls, hidden tiers, or artificial limits. Full access to every single feature from day one.',
+  heading = 'Free During Development & Beta',
+  description = 'All features are 100% free with zero artificial limits during beta testing. In the future, managed cloud instances will offer flexible paid plans while maintaining full open-source self-hosting.',
   plan = defaultPlan,
   featureGroups = defaultFeatureGroups,
   className,

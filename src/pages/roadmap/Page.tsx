@@ -173,7 +173,7 @@ export function RoadmapPage() {
             We build Voops in the open. If you have an idea for a feature,
             integration, or improvement, participate in our discussions on{' '}
             <a
-              href="https://github.com/sylvorn-labs"
+              href="https://github.com/Sylvorn-Labs/voops-web-user"
               target="_blank"
               rel="noreferrer noopener"
               className="text-primary font-semibold underline"
@@ -182,10 +182,10 @@ export function RoadmapPage() {
             </a>{' '}
             or reach out directly at{' '}
             <a
-              href="mailto:roadmap@sylvorn.com"
+              href="mailto:support@labs.sylvorn.com"
               className="text-primary font-semibold underline"
             >
-              roadmap@sylvorn.com
+              support@labs.sylvorn.com
             </a>
             .
           </p>

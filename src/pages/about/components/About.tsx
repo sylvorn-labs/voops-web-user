@@ -24,36 +24,36 @@ export interface AboutProps {
 const defaultImages: AboutImage[] = [
   {
     src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/about/photo-1-16x9.jpg',
-    alt: 'Sylvorn Labs engineering collective',
+    alt: 'Sylvorn Labs engineering team',
   },
   {
     src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/about/photo-2-16x9.jpg',
-    alt: 'Modern workspace',
+    alt: 'Modern engineering workspace',
   },
 ];
 
 const defaultSections: AboutBasicSection[] = [
   {
-    title: 'Our Vision',
+    title: 'The Real Origin Story',
     content:
-      'Traditional accounting software forces operators into expensive single-entity silos. Voops unifies your holding companies, agencies, and side projects under a single intuitive pane of glass.',
+      'As company owners, we desperately needed a unified expense tracker for daily transactions, multiple money stores (petty cash, wallets, bank accounts), project-level P&L, and transactions with multiple people across client and outsourcing meetings. Without clarity, we had no idea where money was going.',
   },
   {
-    title: 'The Sylvorn Labs Collective',
+    title: 'Finding No Match & Building In-House',
     content:
-      'We are an open-source engineering collective dedicated to building transparent, developer-first tools. We build the software we rely on every day to run our own projects.',
+      'In the era of AI, we consulted multiple AIs to discover an existing solution. While tools like Khata Book appeared, none matched our multi-business and multi-project demands. We decided to build our own focused internal tool, initially named simply "Expense Tracker".',
   },
   {
     label: 'Our Core Mission',
-    title: 'Democratizing multi-business financial intelligence.',
+    title: 'Solving Timelines, Maintenance, Scale & Economy',
     content:
-      'To empower 100,000+ multi-venture founders and operators with open-source financial tools that guarantee 100% data sovereignty and zero vendor lock-in.',
+      'We brainstormed our daily routines to eliminate manual friction and chose Supabase (PostgreSQL, Auth/OAuth, RLS security, Object Storage) alongside React and Flutter to deliver a scalable, open-source platform.',
   },
   {
-    label: 'What Drives Us',
-    title: 'Clarity, Speed, and True Ownership.',
+    label: 'Rebranded to Voops',
+    title: 'Oops! There goes the money.',
     content:
-      'We start from the operator experience and the simplest path forward. Clean code, sub-second latency, and intuitive design lead to smarter capital decisions.',
+      'What began as an internal "Expense Tracker" evolved into Voops — born directly from our own relatable problem statement. We made it open source so every founder and team can gain effortless financial visibility.',
   },
 ];
 
@@ -70,8 +70,8 @@ const truncate = (content: string) => {
 
 export function About({
   id = 'about',
-  heading = 'Building the financial OS for multi-venture operators.',
-  description = 'Sylvorn Labs was founded on a simple principle: modern founders running multiple companies shouldn’t be penalized with separate subscriptions or messy disconnected spreadsheets.',
+  heading = 'Born from our own operational chaos to give founders complete financial clarity.',
+  description = 'Sylvorn Labs built Voops because existing tools couldn’t handle multi-store finances, cross-project transactions, and contractor expenses without painful workarounds.',
   images = defaultImages,
   sections = defaultSections,
   className,

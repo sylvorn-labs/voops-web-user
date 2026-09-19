@@ -30,7 +30,7 @@ const defaultSocialLinks: SocialLink[] = [
   {
     name: 'GitHub',
     icon: <FaGithub className="size-5" />,
-    url: 'https://github.com/sylvorn-labs',
+    url: 'https://github.com/Sylvorn-Labs/voops-web-user',
   },
   {
     name: 'Discord',
