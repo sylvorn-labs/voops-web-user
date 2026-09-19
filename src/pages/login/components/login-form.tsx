@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useNavigate, Link } from 'react-router';
 import {
   AlertCircleIcon,
   Loading03Icon,
@@ -10,11 +9,12 @@ import {
   ViewOffSlashIcon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { z } from 'zod';
 
 import { supabase } from '@/lib/supabase';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   Form,
   FormControl,
@@ -23,7 +23,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { AuthSocialButtons } from '@/layouts/auth/components/auth-social-buttons';
+import { AuthSocialButtons } from '@/components/auth/auth-social-buttons';
 
 const loginSchema = z.object({
   email: z

@@ -38,6 +38,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { ThemeToggle } from '@/components/global/ThemeToggle';
 
 interface MenuItem {
   title: string;
@@ -136,8 +137,9 @@ export function Navbar({ className }: NavbarProps) {
             </div>
           </div>
 
-          {/* Desktop Auth Buttons */}
+          {/* Desktop Auth Buttons & Theme Toggle */}
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             {isAuthenticated ? (
               <>
                 <Button variant="outline" size="sm" onClick={() => logout()}>
@@ -171,64 +173,70 @@ export function Navbar({ className }: NavbarProps) {
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
 
-            {/* Mobile Sheet Trigger */}
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Link to="/" className="flex items-center gap-2.5">
-                      <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                        <HugeiconsIcon icon={SparklesIcon} className="size-4" />
-                      </div>
-                      <span className="text-lg font-bold tracking-tight">
-                        Voops
-                      </span>
-                    </Link>
-                  </SheetTitle>
-                </SheetHeader>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              {/* Mobile Sheet Trigger */}
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Menu className="size-4" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className="overflow-y-auto">
+                  <SheetHeader>
+                    <SheetTitle>
+                      <Link to="/" className="flex items-center gap-2.5">
+                        <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
+                          <HugeiconsIcon
+                            icon={SparklesIcon}
+                            className="size-4"
+                          />
+                        </div>
+                        <span className="text-lg font-bold tracking-tight">
+                          Voops
+                        </span>
+                      </Link>
+                    </SheetTitle>
+                  </SheetHeader>
 
-                <div className="flex flex-col gap-6 p-4">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="flex w-full flex-col gap-4"
-                  >
-                    {defaultMenuItems.map(item => renderMobileMenuItem(item))}
-                  </Accordion>
+                  <div className="flex flex-col gap-6 p-4">
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="flex w-full flex-col gap-4"
+                    >
+                      {defaultMenuItems.map(item => renderMobileMenuItem(item))}
+                    </Accordion>
 
-                  <div className="flex flex-col gap-3 pt-4">
-                    {isAuthenticated ? (
-                      <>
-                        <Button
-                          variant="outline"
-                          onClick={() => logout()}
-                          className="w-full"
-                        >
-                          Log Out
-                        </Button>
-                        <Button asChild className="w-full">
-                          <Link to="/">Dashboard</Link>
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button asChild variant="outline" className="w-full">
-                          <Link to="/login">Login</Link>
-                        </Button>
-                        <Button asChild className="w-full">
-                          <Link to="/register">Start Now</Link>
-                        </Button>
-                      </>
-                    )}
+                    <div className="flex flex-col gap-3 pt-4">
+                      {isAuthenticated ? (
+                        <>
+                          <Button
+                            variant="outline"
+                            onClick={() => logout()}
+                            className="w-full"
+                          >
+                            Log Out
+                          </Button>
+                          <Button asChild className="w-full">
+                            <Link to="/">Dashboard</Link>
+                          </Button>
+                        </>
+                      ) : (
+                        <>
+                          <Button asChild variant="outline" className="w-full">
+                            <Link to="/login">Login</Link>
+                          </Button>
+                          <Button asChild className="w-full">
+                            <Link to="/register">Start Now</Link>
+                          </Button>
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </div>

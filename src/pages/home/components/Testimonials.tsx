@@ -1,15 +1,15 @@
 import { cn } from 'cn';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card } from '@/components/ui/card';
 
 export interface TestimonialItem {
   id?: string;
   name: string;
+  username: string;
+  role: string;
   avatar: string;
   content: string;
-  role?: string;
-  username?: string;
-  date?: string;
   link?: string;
   icon?: string;
 }
@@ -26,11 +26,11 @@ export interface TestimonialsProps {
 const defaultTestimonials: TestimonialItem[] = [
   {
     id: '1',
-    name: 'Sarah Chen',
-    username: 'sarahchen',
+    name: 'Drew Cano',
+    username: 'drewcano',
     role: 'Multi-Business Founder',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/avatars/avatar3.jpg',
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop',
     content:
       'Voops completely replaced our mess of spreadsheets. Managing expenses across my e-commerce brand and consulting agency under one single login with segregated bank accounts is a total game changer.',
     link: '#',
@@ -38,11 +38,11 @@ const defaultTestimonials: TestimonialItem[] = [
   },
   {
     id: '2',
-    name: 'Marcus Rodriguez',
-    username: 'marcusr',
+    name: 'Orlando Diggs',
+    username: 'orlandod',
     role: 'Agency Director',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/avatars/avatar7.jpg',
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop',
     content:
       'The project P&L tracking feature saved us thousands last quarter. We can tie every contractor invoice and software expense directly to client milestones and verify profitability in real time.',
     link: '#',
@@ -50,11 +50,11 @@ const defaultTestimonials: TestimonialItem[] = [
   },
   {
     id: '3',
-    name: 'Emily Watson',
-    username: 'emilywatson',
+    name: 'Kate Morrison',
+    username: 'katem',
     role: 'Head of Operations',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/avatars/avatar12.jpg',
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop',
     content:
       'The role-based permission system gives me full confidence. Our team members can submit their receipts without seeing confidential payroll or executive balance accounts.',
     link: '#',
@@ -62,11 +62,11 @@ const defaultTestimonials: TestimonialItem[] = [
   },
   {
     id: '4',
-    name: 'David Kim',
-    username: 'davidkim',
+    name: 'Koray Okumus',
+    username: 'korayo',
     role: 'Tech Lead & Open Source Advocate',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/avatars/avatar18.jpg',
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop',
     content:
       'Built on Supabase, Flutter, and React with open-source transparency. The sub-second synchronization between mobile and web is buttery smooth. Sylvorn Labs nailed the technical execution.',
     link: '#',
@@ -74,11 +74,11 @@ const defaultTestimonials: TestimonialItem[] = [
   },
   {
     id: '5',
-    name: 'Rachel Foster',
-    username: 'rachelf',
+    name: 'Andi Lane',
+    username: 'andilane',
     role: 'Freelance Design Lead',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/avatars/avatar22.jpg',
+      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop',
     content:
       'Category analytics and people tracking make tax season painless. I can filter all deductible software subscriptions and vendor payouts with one click and export audit-ready CSVs.',
     link: '#',
@@ -86,11 +86,11 @@ const defaultTestimonials: TestimonialItem[] = [
   },
   {
     id: '6',
-    name: 'James Mitchell',
-    username: 'jamesm',
+    name: 'Ava Wright',
+    username: 'avawright',
     role: 'CFO & Angel Investor',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/avatars/avatar25.jpg',
+      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop',
     content:
       'The UX is minimal, blazing fast, and doesn’t get in your way. Being able to track multiple bank currencies, cash registers, and budgets across portfolio startups is phenomenal.',
     link: '#',

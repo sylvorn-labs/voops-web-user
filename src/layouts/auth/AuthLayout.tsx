@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { AuthBrandLogo } from './components/auth-brand-logo';
+import { AuthBrandLogo } from '@/components/auth/auth-brand-logo';
 
 export function AuthLayout() {
   return (

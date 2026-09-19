@@ -20,45 +20,45 @@ export interface TeamProps {
 const defaultMembers: TeamMember[] = [
   {
     id: 'member-1',
-    name: 'Jenil Desai',
+    name: 'Olivia Rhye',
     role: 'Founder & Lead Architect',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop',
   },
   {
     id: 'member-2',
-    name: 'Aarav Mehta',
+    name: 'Phoenix Baker',
     role: 'Head of Mobile (Flutter)',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp',
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop',
   },
   {
     id: 'member-3',
-    name: 'Sophia Patel',
+    name: 'Lana Steiner',
     role: 'Frontend Lead (React)',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp',
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop',
   },
   {
     id: 'member-4',
-    name: 'David Kim',
+    name: 'Demi Wilkinson',
     role: 'Backend & Supabase Architect',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-4.webp',
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop',
   },
   {
     id: 'member-5',
-    name: 'Elena Rostova',
+    name: 'Candice Wu',
     role: 'UI/UX & Brand Designer',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-5.webp',
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=256&auto=format&fit=crop',
   },
   {
     id: 'member-6',
-    name: 'Lucas Silva',
+    name: 'Natali Craig',
     role: 'Open Source Community Lead',
     avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-6.webp',
+      'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=256&auto=format&fit=crop',
   },
 ];
 
