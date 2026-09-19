@@ -9,6 +9,21 @@ const HomePage = lazyImport({
   exportName: 'HomePage',
 });
 
+const TermsPage = lazyImport({
+  importer: () => import('@/pages/terms/Page'),
+  exportName: 'TermsPage',
+});
+
+const PrivacyPage = lazyImport({
+  importer: () => import('@/pages/privacy/Page'),
+  exportName: 'PrivacyPage',
+});
+
+const RoadmapPage = lazyImport({
+  importer: () => import('@/pages/roadmap/Page'),
+  exportName: 'RoadmapPage',
+});
+
 const RegisterPage = lazyImport({
   importer: () => import('@/pages/register/Page'),
   exportName: 'RegisterPage',
@@ -50,6 +65,11 @@ export function Router() {
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
         <Route index={true} element={<HomePage />} />
+
+        {/* Informational / Legal & Resource Routes */}
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/roadmap" element={<RoadmapPage />} />
 
         {/* Authentication Routes wrapped with AuthLayout */}
         <Route element={<AuthLayout />}>

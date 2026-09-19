@@ -21,8 +21,8 @@ const defaultSections: FooterSection[] = [
   {
     title: 'Legal',
     links: [
-      { name: 'Terms & Conditions', href: '#terms' },
-      { name: 'Privacy & Policy', href: '#privacy' },
+      { name: 'Terms & Conditions', href: '/terms' },
+      { name: 'Privacy & Policy', href: '/privacy' },
     ],
   },
   {
@@ -36,7 +36,7 @@ const defaultSections: FooterSection[] = [
     title: 'Resources',
     links: [
       { name: 'GitHub', href: 'https://github.com/sylvorn-labs' },
-      { name: 'Road Map', href: '#roadmap' },
+      { name: 'Road Map', href: '/roadmap' },
     ],
   },
   {
@@ -123,10 +123,10 @@ export function Footer({ className }: FooterProps) {
           </p>
           <ul className="flex gap-4">
             <li className="hover:text-primary underline">
-              <a href="#terms">Terms & Conditions</a>
+              <Link to="/terms">Terms & Conditions</Link>
             </li>
             <li className="hover:text-primary underline">
-              <a href="#privacy">Privacy & Policy</a>
+              <Link to="/privacy">Privacy & Policy</Link>
             </li>
           </ul>
         </div>
