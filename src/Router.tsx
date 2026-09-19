@@ -142,11 +142,21 @@ const BusinessUpdatePage = lazyImport({
   exportName: 'BusinessUpdatePage',
 });
 
+const NotFoundPage = lazyImport({
+  importer: () => import('@/pages/not-found/Page'),
+  exportName: 'NotFoundPage',
+});
+
+const NotLoggedInPage = lazyImport({
+  importer: () => import('@/pages/not-logged-in/Page'),
+  exportName: 'NotLoggedInPage',
+});
+
 export function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        \n {/* Main Layout routes (Navbar + Footer) */}
+        {/* Main Layout routes (Navbar + Footer) */}
         <Route element={<MainLayout />}>
           <Route index={true} element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -184,7 +194,10 @@ export function Router() {
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/changelog" element={<ChangelogPage />} />
           <Route path="/help" element={<HelpPage />} />
+          <Route path="/not-logged-in" element={<NotLoggedInPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
+
         {/* Authentication Routes wrapped with AuthLayout */}
         <Route element={<AuthLayout />}>
           <Route path="/register" element={<RegisterPage />} />
@@ -193,6 +206,7 @@ export function Router() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
         </Route>
+
         {/* Dashboard Routes wrapped with DashboardLayout */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<DashboardPage />} />
