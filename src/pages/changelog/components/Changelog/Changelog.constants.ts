@@ -1,4 +1,4 @@
-import type { ChangelogEntry } from './Changelog.d';
+import type { ChangelogEntry } from './changelog.d';
 
 export const defaultEntries: ChangelogEntry[] = [
   {

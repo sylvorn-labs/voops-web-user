@@ -1,4 +1,4 @@
-import type { DownloadProps } from './Download.d';
+import type { DownloadProps } from './download.d';
 
 export const defaultPlatforms: Required<NonNullable<DownloadProps['platforms']>> = {
   desktop: {

@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
-import type { GalleryCardProps } from './GalleryCard.d';
+import type { GalleryCardProps } from './gallery-card.d';
 
 export function GalleryCard({ item }: GalleryCardProps) {
   const isItemInternal = item.url.startsWith('/') && !item.url.startsWith('/#');

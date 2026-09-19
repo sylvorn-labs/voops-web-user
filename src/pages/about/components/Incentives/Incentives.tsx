@@ -4,9 +4,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from '@/components/ui/carousel/carousel';
-import { defaultIncentives } from './Incentives.constants';
-import type { IncentivesProps } from './Incentives.d';
+} from '@/components/ui/carousel/Carousel';
+import { defaultIncentives } from './incentives.constants';
+import type { IncentivesProps } from './incentives.d';
 
 export function Incentives({
   id = 'incentives',

@@ -4,7 +4,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 import useEmblaCarousel from 'embla-carousel-react';
 
-import { Button } from '@/components/ui/button/button';
+import { Button } from '@/components/ui/button/Button';
 import type {
   CarouselApi,
   CarouselContentProps,

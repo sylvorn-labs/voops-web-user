@@ -1,9 +1,9 @@
 import { ArrowUpRight01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
-import { Badge } from '@/components/ui/badge/badge';
-import { Button } from '@/components/ui/button/button';
-import type { ChangelogEntryItemProps } from './ChangelogEntryItem.d';
+import { Badge } from '@/components/ui/badge/Badge';
+import { Button } from '@/components/ui/button/Button';
+import type { ChangelogEntryItemProps } from './changelog-entry-item.d';
 
 export function ChangelogEntryItem({ entry }: ChangelogEntryItemProps) {
   return (

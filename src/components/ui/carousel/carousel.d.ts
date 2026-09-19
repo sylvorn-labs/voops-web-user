@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 import type useEmblaCarousel from 'embla-carousel-react';
 import type { UseEmblaCarouselType } from 'embla-carousel-react';
 
-import type { Button } from '@/components/ui/button/button';
+import type { Button } from '@/components/ui/button/Button';
 
 export type CarouselApi = UseEmblaCarouselType[1];
 export type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;

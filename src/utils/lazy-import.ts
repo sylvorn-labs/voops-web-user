@@ -1,7 +1,10 @@
 import type { ComponentType } from 'react';
 import { lazy } from 'react';
 
-import type { ComponentPropsOf, LazyImportOptions } from './lazy-import.d';
+import type {
+  ComponentPropsOf,
+  LazyImportOptions,
+} from './lazy-import.d';
 
 export function lazyImport<
   TModule extends object,

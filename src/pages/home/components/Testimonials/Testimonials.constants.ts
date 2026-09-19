@@ -1,4 +1,4 @@
-import type { TestimonialItem } from './Testimonials.d';
+import type { TestimonialItem } from './testimonials.d';
 
 export const defaultTestimonials: TestimonialItem[] = [
   {

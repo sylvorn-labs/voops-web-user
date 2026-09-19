@@ -1,7 +1,7 @@
-import { Changelog } from './components/Changelog/Changelog';
+import { Changelog } from './components/changelog/Changelog';
 
-import { Download } from '@/components/global/Download/Download';
-import { Community } from '@/components/global/Community/Community';
+import { Download } from '@/components/global/download/Download';
+import { Community } from '@/components/global/community/Community';
 
 export function ChangelogPage() {
   return (

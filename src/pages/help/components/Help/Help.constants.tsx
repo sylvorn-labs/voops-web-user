@@ -8,7 +8,7 @@ import {
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
-import type { HelpCategory, PopularTopic } from './Help.d';
+import type { HelpCategory, PopularTopic } from './help.d';
 
 export const defaultCategories: HelpCategory[] = [
   {

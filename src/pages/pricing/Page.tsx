@@ -1,7 +1,7 @@
-import { Pricing } from './components/Pricing/Pricing';
-import { Community } from '@/components/global/Community/Community';
-import { Faq } from '@/components/global/Faq/Faq';
-import { pricingFaqs } from './Page.constants';
+import { Pricing } from './components/pricing/Pricing';
+import { Community } from '@/components/global/community/Community';
+import { Faq } from '@/components/global/faq/Faq';
+import { pricingFaqs } from './page.constants';
 
 export function PricingPage() {
   return (

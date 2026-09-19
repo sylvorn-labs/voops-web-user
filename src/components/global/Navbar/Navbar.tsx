@@ -8,22 +8,22 @@ import {
   useAuthIsAuthenticated,
   useAuthLogout,
 } from '@/stores/auth/auth.selectors';
-import { Accordion } from '@/components/ui/accordion/accordion';
-import { Button } from '@/components/ui/button/button';
+import { Accordion } from '@/components/ui/accordion/Accordion';
+import { Button } from '@/components/ui/button/Button';
 import {
   NavigationMenu,
   NavigationMenuList,
-} from '@/components/ui/navigation-menu/navigation-menu';
+} from '@/components/ui/navigation-menu/NavigationMenu';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet/sheet';
-import { ThemeToggle } from '@/components/global/ThemeToggle/ThemeToggle';
-import { defaultMenuItems } from './Navbar.constants';
-import type { NavbarProps } from './Navbar.d';
+} from '@/components/ui/sheet/Sheet';
+import { ThemeToggle } from '@/components/global/theme-toggle/ThemeToggle';
+import { defaultMenuItems } from './navbar.constants';
+import type { NavbarProps } from './navbar.d';
 import { NavMenuItem } from './NavMenuItem';
 import { NavMobileMenuItem } from './NavMobileMenuItem';
 

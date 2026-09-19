@@ -8,7 +8,7 @@ import {
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
-import type { MenuItem } from './Navbar.d';
+import type { MenuItem } from './navbar.d';
 
 export const defaultMenuItems: MenuItem[] = [
   { title: 'Home', url: '/' },

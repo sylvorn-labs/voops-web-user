@@ -9,9 +9,9 @@ import {
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-import { Button } from '@/components/ui/button/button';
-import { defaultPlatforms } from './Download.constants';
-import type { DownloadProps } from './Download.d';
+import { Button } from '@/components/ui/button/Button';
+import { defaultPlatforms } from './download.constants';
+import type { DownloadProps } from './download.d';
 
 export function Download({
   id = 'download',

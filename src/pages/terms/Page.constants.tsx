@@ -1,5 +1,5 @@
 import { ShieldCheck } from 'lucide-react';
-import type { ResourceSidebarConfig } from '@/layouts/resource/ResourceLayout.d';
+import type { ResourceSidebarConfig } from '@/layouts/resource/resource-layout.d';
 
 export const termsSidebarConfig: ResourceSidebarConfig = {
   badgeLabel: 'Legal Terms',

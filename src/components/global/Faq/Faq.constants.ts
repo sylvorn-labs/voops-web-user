@@ -1,4 +1,4 @@
-import type { FaqItem } from './Faq.d';
+import type { FaqItem } from './faq.d';
 
 export const defaultFaqItems: FaqItem[] = [
   {

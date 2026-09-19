@@ -3,8 +3,8 @@ import { SparklesIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-import { defaultSections } from './Footer.constants';
-import type { FooterProps } from './Footer.d';
+import { defaultSections } from './footer.constants';
+import type { FooterProps } from './footer.d';
 
 export function Footer({ className }: FooterProps) {
   return (

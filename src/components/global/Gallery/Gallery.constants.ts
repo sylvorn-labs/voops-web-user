@@ -1,4 +1,4 @@
-import type { GalleryItem } from './Gallery.d';
+import type { GalleryItem } from './gallery.d';
 
 export const defaultItems: GalleryItem[] = [
   {

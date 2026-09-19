@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 import type { FieldPath, FieldValues } from 'react-hook-form';
 import type { Slot } from 'radix-ui';
 
-import type { Label } from '@/components/ui/label/label';
+import type { Label } from '@/components/ui/label/Label';
 
 export interface FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,

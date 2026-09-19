@@ -3,7 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { cn } from 'cn';
 
-import { Button } from '@/components/ui/button/button';
+import { Button } from '@/components/ui/button/Button';
 import type {
   SheetCloseProps,
   SheetContentProps,

@@ -1,4 +1,4 @@
-import type { PricingPlan } from './Pricing.d';
+import type { PricingPlan } from './pricing.d';
 
 export const defaultPlan: PricingPlan = {
   name: 'Free Beta Access',

@@ -1,7 +1,7 @@
 import { cn } from 'cn';
 
-import { defaultTestimonials } from './Testimonials.constants';
-import type { TestimonialsProps } from './Testimonials.d';
+import { defaultTestimonials } from './testimonials.constants';
+import type { TestimonialsProps } from './testimonials.d';
 import { TestimonialCard } from './TestimonialCard';
 
 export function Testimonials({

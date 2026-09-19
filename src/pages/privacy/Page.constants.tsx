@@ -1,5 +1,5 @@
 import { Lock } from 'lucide-react';
-import type { ResourceSidebarConfig } from '@/layouts/resource/ResourceLayout.d';
+import type { ResourceSidebarConfig } from '@/layouts/resource/resource-layout.d';
 
 export const privacySidebarConfig: ResourceSidebarConfig = {
   badgeLabel: 'Privacy Notice',

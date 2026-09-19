@@ -1,6 +1,6 @@
 import type { Easing } from 'motion/react';
 
-import type { IndustryItem } from './Industries.d';
+import type { IndustryItem } from './industries.d';
 
 export const easeTransition: Easing = [0.25, 0.1, 0.25, 1];
 

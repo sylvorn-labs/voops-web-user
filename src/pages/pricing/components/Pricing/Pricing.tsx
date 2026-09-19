@@ -3,10 +3,10 @@ import { CheckmarkCircle02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-import { Button } from '@/components/ui/button/button';
-import { Separator } from '@/components/ui/separator/separator';
-import { defaultFeatureGroups, defaultPlan } from './Pricing.constants';
-import type { PricingProps } from './Pricing.d';
+import { Button } from '@/components/ui/button/Button';
+import { Separator } from '@/components/ui/separator/Separator';
+import { defaultFeatureGroups, defaultPlan } from './pricing.constants';
+import type { PricingProps } from './pricing.d';
 
 export function Pricing({
   id = 'pricing',

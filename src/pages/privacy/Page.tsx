@@ -1,5 +1,5 @@
 import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
-import { privacySidebarConfig } from './Page.constants';
+import { privacySidebarConfig } from './page.constants';
 
 export function PrivacyPage() {
   return (

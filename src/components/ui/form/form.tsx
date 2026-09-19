@@ -11,7 +11,7 @@ import {
 import { cn } from 'cn';
 import { Slot } from 'radix-ui';
 
-import { Label } from '@/components/ui/label/label';
+import { Label } from '@/components/ui/label/Label';
 import type {
   FormControlProps,
   FormDescriptionProps,

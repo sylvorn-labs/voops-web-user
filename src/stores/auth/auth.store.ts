@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import { supabase } from '@/lib/supabase';
 
-import type { AuthStore } from './auth.d';
+import type { AuthState, AuthStore } from './auth.d';
 
 export const useAuthStore = create<AuthStore>(set => {
   const fetchSession = async (isRefetch = false) => {
@@ -74,6 +74,6 @@ export const useAuthStore = create<AuthStore>(set => {
     // Actions
     refetch: () => fetchSession(true),
     logout,
-    setAuthState: state => set(state),
+    setAuthState: (state: Partial<AuthState>) => set(state),
   };
 });

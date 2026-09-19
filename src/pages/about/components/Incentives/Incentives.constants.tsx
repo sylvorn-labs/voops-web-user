@@ -6,7 +6,7 @@ import {
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
-import type { IncentiveItem } from './Incentives.d';
+import type { IncentiveItem } from './incentives.d';
 
 export const defaultIncentives: IncentiveItem[] = [
   {

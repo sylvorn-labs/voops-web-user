@@ -1,10 +1,10 @@
-import { About } from './components/About/About';
-import { Incentives } from './components/Incentives/Incentives';
-import { Team } from './components/Team/Team';
-import { Community } from '@/components/global/Community/Community';
-import { Gallery } from '@/components/global/Gallery/Gallery';
-import { TrustStrip } from '@/components/global/TrustStrip/TrustStrip';
-import { aboutGalleryItems } from './Page.constants';
+import { About } from './components/about/About';
+import { Incentives } from './components/incentives/Incentives';
+import { Team } from './components/team/Team';
+import { Community } from '@/components/global/community/Community';
+import { Gallery } from '@/components/global/gallery/Gallery';
+import { TrustStrip } from '@/components/global/trust-strip/TrustStrip';
+import { aboutGalleryItems } from './page.constants';
 
 export function AboutPage() {
   return (

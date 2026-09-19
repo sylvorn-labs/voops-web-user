@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 
-import type { SubMenuLinkProps } from './SubMenuLink.d';
+import type { SubMenuLinkProps } from './sub-menu-link.d';
 
 export function SubMenuLink({ item }: SubMenuLinkProps) {
   const isInternal = item.url.startsWith('/') && !item.url.startsWith('/#');

@@ -7,8 +7,8 @@ import {
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-import { defaultContactValues } from './Contact.constants';
-import type { ContactProps } from './Contact.d';
+import { defaultContactValues } from './contact.constants';
+import type { ContactProps } from './contact.d';
 
 export function Contact({
   id = defaultContactValues.id,

@@ -1,4 +1,4 @@
-import type { FooterSection } from './Footer.d';
+import type { FooterSection } from './footer.d';
 
 export const defaultSections: FooterSection[] = [
   {

@@ -1,4 +1,4 @@
 import type { z } from 'zod';
-import type { resetPasswordSchema } from './reset-password-form.constants';
+import type { resetPasswordSchema } from './reset-password-form.schema';
 
 export type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;

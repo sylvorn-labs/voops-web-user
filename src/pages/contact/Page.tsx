@@ -1,7 +1,7 @@
-import { Contact } from './components/Contact/Contact';
+import { Contact } from './components/contact/Contact';
 
-import { Faq } from '@/components/global/Faq/Faq';
-import { Community } from '@/components/global/Community/Community';
+import { Faq } from '@/components/global/faq/Faq';
+import { Community } from '@/components/global/community/Community';
 
 const contactFaqs = [
   {

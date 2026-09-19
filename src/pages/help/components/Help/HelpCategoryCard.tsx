@@ -1,8 +1,8 @@
 import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
-import { Card, CardContent } from '@/components/ui/card/card';
-import type { HelpCategoryCardProps } from './HelpCategoryCard.d';
+import { Card, CardContent } from '@/components/ui/card/Card';
+import type { HelpCategoryCardProps } from './help-category-card.d';
 
 export function HelpCategoryCard({ category }: HelpCategoryCardProps) {
   return (

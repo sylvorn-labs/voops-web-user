@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { cn } from 'cn';
 
-import { defaultIndustries } from './Industries.constants';
-import type { IndustriesProps } from './Industries.d';
+import { defaultIndustries } from './industries.constants';
+import type { IndustriesProps } from './industries.d';
 import { IndustryCard } from './IndustryCard';
 
 export function Industries({

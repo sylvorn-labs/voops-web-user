@@ -1,8 +1,8 @@
 import { cn } from 'cn';
 
-import { Badge } from '@/components/ui/badge/badge';
-import { defaultBadges, defaultFeatures } from './Compliance.constants';
-import type { ComplianceProps } from './Compliance.d';
+import { Badge } from '@/components/ui/badge/Badge';
+import { defaultBadges, defaultFeatures } from './compliance.constants';
+import type { ComplianceProps } from './compliance.d';
 
 export function Compliance({
   id = 'compliance',

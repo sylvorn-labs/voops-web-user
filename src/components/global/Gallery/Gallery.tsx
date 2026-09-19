@@ -8,15 +8,15 @@ import {
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-import { Button } from '@/components/ui/button/button';
-import type { CarouselApi } from '@/components/ui/carousel/carousel';
+import { Button } from '@/components/ui/button/Button';
+import type { CarouselApi } from '@/components/ui/carousel/Carousel';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from '@/components/ui/carousel/carousel';
-import { defaultItems } from './Gallery.constants';
-import type { GalleryProps } from './Gallery.d';
+} from '@/components/ui/carousel/Carousel';
+import { defaultItems } from './gallery.constants';
+import type { GalleryProps } from './gallery.d';
 import { GalleryCard } from './GalleryCard';
 
 export function Gallery({

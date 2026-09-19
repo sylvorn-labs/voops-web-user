@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router';
 
-import { Navbar } from '@/components/global/Navbar/Navbar';
-import { Footer } from '@/components/global/Footer/Footer';
-import type { MainLayoutProps } from './MainLayout.d';
+import { Navbar } from '@/components/global/navbar/Navbar';
+import { Footer } from '@/components/global/footer/Footer';
+import type { MainLayoutProps } from './main-layout.d';
 
 export function MainLayout({ children }: MainLayoutProps = {}) {
   return (

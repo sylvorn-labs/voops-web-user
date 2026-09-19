@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { BookOpen, Download, Printer, Share2, Check, Copy } from 'lucide-react';
 
-import { Button } from '@/components/ui/button/button';
-import type { ResourceSidebarProps } from './ResourceSidebar.d';
+import { Button } from '@/components/ui/button/Button';
+import type { ResourceSidebarProps } from './resource-sidebar.d';
 
 export function ResourceSidebar({ sidebar, title }: ResourceSidebarProps) {
   const [copied, setCopied] = React.useState(false);

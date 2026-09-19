@@ -1,7 +1,7 @@
 import { cn } from 'cn';
 
-import { defaultLogos } from './Logos.constants';
-import type { LogosProps } from './Logos.d';
+import { defaultLogos } from './logos.constants';
+import type { LogosProps } from './logos.d';
 
 export function Logos({
   logos = defaultLogos,

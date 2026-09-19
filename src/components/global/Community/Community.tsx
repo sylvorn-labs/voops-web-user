@@ -2,9 +2,9 @@ import { SparklesIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-import { Button } from '@/components/ui/button/button';
-import { defaultSocialLinks } from './Community.constants';
-import type { CommunityProps } from './Community.d';
+import { Button } from '@/components/ui/button/Button';
+import { defaultSocialLinks } from './community.constants';
+import type { CommunityProps } from './community.d';
 
 export function Community({
   id = 'community',

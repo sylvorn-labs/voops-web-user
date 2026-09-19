@@ -5,8 +5,8 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu/navigation-menu';
-import type { NavMenuItemProps } from './NavMenuItem.d';
+} from '@/components/ui/navigation-menu/NavigationMenu';
+import type { NavMenuItemProps } from './nav-menu-item.d';
 import { SubMenuLink } from './SubMenuLink';
 
 export function NavMenuItem({ item }: NavMenuItemProps) {

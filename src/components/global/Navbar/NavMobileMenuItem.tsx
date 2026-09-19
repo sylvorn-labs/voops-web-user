@@ -4,8 +4,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion/accordion';
-import type { NavMobileMenuItemProps } from './NavMobileMenuItem.d';
+} from '@/components/ui/accordion/Accordion';
+import type { NavMobileMenuItemProps } from './nav-mobile-menu-item.d';
 import { SubMenuLink } from './SubMenuLink';
 
 export function NavMobileMenuItem({ item }: NavMobileMenuItemProps) {

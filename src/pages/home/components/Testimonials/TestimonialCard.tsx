@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar/avatar';
-import { Card } from '@/components/ui/card/card';
-import type { TestimonialCardProps } from './TestimonialCard.d';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar/Avatar';
+import { Card } from '@/components/ui/card/Card';
+import type { TestimonialCardProps } from './testimonial-card.d';
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   const initials = testimonial.name

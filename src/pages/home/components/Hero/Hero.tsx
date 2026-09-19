@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 import { cn } from 'cn';
 
 import { useAuthIsAuthenticated } from '@/stores/auth/auth.selectors';
-import { Button } from '@/components/ui/button/button';
-import type { HeroProps } from './Hero.d';
+import { Button } from '@/components/ui/button/Button';
+import type { HeroProps } from './hero.d';
 
 export function Hero({ className }: HeroProps = {}) {
   const isAuthenticated = useAuthIsAuthenticated();

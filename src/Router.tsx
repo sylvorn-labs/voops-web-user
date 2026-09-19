@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { lazyImport } from '@/utils/lazy-import';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { MainLayout } from '@/layouts/main/MainLayout';
-import { LoadingFallback } from '@/components/global/LoadingFallback/LoadingFallback';
+import { LoadingFallback } from '@/components/global/loading-fallback/LoadingFallback';
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),

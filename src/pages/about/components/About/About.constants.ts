@@ -1,4 +1,4 @@
-import type { AboutBasicSection, AboutImage } from './About.d';
+import type { AboutBasicSection, AboutImage } from './about.d';
 
 export const defaultImages: AboutImage[] = [
   {

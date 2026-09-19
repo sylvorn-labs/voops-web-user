@@ -6,8 +6,8 @@ import {
   MAX_COLUMNS,
   MAX_IMAGES,
   truncate,
-} from './About.constants';
-import type { AboutProps } from './About.d';
+} from './about.constants';
+import type { AboutProps } from './about.d';
 
 export function About({
   id = 'about',

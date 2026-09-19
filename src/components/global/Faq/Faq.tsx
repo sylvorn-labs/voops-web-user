@@ -5,9 +5,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion/accordion';
-import { defaultFaqItems } from './Faq.constants';
-import type { FaqProps } from './Faq.d';
+} from '@/components/ui/accordion/Accordion';
+import { defaultFaqItems } from './faq.constants';
+import type { FaqProps } from './faq.d';
 
 export function Faq({
   id = 'faq',

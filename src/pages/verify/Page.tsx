@@ -1,4 +1,4 @@
-import { VerifyForm } from './components/verify-form/verify-form';
+import { VerifyForm } from './components/verify-form/VerifyForm';
 
 export function VerifyPage() {
   return <VerifyForm />;

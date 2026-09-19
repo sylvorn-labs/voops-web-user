@@ -1,13 +1,13 @@
-import { Testimonials } from './components/Testimonials/Testimonials';
-import { Logos } from './components/Logos/Logos';
-import { Hero } from './components/Hero/Hero';
+import { Testimonials } from './components/testimonials/Testimonials';
+import { Logos } from './components/logos/Logos';
+import { Hero } from './components/hero/Hero';
 
-import { FeaturesMatrix } from '@/components/global/FeaturesMatrix/FeaturesMatrix';
-import { TrustStrip } from '@/components/global/TrustStrip/TrustStrip';
-import { Industries } from '@/components/global/Industries/Industries';
-import { Download } from '@/components/global/Download/Download';
-import { Gallery } from '@/components/global/Gallery/Gallery';
-import { Faq } from '@/components/global/Faq/Faq';
+import { FeaturesMatrix } from '@/components/global/features-matrix/FeaturesMatrix';
+import { TrustStrip } from '@/components/global/trust-strip/TrustStrip';
+import { Industries } from '@/components/global/industries/Industries';
+import { Download } from '@/components/global/download/Download';
+import { Gallery } from '@/components/global/gallery/Gallery';
+import { Faq } from '@/components/global/faq/Faq';
 
 export function HomePage() {
   return (

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router';
 import { cn } from 'cn';
 
-import type { ResourceLayoutProps } from './ResourceLayout.d';
+import type { ResourceLayoutProps } from './resource-layout.d';
 import { ResourceSidebar } from './ResourceSidebar';
 
 export function ResourceLayout({

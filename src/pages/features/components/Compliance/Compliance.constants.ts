@@ -1,6 +1,6 @@
 import { Github, Postgresql, Supabase } from '@thesvg/react';
 
-import type { ComplianceBadge, ComplianceFeature } from './Compliance.d';
+import type { ComplianceBadge, ComplianceFeature } from './compliance.d';
 
 export const defaultBadges: ComplianceBadge[] = [
   {

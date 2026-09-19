@@ -1,7 +1,7 @@
 import { CheckCircle2, Clock, Sparkles } from 'lucide-react';
 
 import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
-import { roadmapSidebarConfig } from './Page.constants';
+import { roadmapSidebarConfig } from './page.constants';
 
 export function RoadmapPage() {
   return (

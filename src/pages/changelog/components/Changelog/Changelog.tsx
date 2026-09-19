@@ -1,7 +1,7 @@
 import { cn } from 'cn';
 
-import { defaultEntries } from './Changelog.constants';
-import type { ChangelogProps } from './Changelog.d';
+import { defaultEntries } from './changelog.constants';
+import type { ChangelogProps } from './changelog.d';
 import { ChangelogEntryItem } from './ChangelogEntryItem';
 
 export function Changelog({

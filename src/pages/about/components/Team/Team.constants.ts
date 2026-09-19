@@ -1,4 +1,4 @@
-import type { TeamMember } from './Team.d';
+import type { TeamMember } from './team.d';
 
 export const defaultMembers: TeamMember[] = [
   {

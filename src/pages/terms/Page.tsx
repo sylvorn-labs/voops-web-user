@@ -1,5 +1,5 @@
 import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
-import { termsSidebarConfig } from './Page.constants';
+import { termsSidebarConfig } from './page.constants';
 
 export function TermsPage() {
   return (

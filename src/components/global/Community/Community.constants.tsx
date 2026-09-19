@@ -1,6 +1,6 @@
 import { FaDiscord, FaGithub, FaXTwitter } from 'react-icons/fa6';
 
-import type { SocialLink } from './Community.d';
+import type { SocialLink } from './community.d';
 
 export const defaultSocialLinks: SocialLink[] = [
   {

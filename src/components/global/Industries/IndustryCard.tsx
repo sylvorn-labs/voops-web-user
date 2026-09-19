@@ -2,8 +2,8 @@ import { Add01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { motion } from 'motion/react';
 
-import { easeTransition } from './Industries.constants';
-import type { IndustryCardProps } from './IndustryCard.d';
+import { easeTransition } from './industries.constants';
+import type { IndustryCardProps } from './industry-card.d';
 
 export function IndustryCard({
   industry,

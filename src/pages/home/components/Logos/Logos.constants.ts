@@ -7,7 +7,7 @@ import {
   TailwindCss,
 } from '@thesvg/react';
 
-import type { LogoItem } from './Logos.d';
+import type { LogoItem } from './logos.d';
 
 export const defaultLogos: LogoItem[] = [
   {

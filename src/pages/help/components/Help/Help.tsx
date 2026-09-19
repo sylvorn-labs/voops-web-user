@@ -3,9 +3,9 @@ import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
-import { Button } from '@/components/ui/button/button';
-import { defaultCategories, defaultTopics } from './Help.constants';
-import type { HelpProps } from './Help.d';
+import { Button } from '@/components/ui/button/Button';
+import { defaultCategories, defaultTopics } from './help.constants';
+import type { HelpProps } from './help.d';
 import { HelpCategoryCard } from './HelpCategoryCard';
 
 export function Help({
