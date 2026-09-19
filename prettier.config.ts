@@ -1,10 +1,10 @@
-import { type Config } from "prettier";
+import { type Config } from 'prettier';
 
 const config: Config = {
   semi: true,
   singleQuote: true,
-  arrowParens: "avoid",
-  trailingComma: "all",
+  arrowParens: 'avoid',
+  trailingComma: 'all',
 };
 
 export default config;
