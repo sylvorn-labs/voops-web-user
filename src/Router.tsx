@@ -1,11 +1,13 @@
-import { Route, Routes } from 'react-router';
 import { Suspense } from 'react';
+import { Route, Routes } from 'react-router';
 
 import { LoadingFallback } from '@/components/global/loading-fallback/LoadingFallback';
 import { DashboardLayout } from '@/layouts/dashboard/Layout';
 import { MainLayout } from '@/layouts/main/MainLayout';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { lazyImport } from '@/utils/lazy-import';
+
+// ─── Lazy Loaded Pages ────────────────────────────────────────────────────────
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -57,6 +59,11 @@ const PricingPage = lazyImport({
   exportName: 'PricingPage',
 });
 
+const ContactPage = lazyImport({
+  importer: () => import('@/pages/contact/Page'),
+  exportName: 'ContactPage',
+});
+
 const TermsPage = lazyImport({
   importer: () => import('@/pages/terms/Page'),
   exportName: 'TermsPage',
@@ -65,11 +72,6 @@ const TermsPage = lazyImport({
 const PrivacyPage = lazyImport({
   importer: () => import('@/pages/privacy/Page'),
   exportName: 'PrivacyPage',
-});
-
-const ContactPage = lazyImport({
-  importer: () => import('@/pages/contact/Page'),
-  exportName: 'ContactPage',
 });
 
 const RoadmapPage = lazyImport({
@@ -130,6 +132,16 @@ const DashboardPage = lazyImport({
 const BusinessListPage = lazyImport({
   importer: () => import('@/pages/dashboard/businesses/Page'),
   exportName: 'BusinessListPage',
+});
+
+const CategoryListPage = lazyImport({
+  importer: () => import('@/pages/dashboard/categories/Page'),
+  exportName: 'CategoryListPage',
+});
+
+const CategoryDetailsPage = lazyImport({
+  importer: () => import('@/pages/dashboard/categories/details/Page'),
+  exportName: 'CategoryDetailsPage',
 });
 
 const NotFoundPage = lazyImport({
@@ -201,6 +213,8 @@ export function Router() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<DashboardPage />} />
           <Route path="businesses" element={<BusinessListPage />} />
+          <Route path="categories" element={<CategoryListPage />} />
+          <Route path="categories/:id" element={<CategoryDetailsPage />} />
         </Route>
       </Routes>
     </Suspense>

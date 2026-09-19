@@ -3,6 +3,7 @@ import {
   Laptop,
   Moon,
   Sun,
+  Tag01Icon,
 } from '@hugeicons/core-free-icons';
 import { useNavigate } from 'react-router';
 
@@ -25,6 +26,14 @@ export function useCommands(): CommandGroup[] {
           icon: DashboardCircleIcon,
           onSelect: () => {
             navigate('/dashboard');
+            close();
+          },
+        },
+        {
+          label: 'Categories',
+          icon: Tag01Icon,
+          onSelect: () => {
+            navigate('/dashboard/categories');
             close();
           },
         },

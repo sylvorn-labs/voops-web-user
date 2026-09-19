@@ -9,7 +9,7 @@ import type {
 
 import { SheetLoadingSkeleton } from './SheetLoadingSkeleton';
 
-// ─── Lazy Sheet Imports ──────────────────────────────────────
+// ─── Lazy Sheet Imports ──────────────────────────────────────────────────────
 
 const BusinessAddSheet = React.lazy(() =>
   import('@/pages/dashboard/businesses/components/sheet/BusinessAddSheet').then(
@@ -23,7 +23,25 @@ const BusinessEditSheet = React.lazy(() =>
   ),
 );
 
-// ─── Registry ────────────────────────────────────────────────
+const CategoryAddSheet = React.lazy(() =>
+  import('@/pages/dashboard/categories/components/sheet/CategoryAddSheet').then(
+    m => ({ default: m.CategoryAddSheet }),
+  ),
+);
+
+const CategoryEditSheet = React.lazy(() =>
+  import('@/pages/dashboard/categories/components/sheet/CategoryEditSheet').then(
+    m => ({ default: m.CategoryEditSheet }),
+  ),
+);
+
+const CategoryViewSheet = React.lazy(() =>
+  import('@/pages/dashboard/categories/components/sheet/CategoryViewSheet').then(
+    m => ({ default: m.CategoryViewSheet }),
+  ),
+);
+
+// ─── Registry ────────────────────────────────────────────────────────────────
 //
 // Add a new entry here whenever a new feature needs sheet support.
 // The key must match the `sheetKey` passed to `useSheetStore().open(...)`.
@@ -36,9 +54,14 @@ const SHEET_REGISTRY: SheetRegistry = {
     add: BusinessAddSheet,
     edit: BusinessEditSheet,
   },
+  category: {
+    view: CategoryViewSheet,
+    add: CategoryAddSheet,
+    edit: CategoryEditSheet,
+  },
 };
 
-// ─── Not-Configured Fallback ─────────────────────────────────
+// ─── Not-Configured Fallback ─────────────────────────────────────────────────
 
 function SheetNotConfigured({
   sheetKey,
@@ -52,125 +75,97 @@ function SheetNotConfigured({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-3 p-8 text-center">
-      <div className="flex size-10 items-center justify-center rounded-full bg-amber-500/10 text-amber-500">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="size-5"
-          aria-hidden="true"
-        >
-          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-          <line x1="12" y1="9" x2="12" y2="13" />
-          <line x1="12" y1="17" x2="12.01" y2="17" />
-        </svg>
-      </div>
-      <div className="flex flex-col gap-1">
-        <p className="text-foreground text-sm font-medium">
-          Sheet not configured
-        </p>
-        <p className="text-muted-foreground max-w-xs text-xs leading-relaxed">
-          No{' '}
-          <code className="bg-muted rounded px-1 py-0.5 font-mono">{mode}</code>{' '}
-          component is registered for{' '}
-          <code className="bg-muted rounded px-1 py-0.5 font-mono">
-            &quot;{sheetKey}&quot;
-          </code>
-          . Add it to the{' '}
-          <code className="bg-muted rounded px-1 py-0.5 font-mono">
-            SHEET_REGISTRY
-          </code>{' '}
-          in{' '}
-          <code className="bg-muted rounded px-1 py-0.5 font-mono">
-            SheetRenderer.tsx
-          </code>
-          .
-        </p>
-      </div>
+    <div className="flex flex-col items-center justify-center gap-2 p-8 text-center">
+      <p className="text-muted-foreground text-sm font-medium">
+        No sheet component registered for key{' '}
+        <code className="text-foreground bg-muted rounded px-1 py-0.5 font-mono text-xs">
+          &quot;{sheetKey}&quot;
+        </code>{' '}
+        in mode{' '}
+        <code className="text-foreground bg-muted rounded px-1 py-0.5 font-mono text-xs">
+          &quot;{mode}&quot;
+        </code>
+        .
+      </p>
+      <p className="text-muted-foreground text-xs">
+        Register it in{' '}
+        <code className="bg-muted rounded px-1 py-0.5 font-mono">
+          src/components/dashboard/sheet/SheetRenderer.tsx
+        </code>
+      </p>
     </div>
   );
 }
 
-// ─── Props ───────────────────────────────────────────────────
+// ─── SheetRenderer Component ─────────────────────────────────────────────────
 
-interface SheetRendererProps {
+export interface SheetRendererProps {
   sheetKey: string;
   mode: 'view' | 'edit' | 'add';
-  /** Present for "view" and "edit" modes. Always undefined for "add". */
   id?: string;
-  /** Stable HTML form id forwarded to edit / add content components. */
-  formId: string;
+  formId?: string;
   prefill?: Record<string, unknown>;
   onSuccess?: () => void;
 }
 
-// ─── Renderer ────────────────────────────────────────────────
-
+/**
+ * `SheetRenderer`
+ *
+ * Looks up the active feature sheet in `SHEET_REGISTRY` by `(sheetKey, mode)`
+ * and renders it inside a `<React.Suspense>` boundary with a skeleton fallback.
+ *
+ * Dispatches the correct props based on the active mode:
+ * - `view`: receives `{ id }`
+ * - `edit`: receives `{ id, formId, onSuccess }`
+ * - `add`:  receives `{ formId, prefill, onSuccess }`
+ */
 export function SheetRenderer({
   sheetKey,
   mode,
   id,
-  formId,
+  formId = 'sheet-form',
   prefill,
   onSuccess,
 }: SheetRendererProps) {
-  const config = SHEET_REGISTRY[sheetKey];
+  const featureSheets = SHEET_REGISTRY[sheetKey];
 
-  // ─── View ──────────────────────────────────────────────────
-
-  if (mode === 'view') {
-    const ViewComponent = config?.view as
-      React.ComponentType<ViewSheetProps> | undefined;
-
-    if (!ViewComponent || !id) {
-      return <SheetNotConfigured sheetKey={sheetKey} mode="view" />;
-    }
-
-    return (
-      <React.Suspense fallback={<SheetLoadingSkeleton />}>
-        <ViewComponent id={id} />
-      </React.Suspense>
-    );
+  if (!featureSheets) {
+    return <SheetNotConfigured sheetKey={sheetKey} mode={mode} />;
   }
 
-  // ─── Edit ──────────────────────────────────────────────────
+  return (
+    <React.Suspense fallback={<SheetLoadingSkeleton />}>
+      {mode === 'view' &&
+        id &&
+        (featureSheets.view ? (
+          React.createElement(
+            featureSheets.view as React.ComponentType<ViewSheetProps>,
+            { id },
+          )
+        ) : (
+          <SheetNotConfigured sheetKey={sheetKey} mode={mode} />
+        ))}
 
-  if (mode === 'edit') {
-    const EditComponent = config?.edit as
-      React.ComponentType<EditSheetProps> | undefined;
+      {mode === 'edit' &&
+        id &&
+        (featureSheets.edit ? (
+          React.createElement(
+            featureSheets.edit as React.ComponentType<EditSheetProps>,
+            { id, formId, onSuccess },
+          )
+        ) : (
+          <SheetNotConfigured sheetKey={sheetKey} mode={mode} />
+        ))}
 
-    if (!EditComponent || !id) {
-      return <SheetNotConfigured sheetKey={sheetKey} mode="edit" />;
-    }
-
-    return (
-      <React.Suspense fallback={<SheetLoadingSkeleton />}>
-        <EditComponent id={id} formId={formId} onSuccess={onSuccess} />
-      </React.Suspense>
-    );
-  }
-
-  // ─── Add ───────────────────────────────────────────────────
-
-  if (mode === 'add') {
-    const AddComponent = config?.add as
-      React.ComponentType<AddSheetProps> | undefined;
-
-    if (!AddComponent) {
-      return <SheetNotConfigured sheetKey={sheetKey} mode="add" />;
-    }
-
-    return (
-      <React.Suspense fallback={<SheetLoadingSkeleton />}>
-        <AddComponent formId={formId} prefill={prefill} onSuccess={onSuccess} />
-      </React.Suspense>
-    );
-  }
-
-  // Should never be reached — TypeScript exhaustiveness
-  return null;
+      {mode === 'add' &&
+        (featureSheets.add ? (
+          React.createElement(
+            featureSheets.add as React.ComponentType<AddSheetProps>,
+            { formId, prefill, onSuccess },
+          )
+        ) : (
+          <SheetNotConfigured sheetKey={sheetKey} mode={mode} />
+        ))}
+    </React.Suspense>
+  );
 }
