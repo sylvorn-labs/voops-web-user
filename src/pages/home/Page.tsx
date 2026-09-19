@@ -9,6 +9,7 @@ import { Industries } from './components/Industries';
 import { FeatureCardsGrid } from './components/FeatureCardsGrid';
 import { Incentives } from './components/Incentives';
 import { Gallery } from './components/Gallery';
+import { Compliance } from './components/Compliance';
 import { Testimonials } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
 import { Team } from './components/Team';
@@ -32,6 +33,7 @@ export function HomePage() {
         <FeatureCardsGrid />
         <Incentives />
         <Gallery />
+        <Compliance />
         <Testimonials />
         <Pricing />
         <Team />
