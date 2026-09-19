@@ -8,7 +8,7 @@ import {
   useFormContext,
   useFormState,
 } from 'react-hook-form';
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 import { Slot } from 'radix-ui';
 
 import { Label } from '@/components/ui/label/Label';

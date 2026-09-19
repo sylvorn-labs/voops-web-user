@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ArrowLeft01Icon, ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 import useEmblaCarousel from 'embla-carousel-react';
 
 import { Button } from '@/components/ui/button/Button';

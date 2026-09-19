@@ -1,5 +1,5 @@
 import { Avatar as AvatarPrimitive } from 'radix-ui';
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 
 import type {
   AvatarBadgeProps,
