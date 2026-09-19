@@ -36,8 +36,9 @@ const defaultSections: FooterSection[] = [
     title: 'Resources',
     links: [
       { name: 'Help Center', href: '/help' },
-      { name: 'GitHub', href: 'https://github.com/sylvorn-labs' },
+      { name: 'Changelog', href: '/changelog' },
       { name: 'Road Map', href: '/roadmap' },
+      { name: 'GitHub', href: 'https://github.com/sylvorn-labs' },
     ],
   },
   {
