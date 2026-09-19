@@ -1,10 +1,6 @@
-import { Link } from 'react-router';
-import {
-  ArrowRight01Icon,
-  Coins01Icon,
-  GithubIcon,
-} from '@hugeicons/core-free-icons';
+import { ArrowRight01Icon, Coins01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { Link } from 'react-router';
 import { cn } from 'cn';
 
 import { useAuthIsAuthenticated } from '@/stores/auth/auth.selectors';
@@ -39,9 +35,9 @@ export function Hero({ className }: HeroProps) {
             </div>
 
             {/* Headline */}
-            <h1 className="text-foreground max-w-4xl text-center text-4xl font-extrabold tracking-tight text-pretty sm:text-5xl md:text-6xl lg:text-7xl">
-              Track Every Expense. <br className="hidden sm:inline" />
-              <span className="text-primary">Master Every Business.</span>
+            <h1 className="text-foreground max-w-7xl text-center text-4xl font-extrabold tracking-tight text-pretty sm:text-5xl md:text-6xl lg:text-7xl">
+              <span className="block">Track your expenses</span>
+              <span className="text-primary block">with Voops</span>
             </h1>
 
             {/* Supporting Text */}
@@ -76,23 +72,6 @@ export function Hero({ className }: HeroProps) {
                   </Link>
                 </Button>
               )}
-
-              <Button
-                variant="outline"
-                size="lg"
-                asChild
-                className="w-full sm:w-auto"
-              >
-                <a
-                  href="https://github.com/sylvorn-labs"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex items-center gap-2"
-                >
-                  <HugeiconsIcon icon={GithubIcon} className="size-4" />
-                  <span>View GitHub</span>
-                </a>
-              </Button>
             </div>
 
             {/* Platform Status Byline */}
