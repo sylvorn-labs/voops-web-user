@@ -41,8 +41,12 @@ const defaultSections: FooterSection[] = [
       { name: 'Changelog', href: '/changelog' },
       { name: 'Road Map', href: '/roadmap' },
       {
-        name: 'GitHub',
+        name: 'GitHub (Web)',
         href: 'https://github.com/Sylvorn-Labs/voops-web-user',
+      },
+      {
+        name: 'GitHub (Mobile)',
+        href: 'https://github.com/sylvorn-labs/voops-mobile-user',
       },
     ],
   },

@@ -1,8 +1,18 @@
 import { cn } from 'cn';
+import {
+  Figma,
+  Flutter,
+  Google,
+  React as ReactIcon,
+  Supabase,
+  TailwindCss,
+} from '@thesvg/react';
 
 export interface LogoItem {
-  src: string;
-  alt: string;
+  name: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  src?: string;
+  alt?: string;
   srcDark?: string;
   className?: string;
   href?: string;
@@ -16,76 +26,40 @@ export interface LogosProps {
 
 const defaultLogos: LogoItem[] = [
   {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-1.svg',
-    alt: 'Partner logo 1',
+    name: 'Supabase',
+    icon: Supabase,
     className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
+    href: 'https://supabase.com',
   },
   {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-2.svg',
-    alt: 'Partner logo 2',
+    name: 'React',
+    icon: ReactIcon,
     className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
+    href: 'https://react.dev',
   },
   {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-3.svg',
-    alt: 'Partner logo 3',
+    name: 'Tailwind CSS',
+    icon: TailwindCss,
     className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
+    href: 'https://tailwindcss.com',
   },
   {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-4.svg',
-    alt: 'Partner logo 4',
+    name: 'Flutter',
+    icon: Flutter,
     className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
+    href: 'https://flutter.dev',
   },
   {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-5.svg',
-    alt: 'Partner logo 5',
-    className: 'h-5 w-auto',
-    href: 'https://www.shadcnblocks.com',
+    name: 'Google Icon',
+    icon: Google,
+    className: 'h-7 w-auto',
+    href: 'https://fonts.google.com/icons',
   },
   {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-6.svg',
-    alt: 'Partner logo 6',
+    name: 'Figma',
+    icon: Figma,
     className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
-  },
-  {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-7.svg',
-    alt: 'Partner logo 7',
-    className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
-  },
-  {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-8.svg',
-    alt: 'Partner logo 8',
-    className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
-  },
-  {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-9.svg',
-    alt: 'Partner logo 9',
-    className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
-  },
-  {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-10.svg',
-    alt: 'Partner logo 10',
-    className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
-  },
-  {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-11.svg',
-    alt: 'Partner logo 11',
-    className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
-  },
-  {
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/placeholder/logos/fictional-company-logo-12.svg',
-    alt: 'Partner logo 12',
-    className: 'h-7 w-auto',
-    href: 'https://www.shadcnblocks.com',
+    href: 'https://figma.com',
   },
 ];
 
@@ -101,21 +75,60 @@ export function Logos({
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 lg:gap-12">
-            {visibleLogos.map((logo, index) => (
-              <div
-                key={`${logo.src}-${index}`}
-                className="flex aspect-3/1 w-28 items-center justify-center opacity-70 transition-opacity hover:opacity-100 sm:w-32"
-              >
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className={cn(
-                    logo.className,
-                    'h-auto max-h-7 w-auto object-contain dark:invert',
-                  )}
-                />
-              </div>
-            ))}
+            {visibleLogos.map((logo, index) => {
+              const Icon = logo.icon;
+
+              return (
+                <div
+                  key={`${logo.name}-${index}`}
+                  className="flex aspect-3/1 w-28 items-center justify-center opacity-70 transition-opacity hover:opacity-100 sm:w-32"
+                >
+                  {logo.href ? (
+                    <a
+                      href={logo.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="flex items-center justify-center"
+                      title={logo.name}
+                    >
+                      {Icon ? (
+                        <Icon
+                          className={cn(
+                            logo.className,
+                            'h-7 w-auto object-contain',
+                          )}
+                        />
+                      ) : logo.src ? (
+                        <img
+                          src={logo.src}
+                          alt={logo.alt || logo.name}
+                          className={cn(
+                            logo.className,
+                            'h-auto max-h-7 w-auto object-contain dark:invert',
+                          )}
+                        />
+                      ) : null}
+                    </a>
+                  ) : Icon ? (
+                    <Icon
+                      className={cn(
+                        logo.className,
+                        'h-7 w-auto object-contain',
+                      )}
+                    />
+                  ) : logo.src ? (
+                    <img
+                      src={logo.src}
+                      alt={logo.alt || logo.name}
+                      className={cn(
+                        logo.className,
+                        'h-auto max-h-7 w-auto object-contain dark:invert',
+                      )}
+                    />
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

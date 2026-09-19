@@ -41,7 +41,7 @@ const defaultEntries: ChangelogEntry[] = [
     ],
     button: {
       url: 'https://github.com/Sylvorn-Labs/voops-web-user',
-      text: 'View GitHub Repository',
+      text: 'View Web Repository',
     },
   },
   {
@@ -67,6 +67,10 @@ const defaultEntries: ChangelogEntry[] = [
       'Connected Supabase real-time client with local caching',
       'Designed frictionless daily transaction and receipt capture flows',
     ],
+    button: {
+      url: 'https://github.com/sylvorn-labs/voops-mobile-user',
+      text: 'View Flutter Mobile Repo',
+    },
   },
   {
     version: 'Planning',

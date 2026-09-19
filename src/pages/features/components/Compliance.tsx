@@ -1,17 +1,21 @@
 import { cn } from 'cn';
+import { Github, Postgresql, Supabase } from '@thesvg/react';
 
 import { Badge } from '@/components/ui/badge';
 
 export interface ComplianceBadge {
-  image: string;
-  alt: string;
+  title: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  image?: string;
+  alt?: string;
 }
 
 export interface ComplianceFeature {
   title: string;
   description: string;
-  badgeImage: string;
-  badgeAlt: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  badgeImage?: string;
+  badgeAlt?: string;
 }
 
 export interface ComplianceProps {
@@ -26,14 +30,16 @@ export interface ComplianceProps {
 
 const defaultBadges: ComplianceBadge[] = [
   {
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/compliance/GDPR.svg',
-    alt: 'GDPR Compliant',
+    title: 'PostgreSQL RLS',
+    icon: Postgresql,
   },
   {
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/compliance/CCPA.svg',
-    alt: 'CCPA Compliant',
+    title: 'Supabase Security',
+    icon: Supabase,
+  },
+  {
+    title: 'Open Source GitHub',
+    icon: Github,
   },
 ];
 
@@ -42,33 +48,30 @@ const defaultFeatures: ComplianceFeature[] = [
     title: 'Row-Level Security (RLS) Isolation',
     description:
       'Database-level tenant isolation powered by Supabase PostgreSQL RLS guarantees zero cross-organization data leakage.',
-    badgeImage:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/compliance/ISO-27001.svg',
-    badgeAlt: 'ISO-27001',
+    icon: Postgresql,
+    badgeAlt: 'PostgreSQL RLS',
   },
   {
-    title: 'Immutable Ledger & Audit Trails',
+    title: 'Open-Source & Permissive License',
     description:
-      'Every financial edit, deletion, project milestone update, or role change is timestamped with immutable audit logging.',
-    badgeImage:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/compliance/ISO-27017.svg',
-    badgeAlt: 'ISO-27017',
+      '100% open source under a permissive license. No proprietary black boxes or vendor lock-in — inspect and audit every line of code.',
+    icon: Github,
+    badgeAlt: 'Open Source',
   },
   {
     title: 'Self-Hostable & Full Data Sovereignty',
     description:
-      'Retain complete ownership of your business financials. Self-host on your own infrastructure with zero vendor lock-in.',
-    badgeImage:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/compliance/ISO-27018.svg',
-    badgeAlt: 'ISO-27018',
+      'Retain complete ownership of your business financials. Self-host on your own infrastructure or run on your own Supabase instance.',
+    icon: Supabase,
+    badgeAlt: 'Self Hostable',
   },
 ];
 
 export function Compliance({
   id = 'compliance',
-  tagline = 'Security & Compliance',
-  heading = 'Zero-Trust Security & Audit-Ready Compliance',
-  description = 'Engineered from the ground up for strict privacy and data isolation. Voops enforces database-level tenant isolation, immutable transaction logs, and end-to-end data sovereignty.',
+  tagline = 'Open Source & Security',
+  heading = 'Zero-Trust Security & Open-Source Sovereignty',
+  description = 'Engineered for transparency, privacy, and full data control. Voops enforces database-level tenant isolation via PostgreSQL RLS, audit-ready ledgers, and zero proprietary lock-in.',
   badges = defaultBadges,
   features = defaultFeatures,
   className,
@@ -97,44 +100,66 @@ export function Compliance({
               {description}
             </p>
 
-            <div className="mt-2 flex items-center gap-6">
-              {badges.map((badge, index) => (
-                <img
-                  key={index}
-                  src={badge.image}
-                  alt={badge.alt}
-                  className="h-16 opacity-60 grayscale transition-opacity hover:opacity-100 md:h-20 dark:invert"
-                />
-              ))}
+            <div className="mt-2 flex flex-wrap items-center gap-6">
+              {badges.map((badge, index) => {
+                const Icon = badge.icon;
+                return (
+                  <div
+                    key={index}
+                    className="border-border/60 bg-card flex items-center gap-2 rounded-xl border px-4 py-2 shadow-xs"
+                  >
+                    {Icon ? (
+                      <Icon className="text-foreground size-6" />
+                    ) : badge.image ? (
+                      <img
+                        src={badge.image}
+                        alt={badge.alt || badge.title}
+                        className="h-6 w-auto"
+                      />
+                    ) : null}
+                    <span className="text-foreground text-xs font-semibold">
+                      {badge.title}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* Right Column: Stacked Cards */}
           <div className="border-border/60 bg-card text-card-foreground overflow-hidden rounded-2xl border shadow-xs">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className={cn(
-                  'hover:bg-muted/30 relative overflow-hidden p-6 transition-colors sm:p-8 lg:p-10',
-                  index !== 0 && 'border-border/60 border-t',
-                )}
-              >
-                <div className="relative z-10 max-w-[80%]">
-                  <h3 className="text-foreground text-lg font-bold sm:text-xl">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground mt-2 text-xs leading-relaxed sm:text-sm">
-                    {feature.description}
-                  </p>
-                </div>
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
 
-                <img
-                  src={feature.badgeImage}
-                  alt={feature.badgeAlt}
-                  className="pointer-events-none absolute right-2 -bottom-5 size-24 opacity-20 grayscale select-none sm:size-28 lg:right-6 dark:invert"
-                />
-              </div>
-            ))}
+              return (
+                <div
+                  key={index}
+                  className={cn(
+                    'hover:bg-muted/30 relative overflow-hidden p-6 transition-colors sm:p-8 lg:p-10',
+                    index !== 0 && 'border-border/60 border-t',
+                  )}
+                >
+                  <div className="relative z-10 max-w-[80%]">
+                    <h3 className="text-foreground text-lg font-bold sm:text-xl">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground mt-2 text-xs leading-relaxed sm:text-sm">
+                      {feature.description}
+                    </p>
+                  </div>
+
+                  {Icon ? (
+                    <Icon className="pointer-events-none absolute right-2 -bottom-4 size-24 opacity-10 grayscale select-none sm:size-28 lg:right-6" />
+                  ) : feature.badgeImage ? (
+                    <img
+                      src={feature.badgeImage}
+                      alt={feature.badgeAlt || feature.title}
+                      className="pointer-events-none absolute right-2 -bottom-5 size-24 opacity-20 grayscale select-none sm:size-28 lg:right-6 dark:invert"
+                    />
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

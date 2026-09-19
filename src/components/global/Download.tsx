@@ -4,6 +4,7 @@ import {
   AppleIcon,
   ComputerIcon,
   Download01Icon,
+  GithubIcon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
@@ -18,6 +19,7 @@ export interface PlatformItem {
   url?: string;
   badgeSrc?: string;
   badgeAlt?: string;
+  statusText?: string;
 }
 
 export interface DownloadProps {
@@ -39,31 +41,38 @@ const defaultPlatforms: Required<NonNullable<DownloadProps['platforms']>> = {
     description: 'Full-featured React web app with instant Supabase sync.',
     buttonText: 'Launch Web App',
     url: '/register',
+    statusText: 'Available Now',
   },
   ios: {
     title: 'Mobile Phone & iPad',
     subtitle: 'Apple iOS',
-    description: 'Built with Flutter for high performance on iPhone and iPad.',
-    url: '#',
+    description:
+      'Built with Flutter for high performance on iPhone and iPad. Currently in active development.',
+    buttonText: 'View Flutter Repo',
+    url: 'https://github.com/sylvorn-labs/voops-mobile-user',
     badgeSrc:
       'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/badges/appstore.png',
-    badgeAlt: 'Download on the App Store',
+    badgeAlt: 'Coming Soon on Apple App Store',
+    statusText: 'Coming Soon • In Development',
   },
   android: {
     title: 'Phone & Tablet',
     subtitle: 'Google Android',
-    description: 'Optimized Flutter application for all Android devices.',
-    url: '#',
+    description:
+      'Optimized Flutter application for all Android devices. Currently in active development.',
+    buttonText: 'View Flutter Repo',
+    url: 'https://github.com/sylvorn-labs/voops-mobile-user',
     badgeSrc:
       'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/badges/googleplay.png',
-    badgeAlt: 'Get it on Google Play',
+    badgeAlt: 'Coming Soon on Google Play',
+    statusText: 'Coming Soon • In Development',
   },
 };
 
 export function Download({
   id = 'download',
   heading = 'Available Everywhere You Work',
-  description = 'Choose your platform and manage multiple businesses effortlessly. Available across desktop browsers, iOS, and Android.',
+  description = 'Choose your platform and manage multiple businesses effortlessly. Available across desktop browsers, with native iOS and Android apps coming soon.',
   platforms = defaultPlatforms,
   className,
 }: DownloadProps) {
@@ -122,17 +131,21 @@ export function Download({
             <p className="text-muted-foreground mb-6 text-sm">
               {resolvedPlatforms.ios.description}
             </p>
-            <div className="mt-auto flex justify-center">
-              <a
-                href={resolvedPlatforms.ios.url}
-                className="inline-block transition-transform hover:scale-105"
-              >
-                <img
-                  src={resolvedPlatforms.ios.badgeSrc}
-                  alt={resolvedPlatforms.ios.badgeAlt}
-                  className="h-10 w-auto"
-                />
-              </a>
+            <div className="mt-auto flex w-full flex-col items-center gap-3">
+              <span className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-semibold">
+                {resolvedPlatforms.ios.statusText}
+              </span>
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <a
+                  href={resolvedPlatforms.ios.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <HugeiconsIcon icon={GithubIcon} className="size-4" />
+                  <span>{resolvedPlatforms.ios.buttonText}</span>
+                </a>
+              </Button>
             </div>
           </div>
 
@@ -147,17 +160,21 @@ export function Download({
             <p className="text-muted-foreground mb-6 text-sm">
               {resolvedPlatforms.android.description}
             </p>
-            <div className="mt-auto flex justify-center">
-              <a
-                href={resolvedPlatforms.android.url}
-                className="inline-block transition-transform hover:scale-105"
-              >
-                <img
-                  src={resolvedPlatforms.android.badgeSrc}
-                  alt={resolvedPlatforms.android.badgeAlt}
-                  className="h-10 w-auto"
-                />
-              </a>
+            <div className="mt-auto flex w-full flex-col items-center gap-3">
+              <span className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-semibold">
+                {resolvedPlatforms.android.statusText}
+              </span>
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <a
+                  href={resolvedPlatforms.android.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <HugeiconsIcon icon={GithubIcon} className="size-4" />
+                  <span>{resolvedPlatforms.android.buttonText}</span>
+                </a>
+              </Button>
             </div>
           </div>
         </div>
