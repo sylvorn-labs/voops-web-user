@@ -15,6 +15,7 @@ import { Pricing } from './components/Pricing';
 import { Team } from './components/Team';
 import { Faq } from './components/Faq';
 import { Contact } from './components/Contact';
+import { Community } from './components/Community';
 import { Download } from './components/Download';
 
 export function HomePage() {
@@ -39,6 +40,7 @@ export function HomePage() {
         <Team />
         <Faq />
         <Contact />
+        <Community />
         <Download />
       </main>
 
