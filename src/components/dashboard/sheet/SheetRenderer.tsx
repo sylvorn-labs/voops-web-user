@@ -41,6 +41,24 @@ const CategoryViewSheet = React.lazy(() =>
   })),
 );
 
+const AccountAddSheet = React.lazy(() =>
+  import('@/pages/accounts/components/sheets/AccountAddSheet').then(m => ({
+    default: m.AccountAddSheet,
+  })),
+);
+
+const AccountEditSheet = React.lazy(() =>
+  import('@/pages/accounts/components/sheets/AccountEditSheet').then(m => ({
+    default: m.AccountEditSheet,
+  })),
+);
+
+const AccountViewSheet = React.lazy(() =>
+  import('@/pages/accounts/components/sheets/AccountViewSheet').then(m => ({
+    default: m.AccountViewSheet,
+  })),
+);
+
 // ─── Registry ────────────────────────────────────────────────────────────────
 //
 // Add a new entry here whenever a new feature needs sheet support.
@@ -58,6 +76,11 @@ const SHEET_REGISTRY: SheetRegistry = {
     view: CategoryViewSheet,
     add: CategoryAddSheet,
     edit: CategoryEditSheet,
+  },
+  account: {
+    view: AccountViewSheet,
+    add: AccountAddSheet,
+    edit: AccountEditSheet,
   },
 };
 

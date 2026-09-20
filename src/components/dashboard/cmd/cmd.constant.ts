@@ -4,6 +4,7 @@ import {
   Moon,
   Sun,
   Tag01Icon,
+  Wallet02Icon,
 } from '@hugeicons/core-free-icons';
 import { useNavigate } from 'react-router';
 
@@ -26,6 +27,14 @@ export function useCommands(): CommandGroup[] {
           icon: DashboardCircleIcon,
           onSelect: () => {
             navigate('/dashboard');
+            close();
+          },
+        },
+        {
+          label: 'Accounts',
+          icon: Wallet02Icon,
+          onSelect: () => {
+            navigate('/dashboard/accounts');
             close();
           },
         },
