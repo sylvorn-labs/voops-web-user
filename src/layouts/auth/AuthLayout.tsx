@@ -1,9 +1,17 @@
-import { Outlet } from 'react-router';
+import { Navigate, Outlet } from 'react-router';
 
 import { AuthBrandLogo } from '@/components/auth/auth-brand-logo/AuthBrandLogo';
+import { useAuthIsAuthenticated } from '@/stores/auth/auth.selectors';
+
 import type { AuthLayoutProps } from './auth-layout.d';
 
 export function AuthLayout({ children }: AuthLayoutProps = {}) {
+  const isAuthenticated = useAuthIsAuthenticated();
+
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   return (
     <div className="grid h-dvh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">

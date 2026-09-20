@@ -48,7 +48,7 @@ export function Hero({ className }: HeroProps = {}) {
             <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
               {isAuthenticated ? (
                 <Button size="lg" asChild className="w-full sm:w-auto">
-                  <Link to="/" className="flex items-center gap-2">
+                  <Link to="/dashboard" className="flex items-center gap-2">
                     <span>Go to Dashboard</span>
                     <HugeiconsIcon
                       icon={ArrowRight01Icon}
