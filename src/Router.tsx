@@ -7,7 +7,7 @@ import { MainLayout } from '@/layouts/main/MainLayout';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { lazyImport } from '@/utils/lazy-import';
 
-// ─── Lazy Loaded Pages ──────────────────────────────────────────────────
+// ─── Lazy Loaded Pages ───────────────────────────────────────────────
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -174,6 +174,16 @@ const PartyDetailsPage = lazyImport({
   exportName: 'PartyDetailsPage',
 });
 
+const MemberListPage = lazyImport({
+  importer: () => import('@/pages/members/list/Page'),
+  exportName: 'MemberListPage',
+});
+
+const MemberDetailsPage = lazyImport({
+  importer: () => import('@/pages/members/details/Page'),
+  exportName: 'MemberDetailsPage',
+});
+
 const NotFoundPage = lazyImport({
   importer: () => import('@/pages/not-found/Page'),
   exportName: 'NotFoundPage',
@@ -188,7 +198,7 @@ export function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        {/* Main Layout routes (Navbar + Footer) */}
+        \n {/* Main Layout routes (Navbar + Footer) */}
         <Route element={<MainLayout />}>
           <Route index={true} element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -229,7 +239,6 @@ export function Router() {
           <Route path="/not-logged-in" element={<NotLoggedInPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
-
         {/* Authentication Routes wrapped with AuthLayout */}
         <Route element={<AuthLayout />}>
           <Route path="/register" element={<RegisterPage />} />
@@ -238,7 +247,6 @@ export function Router() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
         </Route>
-
         {/* Dashboard Routes wrapped with DashboardLayout */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<DashboardPage />} />
@@ -251,6 +259,8 @@ export function Router() {
           <Route path="projects/:id" element={<ProjectDetailsPage />} />
           <Route path="parties" element={<PartyListPage />} />
           <Route path="parties/:id" element={<PartyDetailsPage />} />
+          <Route path="members" element={<MemberListPage />} />
+          <Route path="members/:id" element={<MemberDetailsPage />} />
         </Route>
       </Routes>
     </Suspense>

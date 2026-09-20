@@ -9,7 +9,7 @@ import type {
 
 import { SheetLoadingSkeleton } from './SheetLoadingSkeleton';
 
-// ─── Lazy Sheet Imports ──────────────────────────────────────────────────
+// ─── Lazy Sheet Imports ──────────────────────────────────────────────
 
 const BusinessAddSheet = React.lazy(() =>
   import('@/pages/dashboard/businesses/components/sheet/BusinessAddSheet').then(
@@ -95,7 +95,25 @@ const PartyViewSheet = React.lazy(() =>
   })),
 );
 
-// ─── Registry ────────────────────────────────────────────────────────────
+const MemberAddSheet = React.lazy(() =>
+  import('@/pages/members/components/sheets/MemberAddSheet').then(m => ({
+    default: m.MemberAddSheet,
+  })),
+);
+
+const MemberEditSheet = React.lazy(() =>
+  import('@/pages/members/components/sheets/MemberEditSheet').then(m => ({
+    default: m.MemberEditSheet,
+  })),
+);
+
+const MemberViewSheet = React.lazy(() =>
+  import('@/pages/members/components/sheets/MemberViewSheet').then(m => ({
+    default: m.MemberViewSheet,
+  })),
+);
+
+// ─── Registry ────────────────────────────────────────────────────────
 //
 // Add a new entry here whenever a new feature needs sheet support.
 // The key must match the `sheetKey` passed to `useSheetStore().open(...)`.
@@ -128,9 +146,14 @@ const SHEET_REGISTRY: SheetRegistry = {
     add: PartyAddSheet,
     edit: PartyEditSheet,
   },
+  member: {
+    view: MemberViewSheet,
+    add: MemberAddSheet,
+    edit: MemberEditSheet,
+  },
 };
 
-// ─── Not-Configured Fallback ─────────────────────────────────────────────
+// ─── Not-Configured Fallback ─────────────────────────────────────────
 
 function SheetNotConfigured({
   sheetKey,
@@ -166,7 +189,7 @@ function SheetNotConfigured({
   );
 }
 
-// ─── SheetRenderer Component ─────────────────────────────────────────────
+// ─── SheetRenderer Component ─────────────────────────────────────────
 
 export interface SheetRendererProps {
   sheetKey: string;
