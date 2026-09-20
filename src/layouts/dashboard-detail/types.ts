@@ -4,7 +4,7 @@ import type { PageHeaderProps } from '@/components/dashboard/page-header/page-he
 
 export interface DetailsTabConfig {
   value: string;
-  label: string;
+  label: ReactNode;
   content: ReactNode;
 }
 

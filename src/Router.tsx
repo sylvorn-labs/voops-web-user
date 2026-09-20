@@ -7,7 +7,7 @@ import { MainLayout } from '@/layouts/main/MainLayout';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { lazyImport } from '@/utils/lazy-import';
 
-// ─── Lazy Loaded Pages ───────────────────────────────────────────────────
+// ──────────────── Lazy Loaded Pages ───────────────────────────────────────────
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -194,6 +194,11 @@ const MemberDetailsPage = lazyImport({
   exportName: 'MemberDetailsPage',
 });
 
+const SettingsPage = lazyImport({
+  importer: () => import('@/pages/settings/Page'),
+  exportName: 'SettingsPage',
+});
+
 const NotFoundPage = lazyImport({
   importer: () => import('@/pages/not-found/Page'),
   exportName: 'NotFoundPage',
@@ -273,6 +278,7 @@ export function Router() {
           <Route path="parties/:id" element={<PartyDetailsPage />} />
           <Route path="members" element={<MemberListPage />} />
           <Route path="members/:id" element={<MemberDetailsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
     </Suspense>
