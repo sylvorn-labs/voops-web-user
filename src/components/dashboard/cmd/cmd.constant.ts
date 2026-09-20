@@ -1,9 +1,13 @@
 import {
-  DashboardCircleIcon,
+  Contact01Icon,
+  Folder02Icon,
+  Home01Icon,
   Laptop,
   Moon,
   Sun,
   Tag01Icon,
+  TransactionIcon,
+  UserGroupIcon,
   Wallet02Icon,
 } from '@hugeicons/core-free-icons';
 import { useNavigate } from 'react-router';
@@ -23,10 +27,18 @@ export function useCommands(): CommandGroup[] {
       heading: 'Navigation',
       items: [
         {
-          label: 'Dashboard',
-          icon: DashboardCircleIcon,
+          label: 'Overview',
+          icon: Home01Icon,
           onSelect: () => {
             navigate('/dashboard');
+            close();
+          },
+        },
+        {
+          label: 'Transactions',
+          icon: TransactionIcon,
+          onSelect: () => {
+            navigate('/dashboard/transactions');
             close();
           },
         },
@@ -43,6 +55,30 @@ export function useCommands(): CommandGroup[] {
           icon: Tag01Icon,
           onSelect: () => {
             navigate('/dashboard/categories');
+            close();
+          },
+        },
+        {
+          label: 'Projects',
+          icon: Folder02Icon,
+          onSelect: () => {
+            navigate('/dashboard/projects');
+            close();
+          },
+        },
+        {
+          label: 'Parties',
+          icon: Contact01Icon,
+          onSelect: () => {
+            navigate('/dashboard/parties');
+            close();
+          },
+        },
+        {
+          label: 'Members',
+          icon: UserGroupIcon,
+          onSelect: () => {
+            navigate('/dashboard/members');
             close();
           },
         },
