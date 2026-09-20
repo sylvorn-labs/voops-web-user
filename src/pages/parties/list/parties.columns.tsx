@@ -4,6 +4,7 @@ import { DataTableColumnHeader } from '@/components/dashboard/data-table/DataTab
 import { DataTableRowActions } from '@/components/dashboard/data-table/data-table-row-actions';
 import type { RowActionConfig } from '@/components/dashboard/data-table/types';
 import type { PartyListItem } from '@/types/api/party.d';
+import { PartyTypeBadge } from './components/party-type-badge/PartyTypeBadge';
 import { PartyKindBadge } from './components/party-kind-badge/PartyKindBadge';
 import { PartyArchiveBadge } from './components/party-archive-badge/PartyArchiveBadge';
 
@@ -23,9 +24,19 @@ export function getPartyColumns(
       enableHiding: false,
     },
     {
+      accessorKey: 'type',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Entity Type" />
+      ),
+      cell: ({ row }) => (
+        <PartyTypeBadge type={row.getValue('type') || 'person'} />
+      ),
+      enableSorting: true,
+    },
+    {
       accessorKey: 'kind',
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Type" />
+        <DataTableColumnHeader column={column} title="Kind" />
       ),
       cell: ({ row }) => <PartyKindBadge kind={row.getValue('kind')} />,
       enableSorting: true,

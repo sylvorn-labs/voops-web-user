@@ -26,6 +26,7 @@ import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { getCategoryByIdOptions } from '@/hooks/api/category.hook';
 
 import { CategoryDeleteDialog } from '@/pages/categories/components/category-delete-dialog/CategoryDeleteDialog';
+import { EntityTransactionsTab } from '@/pages/transactions/components/entity-transactions-tab/EntityTransactionsTab';
 import { CategoryBasicTab } from './components/category-basic-tab/CategoryBasicTab';
 
 export function CategoryDetailsPage() {
@@ -97,6 +98,13 @@ export function CategoryDetailsPage() {
       value: 'basic',
       label: 'Basic',
       content: <CategoryBasicTab category={category} />,
+    },
+    {
+      value: 'transactions',
+      label: 'Transactions',
+      content: (
+        <EntityTransactionsTab entityType="category" entityId={category.id} />
+      ),
     },
   ];
 

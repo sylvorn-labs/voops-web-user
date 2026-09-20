@@ -9,7 +9,14 @@ export function useUrlTabs(values: readonly string[], defaultTab: string) {
 
   const setActiveTab = useCallback(
     (tab: string) => {
-      setSearchParams({ tab }, { replace: true });
+      setSearchParams(
+        prev => {
+          const next = new URLSearchParams(prev);
+          next.set('tab', tab);
+          return next;
+        },
+        { replace: true },
+      );
     },
     [setSearchParams],
   );

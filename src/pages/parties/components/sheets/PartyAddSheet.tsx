@@ -26,6 +26,7 @@ import type { AddSheetProps } from '@/types/sheet.d';
 import {
   PARTY_FORM_DEFAULT_VALUES,
   PARTY_KIND_OPTIONS,
+  PARTY_TYPE_OPTIONS,
 } from '@/pages/parties/components/schema/party.constants';
 import { partyFormSchema } from '@/pages/parties/components/schema/party.schema';
 import type { PartyFormValues } from '@/pages/parties/components/schema/party.d';
@@ -51,6 +52,7 @@ export function PartyAddSheet({ formId, prefill, onSuccess }: AddSheetProps) {
       {
         business_id: activeBusinessId,
         name: values.name,
+        type: values.type,
         kind: values.kind,
         email: values.email || null,
         phone: values.phone || null,
@@ -91,35 +93,67 @@ export function PartyAddSheet({ formId, prefill, onSuccess }: AddSheetProps) {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="kind"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Party Type</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  value={field.value}
-                  disabled={createMutation.isPending}
-                >
-                  <FormControl>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select type" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {PARTY_KIND_OPTIONS.map(option => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <FormField
+              control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Entity Type</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    value={field.value}
+                    disabled={createMutation.isPending}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select entity type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {PARTY_TYPE_OPTIONS.map(option => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="kind"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Relationship Kind</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    value={field.value}
+                    disabled={createMutation.isPending}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select kind" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {PARTY_KIND_OPTIONS.map(option => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </SheetFieldGroup>
 
         <SheetFieldGroup title="Contact Details">

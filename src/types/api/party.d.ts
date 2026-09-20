@@ -1,14 +1,18 @@
 import type { ApiResponse, PaginatedResponse } from '@/types/api.d';
 
+export type PartyType = 'person' | 'company';
 export type PartyKind = 'customer' | 'vendor' | 'employee' | 'other';
 
 export interface Party {
   id: string;
   business_id: string;
+  type: PartyType;
   name: string;
   kind: PartyKind;
   email: string | null;
   phone: string | null;
+  address?: string | null;
+  notes?: string | null;
   is_archived: boolean;
   created_at: string;
   updated_at: string;
@@ -19,6 +23,7 @@ export type PartyListItem = Party;
 
 export type PartySortBy =
   | 'name'
+  | 'type'
   | 'kind'
   | 'email'
   | 'phone'
@@ -31,6 +36,7 @@ export interface ListPartiesParams {
   page?: number;
   limit?: number;
   search?: string;
+  type?: PartyType;
   kind?: PartyKind;
   is_archived?: boolean;
   sortBy?: PartySortBy;
@@ -43,17 +49,23 @@ export interface ListPartiesParams {
 export interface CreatePartyRequest {
   business_id: string;
   name: string;
+  type?: PartyType;
   kind: PartyKind;
   email?: string | null;
   phone?: string | null;
+  address?: string | null;
+  notes?: string | null;
   is_archived?: boolean;
 }
 
 export interface UpdatePartyRequest {
   name?: string;
+  type?: PartyType;
   kind?: PartyKind;
   email?: string | null;
   phone?: string | null;
+  address?: string | null;
+  notes?: string | null;
   is_archived?: boolean;
 }
 

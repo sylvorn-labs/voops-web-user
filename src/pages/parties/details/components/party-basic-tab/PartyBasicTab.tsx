@@ -33,10 +33,12 @@ import { Input } from '@/components/ui/input/Input';
 import { useUpdateParty } from '@/hooks/api/party.hook';
 
 import { PartyKindBadge } from '@/pages/parties/list/components/party-kind-badge/PartyKindBadge';
+import { PartyTypeBadge } from '@/pages/parties/list/components/party-type-badge/PartyTypeBadge';
 import { PartyArchiveBadge } from '@/pages/parties/list/components/party-archive-badge/PartyArchiveBadge';
 import {
   PARTY_FORM_DEFAULT_VALUES,
   PARTY_KIND_OPTIONS,
+  PARTY_TYPE_OPTIONS,
 } from '@/pages/parties/components/schema/party.constants';
 import { partyFormSchema } from '@/pages/parties/components/schema/party.schema';
 import type { PartyFormValues } from '@/pages/parties/components/schema/party.d';
@@ -50,6 +52,7 @@ export function PartyBasicTab({ party }: PartyBasicTabProps) {
     defaultValues: {
       ...PARTY_FORM_DEFAULT_VALUES,
       name: party.name,
+      type: party.type || 'person',
       kind: party.kind,
       email: party.email || '',
       phone: party.phone || '',
@@ -60,6 +63,7 @@ export function PartyBasicTab({ party }: PartyBasicTabProps) {
   useEffect(() => {
     form.reset({
       name: party.name,
+      type: party.type || 'person',
       kind: party.kind,
       email: party.email || '',
       phone: party.phone || '',
@@ -72,6 +76,7 @@ export function PartyBasicTab({ party }: PartyBasicTabProps) {
       id: party.id,
       data: {
         name: values.name,
+        type: values.type,
         kind: values.kind,
         email: values.email || null,
         phone: values.phone || null,
@@ -124,35 +129,67 @@ export function PartyBasicTab({ party }: PartyBasicTabProps) {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="kind"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Party Type</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    value={field.value}
-                    disabled={updateMutation.isPending}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {PARTY_KIND_OPTIONS.map(option => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Entity Type</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      value={field.value}
+                      disabled={updateMutation.isPending}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select entity type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {PARTY_TYPE_OPTIONS.map(option => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="kind"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Relationship Kind</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      value={field.value}
+                      disabled={updateMutation.isPending}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select kind" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {PARTY_KIND_OPTIONS.map(option => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <FormField
@@ -241,7 +278,11 @@ export function PartyBasicTab({ party }: PartyBasicTabProps) {
             copyable
           />
           <DataCardPropertyRow
-            label="Party Type"
+            label="Entity Type"
+            value={<PartyTypeBadge type={party.type || 'person'} />}
+          />
+          <DataCardPropertyRow
+            label="Relationship Kind"
             value={<PartyKindBadge kind={party.kind} />}
           />
           <DataCardPropertyRow

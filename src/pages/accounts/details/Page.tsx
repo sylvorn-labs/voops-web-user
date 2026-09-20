@@ -31,6 +31,7 @@ import {
 } from '@/hooks/api/account.hook';
 
 import { AccountDeleteDialog } from '@/pages/accounts/components/account-delete-dialog/AccountDeleteDialog';
+import { EntityTransactionsTab } from '@/pages/transactions/components/entity-transactions-tab/EntityTransactionsTab';
 import { AccountBasicTab } from './components/account-basic-tab/AccountBasicTab';
 
 export function AccountDetailsPage() {
@@ -110,6 +111,13 @@ export function AccountDetailsPage() {
       value: 'basic',
       label: 'Basic',
       content: <AccountBasicTab account={account} />,
+    },
+    {
+      value: 'transactions',
+      label: 'Transactions',
+      content: (
+        <EntityTransactionsTab entityType="account" entityId={account.id} />
+      ),
     },
   ];
 

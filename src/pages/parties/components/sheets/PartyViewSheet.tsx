@@ -10,6 +10,7 @@ import { SheetActionBar } from '@/components/dashboard/sheet/SheetActionBar';
 import { useSheetStore } from '@/stores/sheet/sheet.store';
 import { getPartyByIdOptions } from '@/hooks/api/party.hook';
 import { PartyKindBadge } from '@/pages/parties/list/components/party-kind-badge/PartyKindBadge';
+import { PartyTypeBadge } from '@/pages/parties/list/components/party-type-badge/PartyTypeBadge';
 import { PartyArchiveBadge } from '@/pages/parties/list/components/party-archive-badge/PartyArchiveBadge';
 import type { ViewSheetProps } from '@/types/sheet.d';
 
@@ -31,7 +32,7 @@ export function PartyViewSheet({ id }: ViewSheetProps) {
   if (isError || !party) {
     return (
       <SheetErrorState
-        message="Failed to load party details."
+        message="Could not load party details. Please check your connection."
         onRetry={() => void refetch()}
       />
     );
@@ -85,12 +86,16 @@ export function PartyViewSheet({ id }: ViewSheetProps) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <SheetDetailRow label="Party Name" value={party.name} />
           <SheetDetailRow
-            label="Type"
-            value={<PartyKindBadge kind={party.kind} />}
+            label="Entity Type"
+            value={<PartyTypeBadge type={party.type || 'person'} />}
           />
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <SheetDetailRow
+            label="Relationship Kind"
+            value={<PartyKindBadge kind={party.kind} />}
+          />
           <SheetDetailRow
             label="Status"
             value={<PartyArchiveBadge isArchived={party.is_archived} />}

@@ -1,7 +1,12 @@
 import type { ApiResponse, PaginatedResponse } from '@/types/api.d';
 
 export type BusinessSortBy =
-  'name' | 'currency_code' | 'created_at' | 'updated_at';
+  | 'name'
+  | 'currency_code'
+  | 'opening_balance'
+  | 'current_balance'
+  | 'created_at'
+  | 'updated_at';
 
 export interface IBusinessAPI {
   list(
@@ -22,6 +27,8 @@ export interface BusinessListItem {
   id: string;
   name: string;
   currency_code: string;
+  opening_balance: number;
+  current_balance: number;
   owner_id: string;
   created_by: string;
   created_at: string;
@@ -34,6 +41,8 @@ export interface Business {
   id: string;
   name: string;
   currency_code: string;
+  opening_balance: number;
+  current_balance: number;
   owner_id: string;
   created_by: string;
   created_at: string;
@@ -55,11 +64,15 @@ export interface ListBusinessesParams {
 export interface CreateBusinessRequest {
   name: string;
   currency_code?: string;
+  opening_balance?: number;
+  current_balance?: number;
 }
 
 export interface UpdateBusinessRequest {
   name?: string;
   currency_code?: string;
+  opening_balance?: number;
+  current_balance?: number;
 }
 
 export interface CreateBusinessResponse {

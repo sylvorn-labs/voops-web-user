@@ -31,6 +31,7 @@ import {
 } from '@/hooks/api/party.hook';
 
 import { PartyDeleteDialog } from '@/pages/parties/components/party-delete-dialog/PartyDeleteDialog';
+import { EntityTransactionsTab } from '@/pages/transactions/components/entity-transactions-tab/EntityTransactionsTab';
 import { PartyBasicTab } from './components/party-basic-tab/PartyBasicTab';
 
 export function PartyDetailsPage() {
@@ -110,6 +111,11 @@ export function PartyDetailsPage() {
       value: 'basic',
       label: 'Basic',
       content: <PartyBasicTab party={party} />,
+    },
+    {
+      value: 'transactions',
+      label: 'Transactions',
+      content: <EntityTransactionsTab entityType="party" entityId={party.id} />,
     },
   ];
 

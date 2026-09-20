@@ -43,6 +43,10 @@ export class PartyAPI implements IPartyAPI {
       );
     }
 
+    if (params.type) {
+      query = query.eq('type', params.type);
+    }
+
     if (params.kind) {
       query = query.eq('kind', params.kind);
     }
@@ -113,9 +117,12 @@ export class PartyAPI implements IPartyAPI {
       .insert({
         business_id: payload.business_id,
         name: payload.name.trim(),
+        type: payload.type || 'person',
         kind: payload.kind,
         email: payload.email?.trim() || null,
         phone: payload.phone?.trim() || null,
+        address: payload.address?.trim() || null,
+        notes: payload.notes?.trim() || null,
         is_archived: payload.is_archived ?? false,
       })
       .select('id')
@@ -140,11 +147,16 @@ export class PartyAPI implements IPartyAPI {
     };
 
     if (payload.name !== undefined) updateData.name = payload.name.trim();
+    if (payload.type !== undefined) updateData.type = payload.type;
     if (payload.kind !== undefined) updateData.kind = payload.kind;
     if (payload.email !== undefined)
       updateData.email = payload.email ? payload.email.trim() : null;
     if (payload.phone !== undefined)
       updateData.phone = payload.phone ? payload.phone.trim() : null;
+    if (payload.address !== undefined)
+      updateData.address = payload.address ? payload.address.trim() : null;
+    if (payload.notes !== undefined)
+      updateData.notes = payload.notes ? payload.notes.trim() : null;
     if (payload.is_archived !== undefined)
       updateData.is_archived = payload.is_archived;
 

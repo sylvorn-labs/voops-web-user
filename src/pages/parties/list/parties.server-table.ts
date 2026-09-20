@@ -5,6 +5,7 @@ import type {
   PartyKind,
   PartyListItem,
   PartySortBy,
+  PartyType,
 } from '@/types/api/party.d';
 
 export async function fetchPartiesServerTable(
@@ -21,6 +22,7 @@ export async function fetchPartiesServerTable(
     page: tableParams.page,
     limit: tableParams.limit,
     search: tableParams.q,
+    type: tableParams.filters?.type?.[0] as PartyType | undefined,
     kind: tableParams.filters?.kind?.[0] as PartyKind | undefined,
     is_archived: isArchived,
     sortBy: tableParams.sort_by as PartySortBy | undefined,

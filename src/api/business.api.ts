@@ -11,6 +11,21 @@ import type {
 } from '@/types/api/business.d';
 import type { ApiResponse, PaginatedResponse } from '@/types/api.d';
 
+function formatBusiness(raw: Record<string, unknown>): Business {
+  return {
+    id: String(raw.id),
+    name: String(raw.name),
+    currency_code: String(raw.currency_code || 'INR'),
+    opening_balance: Number(raw.opening_balance || 0),
+    current_balance: Number(raw.current_balance || 0),
+    owner_id: String(raw.owner_id),
+    created_by: String(raw.created_by),
+    created_at: String(raw.created_at),
+    updated_at: String(raw.updated_at),
+    deleted_at: raw.deleted_at ? String(raw.deleted_at) : null,
+  };
+}
+
 export class BusinessAPI implements IBusinessAPI {
   private static instance: BusinessAPI;
 
@@ -32,9 +47,12 @@ export class BusinessAPI implements IBusinessAPI {
 
     let query = supabase
       .from('businesses')
-      .select('id, name, currency_code, created_at, updated_at', {
-        count: 'exact',
-      })
+      .select(
+        'id, name, currency_code, opening_balance, current_balance, owner_id, created_by, created_at, updated_at',
+        {
+          count: 'exact',
+        },
+      )
       .is('deleted_at', null);
 
     if (params?.search) {
@@ -63,11 +81,14 @@ export class BusinessAPI implements IBusinessAPI {
 
     const total = count ?? 0;
     const totalPages = Math.ceil(total / limit);
+    const items = (data || []).map(row =>
+      formatBusiness(row as Record<string, unknown>),
+    );
 
     return {
       success: true,
       data: {
-        items: (data as BusinessListItem[]) || [],
+        items,
         page,
         limit,
         total,
@@ -90,7 +111,7 @@ export class BusinessAPI implements IBusinessAPI {
 
     return {
       success: true,
-      data: data as Business,
+      data: formatBusiness(data as Record<string, unknown>),
     };
   }
 
@@ -111,11 +132,16 @@ export class BusinessAPI implements IBusinessAPI {
       .from('profiles')
       .upsert({ id: user.id }, { onConflict: 'id' });
 
+    const openingBalance = data.opening_balance ?? 0;
+    const currentBalance = data.current_balance ?? openingBalance;
+
     const { data: newBusiness, error: insertError } = await supabase
       .from('businesses')
       .insert({
         name: data.name,
-        currency_code: data.currency_code ?? 'USD',
+        currency_code: data.currency_code ?? 'INR',
+        opening_balance: openingBalance,
+        current_balance: currentBalance,
         owner_id: user.id,
         created_by: user.id,
       })
@@ -139,11 +165,17 @@ export class BusinessAPI implements IBusinessAPI {
     id: string,
     data: UpdateBusinessRequest,
   ): Promise<ApiResponse<Business>> {
-    const updatePayload: Partial<Business> = {};
+    const updatePayload: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    };
 
     if (data.name !== undefined) updatePayload.name = data.name;
     if (data.currency_code !== undefined)
       updatePayload.currency_code = data.currency_code;
+    if (data.opening_balance !== undefined)
+      updatePayload.opening_balance = data.opening_balance;
+    if (data.current_balance !== undefined)
+      updatePayload.current_balance = data.current_balance;
 
     const { data: updatedBusiness, error } = await supabase
       .from('businesses')
@@ -158,7 +190,7 @@ export class BusinessAPI implements IBusinessAPI {
 
     return {
       success: true,
-      data: updatedBusiness as Business,
+      data: formatBusiness(updatedBusiness as Record<string, unknown>),
     };
   }
 
@@ -167,7 +199,10 @@ export class BusinessAPI implements IBusinessAPI {
   ): Promise<ApiResponse<DeleteBusinessResponse>> {
     const { error } = await supabase
       .from('businesses')
-      .update({ deleted_at: new Date().toISOString() })
+      .update({
+        deleted_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
       .eq('id', id);
 
     if (error) {

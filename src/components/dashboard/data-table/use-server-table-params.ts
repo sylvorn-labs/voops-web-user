@@ -6,12 +6,15 @@ import type {
   SortDirection,
 } from '@/components/dashboard/data-table/types';
 
-// ─── Constants ─────────────────────────────────────────────────────────────────
+// ─── Constants ───────────────────────────────────────────────────────────────
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 20;
 
-// ─── Helpers ───────────────────────────────────────────────────────────────────
+/** Default query param keys preserved during table navigation/reset. */
+const DEFAULT_PRESERVE_KEYS = ['tab'];
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 /**
  * Serialise a `ServerTableParams` object into a `URLSearchParams` instance.
@@ -93,10 +96,14 @@ function parseParams(
   defaults: Partial<ServerTableParams>,
   preserveKeys: string[] = [],
 ): ServerTableParams {
+  const combinedPreserve = new Set([
+    ...DEFAULT_PRESERVE_KEYS,
+    ...preserveKeys.filter(Boolean),
+  ]);
   const filters: Record<string, string[]> = {};
 
   searchParams.forEach((value, key) => {
-    if (!RESERVED_KEYS.has(key) && !preserveKeys.includes(key)) {
+    if (!RESERVED_KEYS.has(key) && !combinedPreserve.has(key)) {
       filters[key] = value.split(',').filter(Boolean);
     }
   });
@@ -128,7 +135,7 @@ function parseParams(
   };
 }
 
-// ─── Debounce ──────────────────────────────────────────────────────────────────
+// ─── Debounce ────────────────────────────────────────────────────────────────
 
 /**
  * Returns a stable debounced wrapper around `fn`.
@@ -160,7 +167,7 @@ function useDebouncedCallback<T extends (...args: Parameters<T>) => void>(
   ) as T;
 }
 
-// ─── Hook ──────────────────────────────────────────────────────────────────────
+// ─── Hook ────────────────────────────────────────────────────────────────────
 
 export interface UseServerTableParamsReturn {
   /** Current fully-parsed table params (driven by URL). */
@@ -178,7 +185,7 @@ export interface UseServerTableParamsReturn {
    * Automatically resets page to 1 and clears the value when empty.
    *
    * Pass this directly to the `<Input onChange>` handler or the
-   * `onSearchChange` prop of `<DataTable mode="server">`.
+   * `onSearchChange` prop of `<DataTable mode=\"server\">`.
    */
   setSearch: (value: string) => void;
 
@@ -226,6 +233,8 @@ export interface UseServerTableParamsReturn {
  * @param defaults  Optional baseline values used when a param is absent from
  *                  the URL.  Only non-default values are written to the URL, so
  *                  the URL stays clean.
+ * @param preserveKeys Additional URL search-param keys that must survive table
+ *                     interactions (by default includes 'tab').
  *
  * @example
  * ```ts
@@ -241,9 +250,16 @@ export function useServerTableParams(
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Stable primitive key so an inline `preserveKeys` literal doesn't thrash memos.
-  const preserveKey = preserveKeys.join(',');
+  const allPreserveKeys = React.useMemo(
+    () =>
+      Array.from(
+        new Set([...DEFAULT_PRESERVE_KEYS, ...preserveKeys.filter(Boolean)]),
+      ),
+    [preserveKeys],
+  );
+  const preserveKey = allPreserveKeys.join(',');
 
-  // ── Derived state ────────────────────────────────────────────────────────────
+  // ─── Derived state ──────────────────────────────────────────────────────────
 
   // Re-parse on every searchParams change so the hook is always in sync with
   // the URL (e.g. user hits back / forward in the browser).
@@ -257,7 +273,7 @@ export function useServerTableParams(
     // object literal.
   );
 
-  // ── Internal navigation helper ───────────────────────────────────────────────
+  // ─── Internal navigation helper ───────────────────────────────────────────
 
   const navigate = React.useCallback(
     (next: ServerTableParams) => {
@@ -265,7 +281,8 @@ export function useServerTableParams(
       // Carry over non-table params (e.g. the active `tab`) so table
       // interactions and "reset" never wipe surrounding page state.
       for (const key of preserveKey.split(',')) {
-        const value = key && searchParams.get(key);
+        if (!key) continue;
+        const value = searchParams.get(key);
         if (value) qs.set(key, value);
       }
       setSearchParams(qs, { replace: true });
@@ -273,7 +290,7 @@ export function useServerTableParams(
     [setSearchParams, searchParams, preserveKey],
   );
 
-  // ── Public setters ───────────────────────────────────────────────────────────
+  // ─── Public setters ─────────────────────────────────────────────────────────
 
   const setParams = React.useCallback(
     (next: Partial<ServerTableParams>, resetPage = true) => {

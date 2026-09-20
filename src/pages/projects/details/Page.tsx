@@ -31,6 +31,7 @@ import {
 } from '@/hooks/api/project.hook';
 
 import { ProjectDeleteDialog } from '@/pages/projects/components/project-delete-dialog/ProjectDeleteDialog';
+import { EntityTransactionsTab } from '@/pages/transactions/components/entity-transactions-tab/EntityTransactionsTab';
 import { ProjectBasicTab } from './components/project-basic-tab/ProjectBasicTab';
 
 export function ProjectDetailsPage() {
@@ -110,6 +111,13 @@ export function ProjectDetailsPage() {
       value: 'basic',
       label: 'Basic',
       content: <ProjectBasicTab project={project} />,
+    },
+    {
+      value: 'transactions',
+      label: 'Transactions',
+      content: (
+        <EntityTransactionsTab entityType="project" entityId={project.id} />
+      ),
     },
   ];
 

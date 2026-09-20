@@ -4,8 +4,10 @@ import {
   BuildingIcon,
   Calendar03Icon,
   CheckmarkCircle01Icon,
+  Coins01Icon,
   Delete02Icon,
   Edit02Icon,
+  Wallet01Icon,
 } from '@hugeicons/core-free-icons';
 
 import {
@@ -30,6 +32,8 @@ export function BusinessCard({
   const formattedDate = business.created_at
     ? format(new Date(business.created_at), 'MMM dd, yyyy')
     : 'Unknown';
+
+  const currency = business.currency_code || 'INR';
 
   return (
     <Card
@@ -58,7 +62,7 @@ export function BusinessCard({
               </h3>
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="font-mono text-xs">
-                  {business.currency_code || 'USD'}
+                  {currency}
                 </Badge>
                 {isActive && (
                   <Badge variant="default" className="text-xs">
@@ -75,7 +79,34 @@ export function BusinessCard({
         </div>
       </CardHeader>
 
-      <CardContent className="pb-4">
+      <CardContent className="space-y-3 pb-4">
+        <div className="bg-muted/40 grid grid-cols-2 gap-2 rounded-xl p-2.5">
+          <div className="space-y-0.5">
+            <div className="text-muted-foreground flex items-center gap-1 text-[11px]">
+              <HugeiconsIcon icon={Coins01Icon} size={12} />
+              <span>Opening Bal.</span>
+            </div>
+            <p className="font-mono text-xs font-semibold">
+              {currency}{' '}
+              {Number(business.opening_balance || 0).toLocaleString('en-IN', {
+                minimumFractionDigits: 2,
+              })}
+            </p>
+          </div>
+          <div className="space-y-0.5">
+            <div className="text-muted-foreground flex items-center gap-1 text-[11px]">
+              <HugeiconsIcon icon={Wallet01Icon} size={12} />
+              <span>Current Bal.</span>
+            </div>
+            <p className="font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              {currency}{' '}
+              {Number(business.current_balance || 0).toLocaleString('en-IN', {
+                minimumFractionDigits: 2,
+              })}
+            </p>
+          </div>
+        </div>
+
         <div className="text-muted-foreground flex items-center gap-1.5 text-xs">
           <HugeiconsIcon icon={Calendar03Icon} size={14} />
           <span>Created on {formattedDate}</span>
