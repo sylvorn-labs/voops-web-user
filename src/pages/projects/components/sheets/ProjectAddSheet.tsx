@@ -1,5 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
+import { format } from 'date-fns';
+import type { DateRange } from 'react-day-picker';
 
 import {
   Form,
@@ -21,6 +23,7 @@ import { useSheetDirty } from '@/components/dashboard/sheet/useSheetDirty';
 import { useCreateProject } from '@/hooks/api/project.hook';
 import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { Input } from '@/components/ui/input/Input';
+import { DateRangePicker } from '@/components/ui/date-picker/DateRangePicker';
 import type { AddSheetProps } from '@/types/sheet.d';
 
 import {
@@ -62,6 +65,29 @@ export function ProjectAddSheet({ formId, prefill, onSuccess }: AddSheetProps) {
         },
       },
     );
+  };
+
+  const [startDateStr, endDateStr] = useWatch({
+    control: form.control,
+    name: ['start_date', 'end_date'],
+  });
+
+  const dateRangeValue: DateRange | undefined = {
+    from: startDateStr ? new Date(`${startDateStr}T00:00:00`) : undefined,
+    to: endDateStr ? new Date(`${endDateStr}T00:00:00`) : undefined,
+  };
+
+  const handleDateRangeChange = (range?: DateRange) => {
+    const fromStr = range?.from ? format(range.from, 'yyyy-MM-dd') : '';
+    const toStr = range?.to ? format(range.to, 'yyyy-MM-dd') : '';
+    form.setValue('start_date', fromStr, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+    form.setValue('end_date', toStr, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
   };
 
   return (
@@ -123,45 +149,21 @@ export function ProjectAddSheet({ formId, prefill, onSuccess }: AddSheetProps) {
         </SheetFieldGroup>
 
         <SheetFieldGroup title="Timeline">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <FormField
-              control={form.control}
-              name="start_date"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Start Date</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="date"
-                      disabled={createMutation.isPending}
-                      value={field.value ?? ''}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="end_date"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>End Date</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="date"
-                      disabled={createMutation.isPending}
-                      value={field.value ?? ''}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormItem>
+            <FormLabel>Project Duration</FormLabel>
+            <FormControl>
+              <DateRangePicker
+                value={dateRangeValue}
+                onValueChange={handleDateRangeChange}
+                disabled={createMutation.isPending}
+                placeholder="Select project start and end dates"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.start_date?.message ||
+                form.formState.errors.end_date?.message}
+            </FormMessage>
+          </FormItem>
         </SheetFieldGroup>
       </form>
     </Form>

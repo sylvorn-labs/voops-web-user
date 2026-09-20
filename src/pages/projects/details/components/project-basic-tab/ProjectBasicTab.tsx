@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
+import { format } from 'date-fns';
 import { FloppyDiskIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import type { DateRange } from 'react-day-picker';
 
 import { SplitLayout } from '@/components/dashboard/SpiltLayout';
 import { DataCard } from '@/components/dashboard/data-card/DataCard';
@@ -30,11 +32,15 @@ import {
 import { Checkbox } from '@/components/ui/checkbox/Checkbox';
 import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
+import { DateRangePicker } from '@/components/ui/date-picker/DateRangePicker';
 import { useUpdateProject } from '@/hooks/api/project.hook';
 
 import { ProjectStatusBadge } from '@/pages/projects/list/components/project-status-badge/ProjectStatusBadge';
 import { ProjectArchiveBadge } from '@/pages/projects/list/components/project-archive-badge/ProjectArchiveBadge';
-import { PROJECT_STATUS_OPTIONS } from '@/pages/projects/components/schema/project.constants';
+import {
+  PROJECT_FORM_DEFAULT_VALUES,
+  PROJECT_STATUS_OPTIONS,
+} from '@/pages/projects/components/schema/project.constants';
 import { projectFormSchema } from '@/pages/projects/components/schema/project.schema';
 import type { ProjectFormValues } from '@/pages/projects/components/schema/project.d';
 import type { ProjectBasicTabProps } from './project-basic-tab.d';
@@ -45,6 +51,7 @@ export function ProjectBasicTab({ project }: ProjectBasicTabProps) {
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(projectFormSchema),
     defaultValues: {
+      ...PROJECT_FORM_DEFAULT_VALUES,
       name: project.name,
       status: project.status,
       start_date: project.start_date || '',
@@ -77,6 +84,29 @@ export function ProjectBasicTab({ project }: ProjectBasicTabProps) {
   };
 
   const isDirty = form.formState.isDirty;
+
+  const [startDateStr, endDateStr] = useWatch({
+    control: form.control,
+    name: ['start_date', 'end_date'],
+  });
+
+  const dateRangeValue: DateRange | undefined = {
+    from: startDateStr ? new Date(`${startDateStr}T00:00:00`) : undefined,
+    to: endDateStr ? new Date(`${endDateStr}T00:00:00`) : undefined,
+  };
+
+  const handleDateRangeChange = (range?: DateRange) => {
+    const fromStr = range?.from ? format(range.from, 'yyyy-MM-dd') : '';
+    const toStr = range?.to ? format(range.to, 'yyyy-MM-dd') : '';
+    form.setValue('start_date', fromStr, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+    form.setValue('end_date', toStr, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+  };
 
   const leftContent = (
     <div className="flex flex-col gap-6">
@@ -150,51 +180,27 @@ export function ProjectBasicTab({ project }: ProjectBasicTabProps) {
               )}
             />
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <FormField
-                control={form.control}
-                name="start_date"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Start Date</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="date"
-                        disabled={updateMutation.isPending}
-                        value={field.value ?? ''}
-                        onChange={field.onChange}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="end_date"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>End Date</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="date"
-                        disabled={updateMutation.isPending}
-                        value={field.value ?? ''}
-                        onChange={field.onChange}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormItem>
+              <FormLabel>Project Duration</FormLabel>
+              <FormControl>
+                <DateRangePicker
+                  value={dateRangeValue}
+                  onValueChange={handleDateRangeChange}
+                  disabled={updateMutation.isPending}
+                  placeholder="Select project start and end dates"
+                />
+              </FormControl>
+              <FormMessage>
+                {form.formState.errors.start_date?.message ||
+                  form.formState.errors.end_date?.message}
+              </FormMessage>
+            </FormItem>
 
             <FormField
               control={form.control}
               name="is_archived"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-y-0 space-x-3 rounded-md border p-4 shadow-xs">
+                <FormItem className="border-border/60 bg-muted/20 flex flex-row items-start space-y-0 space-x-3 rounded-xl border p-4">
                   <FormControl>
                     <Checkbox
                       checked={field.value}

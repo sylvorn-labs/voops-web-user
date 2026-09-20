@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
+import { format } from 'date-fns';
+import type { DateRange } from 'react-day-picker';
 
 import { Checkbox } from '@/components/ui/checkbox/Checkbox';
 import {
@@ -25,6 +27,7 @@ import { SheetErrorState } from '@/components/dashboard/sheet/SheetErrorState';
 import { SheetFieldGroup } from '@/components/dashboard/sheet/SheetFieldGroup';
 import { SheetLoadingSkeleton } from '@/components/dashboard/sheet/SheetLoadingSkeleton';
 import { useSheetDirty } from '@/components/dashboard/sheet/useSheetDirty';
+import { DateRangePicker } from '@/components/ui/date-picker/DateRangePicker';
 import {
   getProjectByIdOptions,
   useUpdateProject,
@@ -70,8 +73,13 @@ export function ProjectEditSheet({ id, formId, onSuccess }: EditSheetProps) {
 
   useSheetDirty(form.formState.isDirty);
 
+  const [startDateStr, endDateStr] = useWatch({
+    control: form.control,
+    name: ['start_date', 'end_date'],
+  });
+
   if (isLoading) {
-    return <SheetLoadingSkeleton />;
+    return <SheetLoadingSkeleton rows={5} />;
   }
 
   if (isError || !project) {
@@ -101,6 +109,24 @@ export function ProjectEditSheet({ id, formId, onSuccess }: EditSheetProps) {
         },
       },
     );
+  };
+
+  const dateRangeValue: DateRange | undefined = {
+    from: startDateStr ? new Date(`${startDateStr}T00:00:00`) : undefined,
+    to: endDateStr ? new Date(`${endDateStr}T00:00:00`) : undefined,
+  };
+
+  const handleDateRangeChange = (range?: DateRange) => {
+    const fromStr = range?.from ? format(range.from, 'yyyy-MM-dd') : '';
+    const toStr = range?.to ? format(range.to, 'yyyy-MM-dd') : '';
+    form.setValue('start_date', fromStr, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+    form.setValue('end_date', toStr, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
   };
 
   return (
@@ -162,45 +188,21 @@ export function ProjectEditSheet({ id, formId, onSuccess }: EditSheetProps) {
         </SheetFieldGroup>
 
         <SheetFieldGroup title="Timeline">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <FormField
-              control={form.control}
-              name="start_date"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Start Date</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="date"
-                      disabled={updateMutation.isPending}
-                      value={field.value ?? ''}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="end_date"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>End Date</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="date"
-                      disabled={updateMutation.isPending}
-                      value={field.value ?? ''}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormItem>
+            <FormLabel>Project Duration</FormLabel>
+            <FormControl>
+              <DateRangePicker
+                value={dateRangeValue}
+                onValueChange={handleDateRangeChange}
+                disabled={updateMutation.isPending}
+                placeholder="Select project start and end dates"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.start_date?.message ||
+                form.formState.errors.end_date?.message}
+            </FormMessage>
+          </FormItem>
         </SheetFieldGroup>
 
         <SheetFieldGroup title="Status & Visibility">
