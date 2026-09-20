@@ -9,7 +9,7 @@ import type {
 
 import { SheetLoadingSkeleton } from './SheetLoadingSkeleton';
 
-// ─── Lazy Sheet Imports ────────────────────────────────────────────────────────
+// ─── Lazy Sheet Imports ──────────────────────────────────────────────────
 
 const BusinessAddSheet = React.lazy(() =>
   import('@/pages/dashboard/businesses/components/sheet/BusinessAddSheet').then(
@@ -77,7 +77,25 @@ const ProjectViewSheet = React.lazy(() =>
   })),
 );
 
-// ─── Registry ─────────────────────────────────────────────────────────────────
+const PartyAddSheet = React.lazy(() =>
+  import('@/pages/parties/components/sheets/PartyAddSheet').then(m => ({
+    default: m.PartyAddSheet,
+  })),
+);
+
+const PartyEditSheet = React.lazy(() =>
+  import('@/pages/parties/components/sheets/PartyEditSheet').then(m => ({
+    default: m.PartyEditSheet,
+  })),
+);
+
+const PartyViewSheet = React.lazy(() =>
+  import('@/pages/parties/components/sheets/PartyViewSheet').then(m => ({
+    default: m.PartyViewSheet,
+  })),
+);
+
+// ─── Registry ────────────────────────────────────────────────────────────
 //
 // Add a new entry here whenever a new feature needs sheet support.
 // The key must match the `sheetKey` passed to `useSheetStore().open(...)`.
@@ -105,9 +123,14 @@ const SHEET_REGISTRY: SheetRegistry = {
     add: ProjectAddSheet,
     edit: ProjectEditSheet,
   },
+  party: {
+    view: PartyViewSheet,
+    add: PartyAddSheet,
+    edit: PartyEditSheet,
+  },
 };
 
-// ─── Not-Configured Fallback ──────────────────────────────────────────────────
+// ─── Not-Configured Fallback ─────────────────────────────────────────────
 
 function SheetNotConfigured({
   sheetKey,
@@ -143,7 +166,7 @@ function SheetNotConfigured({
   );
 }
 
-// ─── SheetRenderer Component ──────────────────────────────────────────────────
+// ─── SheetRenderer Component ─────────────────────────────────────────────
 
 export interface SheetRendererProps {
   sheetKey: string;

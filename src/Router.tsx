@@ -7,7 +7,7 @@ import { MainLayout } from '@/layouts/main/MainLayout';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { lazyImport } from '@/utils/lazy-import';
 
-// ─── Lazy Loaded Pages ────────────────────────────────────────────────────────
+// ─── Lazy Loaded Pages ──────────────────────────────────────────────────
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -164,6 +164,16 @@ const ProjectDetailsPage = lazyImport({
   exportName: 'ProjectDetailsPage',
 });
 
+const PartyListPage = lazyImport({
+  importer: () => import('@/pages/parties/list/Page'),
+  exportName: 'PartyListPage',
+});
+
+const PartyDetailsPage = lazyImport({
+  importer: () => import('@/pages/parties/details/Page'),
+  exportName: 'PartyDetailsPage',
+});
+
 const NotFoundPage = lazyImport({
   importer: () => import('@/pages/not-found/Page'),
   exportName: 'NotFoundPage',
@@ -239,6 +249,8 @@ export function Router() {
           <Route path="accounts/:id" element={<AccountDetailsPage />} />
           <Route path="projects" element={<ProjectListPage />} />
           <Route path="projects/:id" element={<ProjectDetailsPage />} />
+          <Route path="parties" element={<PartyListPage />} />
+          <Route path="parties/:id" element={<PartyDetailsPage />} />
         </Route>
       </Routes>
     </Suspense>
