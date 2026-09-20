@@ -154,6 +154,16 @@ const AccountDetailsPage = lazyImport({
   exportName: 'AccountDetailsPage',
 });
 
+const ProjectListPage = lazyImport({
+  importer: () => import('@/pages/projects/list/Page'),
+  exportName: 'ProjectListPage',
+});
+
+const ProjectDetailsPage = lazyImport({
+  importer: () => import('@/pages/projects/details/Page'),
+  exportName: 'ProjectDetailsPage',
+});
+
 const NotFoundPage = lazyImport({
   importer: () => import('@/pages/not-found/Page'),
   exportName: 'NotFoundPage',
@@ -227,6 +237,8 @@ export function Router() {
           <Route path="categories/:id" element={<CategoryDetailsPage />} />
           <Route path="accounts" element={<AccountListPage />} />
           <Route path="accounts/:id" element={<AccountDetailsPage />} />
+          <Route path="projects" element={<ProjectListPage />} />
+          <Route path="projects/:id" element={<ProjectDetailsPage />} />
         </Route>
       </Routes>
     </Suspense>
