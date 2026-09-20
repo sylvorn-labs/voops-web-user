@@ -7,7 +7,7 @@ import { MainLayout } from '@/layouts/main/MainLayout';
 import { AuthLayout } from '@/layouts/auth/AuthLayout';
 import { lazyImport } from '@/utils/lazy-import';
 
-// ─── Lazy Loaded Pages ───────────────────────────────────────────────
+// ─── Lazy Loaded Pages ───────────────────────────────────────────────────
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -154,6 +154,16 @@ const AccountDetailsPage = lazyImport({
   exportName: 'AccountDetailsPage',
 });
 
+const TransactionListPage = lazyImport({
+  importer: () => import('@/pages/transactions/list/Page'),
+  exportName: 'TransactionListPage',
+});
+
+const TransactionDetailsPage = lazyImport({
+  importer: () => import('@/pages/transactions/details/Page'),
+  exportName: 'TransactionDetailsPage',
+});
+
 const ProjectListPage = lazyImport({
   importer: () => import('@/pages/projects/list/Page'),
   exportName: 'ProjectListPage',
@@ -198,7 +208,7 @@ export function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        \n {/* Main Layout routes (Navbar + Footer) */}
+        {/* Main Layout routes (Navbar + Footer) */}
         <Route element={<MainLayout />}>
           <Route index={true} element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -251,6 +261,8 @@ export function Router() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<DashboardPage />} />
           <Route path="businesses" element={<BusinessListPage />} />
+          <Route path="transactions" element={<TransactionListPage />} />
+          <Route path="transactions/:id" element={<TransactionDetailsPage />} />
           <Route path="categories" element={<CategoryListPage />} />
           <Route path="categories/:id" element={<CategoryDetailsPage />} />
           <Route path="accounts" element={<AccountListPage />} />

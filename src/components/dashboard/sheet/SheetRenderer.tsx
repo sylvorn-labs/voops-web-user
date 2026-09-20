@@ -9,7 +9,7 @@ import type {
 
 import { SheetLoadingSkeleton } from './SheetLoadingSkeleton';
 
-// ─── Lazy Sheet Imports ──────────────────────────────────────────────
+// ─── Lazy Sheet Imports ──────────────────────────────────────────────────
 
 const BusinessAddSheet = React.lazy(() =>
   import('@/pages/dashboard/businesses/components/sheet/BusinessAddSheet').then(
@@ -113,13 +113,31 @@ const MemberViewSheet = React.lazy(() =>
   })),
 );
 
-// ─── Registry ────────────────────────────────────────────────────────
-//
-// Add a new entry here whenever a new feature needs sheet support.
-// The key must match the `sheetKey` passed to `useSheetStore().open(...)`.
-//
-// Any of the three mode keys can be omitted if the feature doesn't support
-// that mode — the renderer will fall back to <SheetNotConfigured />.
+const TransactionAddSheet = React.lazy(() =>
+  import('@/pages/transactions/components/sheets/TransactionAddSheet').then(
+    m => ({
+      default: m.TransactionAddSheet,
+    }),
+  ),
+);
+
+const TransactionEditSheet = React.lazy(() =>
+  import('@/pages/transactions/components/sheets/TransactionEditSheet').then(
+    m => ({
+      default: m.TransactionEditSheet,
+    }),
+  ),
+);
+
+const TransactionViewSheet = React.lazy(() =>
+  import('@/pages/transactions/components/sheets/TransactionViewSheet').then(
+    m => ({
+      default: m.TransactionViewSheet,
+    }),
+  ),
+);
+
+// ─── Registry ────────────────────────────────────────────────────────────
 
 const SHEET_REGISTRY: SheetRegistry = {
   business: {
@@ -151,9 +169,14 @@ const SHEET_REGISTRY: SheetRegistry = {
     add: MemberAddSheet,
     edit: MemberEditSheet,
   },
+  transaction: {
+    view: TransactionViewSheet,
+    add: TransactionAddSheet,
+    edit: TransactionEditSheet,
+  },
 };
 
-// ─── Not-Configured Fallback ─────────────────────────────────────────
+// ─── Not-Configured Fallback ─────────────────────────────────────────────
 
 function SheetNotConfigured({
   sheetKey,
@@ -189,7 +212,7 @@ function SheetNotConfigured({
   );
 }
 
-// ─── SheetRenderer Component ─────────────────────────────────────────
+// ─── SheetRenderer Component ─────────────────────────────────────────────
 
 export interface SheetRendererProps {
   sheetKey: string;
@@ -200,17 +223,6 @@ export interface SheetRendererProps {
   onSuccess?: () => void;
 }
 
-/**
- * `SheetRenderer`
- *
- * Looks up the active feature sheet in `SHEET_REGISTRY` by `(sheetKey, mode)`
- * and renders it inside a `<React.Suspense>` boundary with a skeleton fallback.
- *
- * Dispatches the correct props based on the active mode:
- * - `view`: receives `{ id }`
- * - `edit`: receives `{ id, formId, onSuccess }`
- * - `add`:  receives `{ formId, prefill, onSuccess }`
- */
 export function SheetRenderer({
   sheetKey,
   mode,
