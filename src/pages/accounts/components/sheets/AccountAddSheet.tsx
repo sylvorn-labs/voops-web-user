@@ -26,9 +26,9 @@ import type { AddSheetProps } from '@/types/sheet.d';
 import {
   ACCOUNT_FORM_DEFAULT_VALUES,
   ACCOUNT_KIND_OPTIONS,
-  accountFormSchema,
-  type AccountFormValues,
-} from '@/pages/accounts/components/schema';
+} from '@/pages/accounts/components/schema/account.constants';
+import { accountFormSchema } from '@/pages/accounts/components/schema/account.schema';
+import type { AccountFormValues } from '@/pages/accounts/components/schema/account.d';
 
 export function AccountAddSheet({ formId, prefill, onSuccess }: AddSheetProps) {
   const activeBusinessId = useActiveBusinessId();

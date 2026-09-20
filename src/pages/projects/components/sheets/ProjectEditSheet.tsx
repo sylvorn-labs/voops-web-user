@@ -34,9 +34,9 @@ import type { EditSheetProps } from '@/types/sheet.d';
 import {
   PROJECT_FORM_DEFAULT_VALUES,
   PROJECT_STATUS_OPTIONS,
-  projectFormSchema,
-  type ProjectFormValues,
-} from '@/pages/projects/components/schema';
+} from '@/pages/projects/components/schema/project.constants';
+import { projectFormSchema } from '@/pages/projects/components/schema/project.schema';
+import type { ProjectFormValues } from '@/pages/projects/components/schema/project.d';
 
 export function ProjectEditSheet({ id, formId, onSuccess }: EditSheetProps) {
   const updateMutation = useUpdateProject();

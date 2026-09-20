@@ -34,11 +34,9 @@ import { useUpdateAccount } from '@/hooks/api/account.hook';
 
 import { AccountKindBadge } from '@/pages/accounts/list/components/account-kind-badge/AccountKindBadge';
 import { AccountStatusBadge } from '@/pages/accounts/list/components/account-status-badge/AccountStatusBadge';
-import {
-  accountFormSchema,
-  ACCOUNT_KIND_OPTIONS,
-  type AccountFormValues,
-} from '@/pages/accounts/components/schema';
+import { accountFormSchema } from '@/pages/accounts/components/schema/account.schema';
+import { ACCOUNT_KIND_OPTIONS } from '@/pages/accounts/components/schema/account.constants';
+import type { AccountFormValues } from '@/pages/accounts/components/schema/account.d';
 import type { AccountBasicTabProps } from './account-basic-tab.d';
 
 export function AccountBasicTab({ account }: AccountBasicTabProps) {

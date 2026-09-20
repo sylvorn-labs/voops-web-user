@@ -33,11 +33,11 @@ import { useUpdateCategory } from '@/hooks/api/category.hook';
 
 import { CategoryBadge } from '@/pages/categories/list/components/category-badge/CategoryBadge';
 import {
-  categoryFormSchema,
   CATEGORY_COLOR_PRESETS,
   CATEGORY_KIND_OPTIONS,
-  type CategoryFormValues,
-} from '@/pages/categories/components/schema';
+} from '@/pages/categories/components/schema/category.constants';
+import { categoryFormSchema } from '@/pages/categories/components/schema/category.schema';
+import type { CategoryFormValues } from '@/pages/categories/components/schema/category.d';
 import type { CategoryBasicTabProps } from './category-basic-tab.d';
 
 export function CategoryBasicTab({ category }: CategoryBasicTabProps) {

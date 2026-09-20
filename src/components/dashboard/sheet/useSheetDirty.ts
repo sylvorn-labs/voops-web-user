@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect } from 'react';
 
 import { useSheetStore } from '@/stores/sheet/sheet.store';

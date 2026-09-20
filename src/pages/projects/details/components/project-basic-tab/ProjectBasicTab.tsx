@@ -34,11 +34,9 @@ import { useUpdateProject } from '@/hooks/api/project.hook';
 
 import { ProjectStatusBadge } from '@/pages/projects/list/components/project-status-badge/ProjectStatusBadge';
 import { ProjectArchiveBadge } from '@/pages/projects/list/components/project-archive-badge/ProjectArchiveBadge';
-import {
-  projectFormSchema,
-  PROJECT_STATUS_OPTIONS,
-  type ProjectFormValues,
-} from '@/pages/projects/components/schema';
+import { PROJECT_STATUS_OPTIONS } from '@/pages/projects/components/schema/project.constants';
+import { projectFormSchema } from '@/pages/projects/components/schema/project.schema';
+import type { ProjectFormValues } from '@/pages/projects/components/schema/project.d';
 import type { ProjectBasicTabProps } from './project-basic-tab.d';
 
 export function ProjectBasicTab({ project }: ProjectBasicTabProps) {
