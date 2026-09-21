@@ -52,7 +52,7 @@ export function AppSidebarFooter() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/login', { replace: true });
+      navigate('/', { replace: true });
       toast.success('Logged out successfully');
     } catch {
       toast.error('Failed to log out');
