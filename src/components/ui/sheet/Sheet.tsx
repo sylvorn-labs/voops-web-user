@@ -1,7 +1,7 @@
 import { Dialog as SheetPrimitive } from 'radix-ui';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Cancel01Icon } from '@hugeicons/core-free-icons';
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button/Button';
 import type {

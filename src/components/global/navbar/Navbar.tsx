@@ -66,7 +66,7 @@ export function Navbar({ className }: NavbarProps) {
                   Log Out
                 </Button>
                 <Button size="sm" asChild>
-                  <Link to="/">Dashboard</Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </Button>
               </>
             ) : (
@@ -141,7 +141,7 @@ export function Navbar({ className }: NavbarProps) {
                             Log Out
                           </Button>
                           <Button asChild className="w-full">
-                            <Link to="/">Dashboard</Link>
+                            <Link to="/dashboard">Dashboard</Link>
                           </Button>
                         </>
                       ) : (

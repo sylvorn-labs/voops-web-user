@@ -1,4 +1,4 @@
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 
 import { badgeVariants } from './badge.constants';
 import type { BadgeProps } from './badge.d';

@@ -1,0 +1,275 @@
+import React from 'react';
+
+import type {
+  SheetRegistry,
+  ViewSheetProps,
+  EditSheetProps,
+  AddSheetProps,
+} from '@/types/sheet.d';
+
+import { SheetLoadingSkeleton } from './SheetLoadingSkeleton';
+
+// ─── Lazy Sheet Imports ──────────────────────────────────────────────────
+
+const BusinessAddSheet = React.lazy(() =>
+  import('@/pages/dashboard/businesses/components/sheet/BusinessAddSheet').then(
+    m => ({ default: m.BusinessAddSheet }),
+  ),
+);
+
+const BusinessEditSheet = React.lazy(() =>
+  import('@/pages/dashboard/businesses/components/sheet/BusinessEditSheet').then(
+    m => ({ default: m.BusinessEditSheet }),
+  ),
+);
+
+const CategoryAddSheet = React.lazy(() =>
+  import('@/pages/categories/components/sheets/CategoryAddSheet').then(m => ({
+    default: m.CategoryAddSheet,
+  })),
+);
+
+const CategoryEditSheet = React.lazy(() =>
+  import('@/pages/categories/components/sheets/CategoryEditSheet').then(m => ({
+    default: m.CategoryEditSheet,
+  })),
+);
+
+const CategoryViewSheet = React.lazy(() =>
+  import('@/pages/categories/components/sheets/CategoryViewSheet').then(m => ({
+    default: m.CategoryViewSheet,
+  })),
+);
+
+const AccountAddSheet = React.lazy(() =>
+  import('@/pages/accounts/components/sheets/AccountAddSheet').then(m => ({
+    default: m.AccountAddSheet,
+  })),
+);
+
+const AccountEditSheet = React.lazy(() =>
+  import('@/pages/accounts/components/sheets/AccountEditSheet').then(m => ({
+    default: m.AccountEditSheet,
+  })),
+);
+
+const AccountViewSheet = React.lazy(() =>
+  import('@/pages/accounts/components/sheets/AccountViewSheet').then(m => ({
+    default: m.AccountViewSheet,
+  })),
+);
+
+const ProjectAddSheet = React.lazy(() =>
+  import('@/pages/projects/components/sheets/ProjectAddSheet').then(m => ({
+    default: m.ProjectAddSheet,
+  })),
+);
+
+const ProjectEditSheet = React.lazy(() =>
+  import('@/pages/projects/components/sheets/ProjectEditSheet').then(m => ({
+    default: m.ProjectEditSheet,
+  })),
+);
+
+const ProjectViewSheet = React.lazy(() =>
+  import('@/pages/projects/components/sheets/ProjectViewSheet').then(m => ({
+    default: m.ProjectViewSheet,
+  })),
+);
+
+const PartyAddSheet = React.lazy(() =>
+  import('@/pages/parties/components/sheets/PartyAddSheet').then(m => ({
+    default: m.PartyAddSheet,
+  })),
+);
+
+const PartyEditSheet = React.lazy(() =>
+  import('@/pages/parties/components/sheets/PartyEditSheet').then(m => ({
+    default: m.PartyEditSheet,
+  })),
+);
+
+const PartyViewSheet = React.lazy(() =>
+  import('@/pages/parties/components/sheets/PartyViewSheet').then(m => ({
+    default: m.PartyViewSheet,
+  })),
+);
+
+const MemberAddSheet = React.lazy(() =>
+  import('@/pages/members/components/sheets/MemberAddSheet').then(m => ({
+    default: m.MemberAddSheet,
+  })),
+);
+
+const MemberEditSheet = React.lazy(() =>
+  import('@/pages/members/components/sheets/MemberEditSheet').then(m => ({
+    default: m.MemberEditSheet,
+  })),
+);
+
+const MemberViewSheet = React.lazy(() =>
+  import('@/pages/members/components/sheets/MemberViewSheet').then(m => ({
+    default: m.MemberViewSheet,
+  })),
+);
+
+const TransactionAddSheet = React.lazy(() =>
+  import('@/pages/transactions/components/sheets/TransactionAddSheet').then(
+    m => ({
+      default: m.TransactionAddSheet,
+    }),
+  ),
+);
+
+const TransactionEditSheet = React.lazy(() =>
+  import('@/pages/transactions/components/sheets/TransactionEditSheet').then(
+    m => ({
+      default: m.TransactionEditSheet,
+    }),
+  ),
+);
+
+const TransactionViewSheet = React.lazy(() =>
+  import('@/pages/transactions/components/sheets/TransactionViewSheet').then(
+    m => ({
+      default: m.TransactionViewSheet,
+    }),
+  ),
+);
+
+// ─── Registry ────────────────────────────────────────────────────────────
+
+const SHEET_REGISTRY: SheetRegistry = {
+  business: {
+    add: BusinessAddSheet,
+    edit: BusinessEditSheet,
+  },
+  category: {
+    view: CategoryViewSheet,
+    add: CategoryAddSheet,
+    edit: CategoryEditSheet,
+  },
+  account: {
+    view: AccountViewSheet,
+    add: AccountAddSheet,
+    edit: AccountEditSheet,
+  },
+  project: {
+    view: ProjectViewSheet,
+    add: ProjectAddSheet,
+    edit: ProjectEditSheet,
+  },
+  party: {
+    view: PartyViewSheet,
+    add: PartyAddSheet,
+    edit: PartyEditSheet,
+  },
+  member: {
+    view: MemberViewSheet,
+    add: MemberAddSheet,
+    edit: MemberEditSheet,
+  },
+  transaction: {
+    view: TransactionViewSheet,
+    add: TransactionAddSheet,
+    edit: TransactionEditSheet,
+  },
+};
+
+// ─── Not-Configured Fallback ─────────────────────────────────────────────
+
+function SheetNotConfigured({
+  sheetKey,
+  mode,
+}: {
+  sheetKey: string;
+  mode: string;
+}) {
+  if (import.meta.env.PROD) {
+    return null;
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center gap-2 p-8 text-center">
+      <p className="text-muted-foreground text-sm font-medium">
+        No sheet component registered for key{' '}
+        <code className="text-foreground bg-muted rounded px-1 py-0.5 font-mono text-xs">
+          &quot;{sheetKey}&quot;
+        </code>{' '}
+        in mode{' '}
+        <code className="text-foreground bg-muted rounded px-1 py-0.5 font-mono text-xs">
+          &quot;{mode}&quot;
+        </code>
+        .
+      </p>
+      <p className="text-muted-foreground text-xs">
+        Register it in{' '}
+        <code className="bg-muted rounded px-1 py-0.5 font-mono">
+          src/components/dashboard/sheet/SheetRenderer.tsx
+        </code>
+      </p>
+    </div>
+  );
+}
+
+// ─── SheetRenderer Component ─────────────────────────────────────────────
+
+export interface SheetRendererProps {
+  sheetKey: string;
+  mode: 'view' | 'edit' | 'add';
+  id?: string;
+  formId?: string;
+  prefill?: Record<string, unknown>;
+  onSuccess?: () => void;
+}
+
+export function SheetRenderer({
+  sheetKey,
+  mode,
+  id,
+  formId = 'sheet-form',
+  prefill,
+  onSuccess,
+}: SheetRendererProps) {
+  const featureSheets = SHEET_REGISTRY[sheetKey];
+
+  if (!featureSheets) {
+    return <SheetNotConfigured sheetKey={sheetKey} mode={mode} />;
+  }
+
+  return (
+    <React.Suspense fallback={<SheetLoadingSkeleton />}>
+      {mode === 'view' &&
+        id &&
+        (featureSheets.view ? (
+          React.createElement(
+            featureSheets.view as React.ComponentType<ViewSheetProps>,
+            { id },
+          )
+        ) : (
+          <SheetNotConfigured sheetKey={sheetKey} mode={mode} />
+        ))}
+
+      {mode === 'edit' &&
+        id &&
+        (featureSheets.edit ? (
+          React.createElement(
+            featureSheets.edit as React.ComponentType<EditSheetProps>,
+            { id, formId, onSuccess },
+          )
+        ) : (
+          <SheetNotConfigured sheetKey={sheetKey} mode={mode} />
+        ))}
+
+      {mode === 'add' &&
+        (featureSheets.add ? (
+          React.createElement(
+            featureSheets.add as React.ComponentType<AddSheetProps>,
+            { formId, prefill, onSuccess },
+          )
+        ) : (
+          <SheetNotConfigured sheetKey={sheetKey} mode={mode} />
+        ))}
+    </React.Suspense>
+  );
+}

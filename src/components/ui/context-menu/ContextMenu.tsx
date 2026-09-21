@@ -1,7 +1,7 @@
 import { ContextMenu as ContextMenuPrimitive } from 'radix-ui';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowRight01Icon, Tick02Icon } from '@hugeicons/core-free-icons';
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 
 import type {
   ContextMenuCheckboxItemProps,

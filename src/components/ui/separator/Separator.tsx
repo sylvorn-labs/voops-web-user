@@ -1,5 +1,5 @@
 import { Separator as RadixSeparator } from 'radix-ui';
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 
 import type { SeparatorProps } from './separator.d';
 

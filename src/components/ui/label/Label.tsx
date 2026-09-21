@@ -1,5 +1,5 @@
 import { Label as RadixLabel } from 'radix-ui';
-import { cn } from 'cn';
+import { cn } from '@/lib/utils';
 
 import { labelVariants } from './label.constants';
 import type { LabelProps } from './label.d';

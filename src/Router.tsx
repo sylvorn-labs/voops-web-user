@@ -1,10 +1,13 @@
-import { Route, Routes } from 'react-router';
 import { Suspense } from 'react';
+import { Route, Routes } from 'react-router';
 
-import { lazyImport } from '@/utils/lazy-import';
-import { AuthLayout } from '@/layouts/auth/AuthLayout';
-import { MainLayout } from '@/layouts/main/MainLayout';
 import { LoadingFallback } from '@/components/global/loading-fallback/LoadingFallback';
+import { DashboardLayout } from '@/layouts/dashboard/Layout';
+import { MainLayout } from '@/layouts/main/MainLayout';
+import { AuthLayout } from '@/layouts/auth/AuthLayout';
+import { lazyImport } from '@/utils/lazy-import';
+
+// ──────────────── Lazy Loaded Pages ───────────────────────────────────────────
 
 const HomePage = lazyImport({
   importer: () => import('@/pages/home/Page'),
@@ -14,11 +17,6 @@ const HomePage = lazyImport({
 const AboutPage = lazyImport({
   importer: () => import('@/pages/about/Page'),
   exportName: 'AboutPage',
-});
-
-const ContactPage = lazyImport({
-  importer: () => import('@/pages/contact/Page'),
-  exportName: 'ContactPage',
 });
 
 const FeaturesPage = lazyImport({
@@ -59,6 +57,11 @@ const PeopleAnalyticsFeaturePage = lazyImport({
 const PricingPage = lazyImport({
   importer: () => import('@/pages/pricing/Page'),
   exportName: 'PricingPage',
+});
+
+const ContactPage = lazyImport({
+  importer: () => import('@/pages/contact/Page'),
+  exportName: 'ContactPage',
 });
 
 const TermsPage = lazyImport({
@@ -121,6 +124,91 @@ const ResetPasswordPage = lazyImport({
   exportName: 'ResetPasswordPage',
 });
 
+const DashboardPage = lazyImport({
+  importer: () => import('@/pages/dashboard/Page'),
+  exportName: 'DashboardPage',
+});
+
+const BusinessListPage = lazyImport({
+  importer: () => import('@/pages/dashboard/businesses/Page'),
+  exportName: 'BusinessListPage',
+});
+
+const CategoryListPage = lazyImport({
+  importer: () => import('@/pages/categories/list/Page'),
+  exportName: 'CategoryListPage',
+});
+
+const CategoryDetailsPage = lazyImport({
+  importer: () => import('@/pages/categories/details/Page'),
+  exportName: 'CategoryDetailsPage',
+});
+
+const AccountListPage = lazyImport({
+  importer: () => import('@/pages/accounts/list/Page'),
+  exportName: 'AccountListPage',
+});
+
+const AccountDetailsPage = lazyImport({
+  importer: () => import('@/pages/accounts/details/Page'),
+  exportName: 'AccountDetailsPage',
+});
+
+const TransactionListPage = lazyImport({
+  importer: () => import('@/pages/transactions/list/Page'),
+  exportName: 'TransactionListPage',
+});
+
+const TransactionDetailsPage = lazyImport({
+  importer: () => import('@/pages/transactions/details/Page'),
+  exportName: 'TransactionDetailsPage',
+});
+
+const ProjectListPage = lazyImport({
+  importer: () => import('@/pages/projects/list/Page'),
+  exportName: 'ProjectListPage',
+});
+
+const ProjectDetailsPage = lazyImport({
+  importer: () => import('@/pages/projects/details/Page'),
+  exportName: 'ProjectDetailsPage',
+});
+
+const PartyListPage = lazyImport({
+  importer: () => import('@/pages/parties/list/Page'),
+  exportName: 'PartyListPage',
+});
+
+const PartyDetailsPage = lazyImport({
+  importer: () => import('@/pages/parties/details/Page'),
+  exportName: 'PartyDetailsPage',
+});
+
+const MemberListPage = lazyImport({
+  importer: () => import('@/pages/members/list/Page'),
+  exportName: 'MemberListPage',
+});
+
+const MemberDetailsPage = lazyImport({
+  importer: () => import('@/pages/members/details/Page'),
+  exportName: 'MemberDetailsPage',
+});
+
+const SettingsPage = lazyImport({
+  importer: () => import('@/pages/settings/Page'),
+  exportName: 'SettingsPage',
+});
+
+const NotFoundPage = lazyImport({
+  importer: () => import('@/pages/not-found/Page'),
+  exportName: 'NotFoundPage',
+});
+
+const NotLoggedInPage = lazyImport({
+  importer: () => import('@/pages/not-logged-in/Page'),
+  exportName: 'NotLoggedInPage',
+});
+
 export function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
@@ -163,8 +251,9 @@ export function Router() {
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/changelog" element={<ChangelogPage />} />
           <Route path="/help" element={<HelpPage />} />
+          <Route path="/not-logged-in" element={<NotLoggedInPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-
         {/* Authentication Routes wrapped with AuthLayout */}
         <Route element={<AuthLayout />}>
           <Route path="/register" element={<RegisterPage />} />
@@ -172,6 +261,24 @@ export function Router() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
+        </Route>
+        {/* Dashboard Routes wrapped with DashboardLayout */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index={true} element={<DashboardPage />} />
+          <Route path="businesses" element={<BusinessListPage />} />
+          <Route path="transactions" element={<TransactionListPage />} />
+          <Route path="transactions/:id" element={<TransactionDetailsPage />} />
+          <Route path="categories" element={<CategoryListPage />} />
+          <Route path="categories/:id" element={<CategoryDetailsPage />} />
+          <Route path="accounts" element={<AccountListPage />} />
+          <Route path="accounts/:id" element={<AccountDetailsPage />} />
+          <Route path="projects" element={<ProjectListPage />} />
+          <Route path="projects/:id" element={<ProjectDetailsPage />} />
+          <Route path="parties" element={<PartyListPage />} />
+          <Route path="parties/:id" element={<PartyDetailsPage />} />
+          <Route path="members" element={<MemberListPage />} />
+          <Route path="members/:id" element={<MemberDetailsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
     </Suspense>
