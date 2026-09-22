@@ -22,6 +22,8 @@ export const memberKeys = {
   list: (params: ListMembersParams) => [...memberKeys.lists(), params] as const,
   details: () => [...memberKeys.all, 'detail'] as const,
   detail: (id: string) => [...memberKeys.details(), id] as const,
+  invitations: (businessId: string) =>
+    [...memberKeys.all, 'invitations', businessId] as const,
 };
 
 export const listMembersOptions = (params: ListMembersParams) => ({
@@ -36,6 +38,12 @@ export const getMemberByIdOptions = (id: string) => ({
   enabled: Boolean(id),
 });
 
+export const listInvitationsOptions = (businessId: string) => ({
+  queryKey: memberKeys.invitations(businessId),
+  queryFn: () => MemberAPI.getInstance().listInvitations(businessId),
+  enabled: Boolean(businessId),
+});
+
 export function useCreateMember(): UseMutationResult<
   ApiResponse<CreateMemberResponse>,
   Error,
@@ -46,12 +54,17 @@ export function useCreateMember(): UseMutationResult<
   return useMutation({
     mutationFn: (payload: CreateMemberRequest) =>
       MemberAPI.getInstance().create(payload),
-    onSuccess: () => {
+    onSuccess: data => {
       queryClient.invalidateQueries({ queryKey: memberKeys.all });
-      toast.success('Member invited successfully.');
+      const msg =
+        data.message ||
+        (data.data?.status === 'joined'
+          ? 'Member added to workspace successfully.'
+          : 'Invitation created successfully.');
+      toast.success(msg);
     },
     onError: (error: Error) => {
-      toast.error(error.message || 'Failed to add member.');
+      toast.error(error.message || 'Failed to invite member.');
     },
   });
 }
@@ -68,10 +81,10 @@ export function useUpdateMember(): UseMutationResult<
       MemberAPI.getInstance().update(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: memberKeys.all });
-      toast.success('Member role updated successfully.');
+      toast.success('Member updated successfully.');
     },
     onError: (error: Error) => {
-      toast.error(error.message || 'Failed to update member role.');
+      toast.error(error.message || 'Failed to update member.');
     },
   });
 }
@@ -91,6 +104,26 @@ export function useDeleteMember(): UseMutationResult<
     },
     onError: (error: Error) => {
       toast.error(error.message || 'Failed to remove member.');
+    },
+  });
+}
+
+export function useRevokeInvitation(): UseMutationResult<
+  ApiResponse<{ id: string }>,
+  Error,
+  string
+> {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (invitationId: string) =>
+      MemberAPI.getInstance().revokeInvitation(invitationId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: memberKeys.all });
+      toast.success('Invitation revoked successfully.');
+    },
+    onError: (error: Error) => {
+      toast.error(error.message || 'Failed to revoke invitation.');
     },
   });
 }

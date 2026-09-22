@@ -25,7 +25,7 @@ import type { AddSheetProps } from '@/types/sheet.d';
 
 import {
   MEMBER_FORM_DEFAULT_VALUES,
-  MEMBER_ROLE_OPTIONS,
+  MEMBER_INVITE_ROLE_OPTIONS,
 } from '@/pages/members/components/schema/member.constants';
 import { memberFormSchema } from '@/pages/members/components/schema/member.schema';
 import type { MemberFormValues } from '@/pages/members/components/schema/member.d';
@@ -108,7 +108,7 @@ export function MemberAddSheet({ formId, prefill, onSuccess }: AddSheetProps) {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {MEMBER_ROLE_OPTIONS.map(option => (
+                      {MEMBER_INVITE_ROLE_OPTIONS.map(option => (
                         <SelectItem key={option.value} value={option.value}>
                           {option.label}
                         </SelectItem>

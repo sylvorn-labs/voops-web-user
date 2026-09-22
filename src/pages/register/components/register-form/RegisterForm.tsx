@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   AlertCircleIcon,
@@ -32,6 +32,9 @@ import type { RegisterFormValues } from './register-form.d';
 
 export function RegisterForm() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const initialEmail = searchParams.get('email') || '';
+
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
   const [serverError, setServerError] = React.useState<string | null>(null);
@@ -40,11 +43,17 @@ export function RegisterForm() {
     resolver: zodResolver(registerSchema),
     defaultValues: {
       fullName: '',
-      email: '',
+      email: initialEmail,
       password: '',
       confirmPassword: '',
     },
   });
+
+  React.useEffect(() => {
+    if (initialEmail) {
+      form.setValue('email', initialEmail);
+    }
+  }, [initialEmail, form]);
 
   const isSubmitting = form.formState.isSubmitting;
 

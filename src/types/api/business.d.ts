@@ -20,7 +20,12 @@ export interface IBusinessAPI {
     id: string,
     data: UpdateBusinessRequest,
   ): Promise<ApiResponse<Business>>;
-  delete(id: string): Promise<ApiResponse<DeleteBusinessResponse>>;
+  delete(
+    id: string,
+    hard?: boolean,
+  ): Promise<ApiResponse<DeleteBusinessResponse>>;
+  hardDelete(id: string): Promise<ApiResponse<DeleteBusinessResponse>>;
+  restore(id: string): Promise<ApiResponse<Business>>;
 }
 
 export interface BusinessListItem {

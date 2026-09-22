@@ -130,7 +130,7 @@ export class BusinessAPI implements IBusinessAPI {
     // Ensure the profile exists defensively for foreign key constraints
     await supabase
       .from('profiles')
-      .upsert({ id: user.id }, { onConflict: 'id' });
+      .upsert({ id: user.id, email: user.email }, { onConflict: 'id' });
 
     const openingBalance = data.opening_balance ?? 0;
     const currentBalance = data.current_balance ?? openingBalance;
@@ -196,7 +196,12 @@ export class BusinessAPI implements IBusinessAPI {
 
   public async delete(
     id: string,
+    hard = false,
   ): Promise<ApiResponse<DeleteBusinessResponse>> {
+    if (hard) {
+      return this.hardDelete(id);
+    }
+
     const { error } = await supabase
       .from('businesses')
       .update({
@@ -215,6 +220,46 @@ export class BusinessAPI implements IBusinessAPI {
         id,
       },
       message: 'Business deleted successfully',
+    };
+  }
+
+  public async hardDelete(
+    id: string,
+  ): Promise<ApiResponse<DeleteBusinessResponse>> {
+    const { error } = await supabase.from('businesses').delete().eq('id', id);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return {
+      success: true,
+      data: {
+        id,
+      },
+      message: 'Business permanently deleted successfully',
+    };
+  }
+
+  public async restore(id: string): Promise<ApiResponse<Business>> {
+    const { data, error } = await supabase
+      .from('businesses')
+      .update({
+        deleted_at: null,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id)
+      .select('*')
+      .single();
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return {
+      success: true,
+      data: formatBusiness(data as Record<string, unknown>),
+      message: 'Business restored successfully',
     };
   }
 }
