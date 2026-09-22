@@ -1,3 +1,6 @@
+import type { DataTableDateRangeColumn } from '@/components/dashboard/data-table/types';
+import type { AccountListItem } from '@/types/api/account.d';
+
 export const ACCOUNT_SEARCHABLE_COLUMNS = [
   { id: 'name', title: 'Account name' },
 ];
@@ -23,3 +26,17 @@ export const ACCOUNT_FILTERABLE_COLUMNS = [
     ],
   },
 ];
+
+export const ACCOUNT_DEFAULT_DATE_FIELD = 'created_at' as const;
+
+export const ACCOUNT_DATE_RANGE_COLUMNS: DataTableDateRangeColumn<AccountListItem>[] =
+  [
+    {
+      id: 'created_at',
+      title: 'Date',
+      fields: [
+        { label: 'Created At', value: 'created_at' },
+        { label: 'Updated At', value: 'updated_at' },
+      ],
+    },
+  ];

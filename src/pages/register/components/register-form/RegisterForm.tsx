@@ -69,7 +69,7 @@ export function RegisterForm() {
     if (data.user && !data.session) {
       navigate(`/verify?email=${encodeURIComponent(values.email)}`);
     } else {
-      navigate('/');
+      navigate('/dashboard');
     }
   };
 

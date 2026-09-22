@@ -16,6 +16,7 @@ import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 import { useToggleArchiveTransaction } from '@/hooks/api/transaction.hook';
 import type {
+  ListTransactionsParams,
   TransactionListItem,
   TransactionType,
 } from '@/types/api/transaction.d';
@@ -24,6 +25,8 @@ import { TransactionDeleteDialog } from '@/pages/transactions/components/transac
 import { getTransactionRowActions } from './transactions.actions';
 import { getTransactionColumns } from './transactions.columns';
 import {
+  TRANSACTION_DATE_RANGE_COLUMNS,
+  TRANSACTION_DEFAULT_DATE_FIELD,
   TRANSACTION_FILTERABLE_COLUMNS,
   TRANSACTION_SEARCHABLE_COLUMNS,
   getTransactionAsyncFilterableColumns,
@@ -40,6 +43,9 @@ export function TransactionListPage() {
   const [transactionToDelete, setTransactionToDelete] =
     useState<TransactionListItem | null>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [dateField, setDateField] = useState<
+    NonNullable<ListTransactionsParams['dateField']>
+  >(TRANSACTION_DEFAULT_DATE_FIELD);
 
   useEffect(() => {
     setBreadcrumbs([
@@ -92,7 +98,12 @@ export function TransactionListPage() {
     [activeBusinessId],
   );
 
-  const table = useTransactionServerTable(activeBusinessId);
+  const table = useTransactionServerTable(activeBusinessId, dateField);
+
+  const handleReset = () => {
+    setDateField(TRANSACTION_DEFAULT_DATE_FIELD);
+    table.onReset();
+  };
 
   if (!activeBusinessId) {
     return (
@@ -145,6 +156,15 @@ export function TransactionListPage() {
           searchableColumns: TRANSACTION_SEARCHABLE_COLUMNS,
           filterableColumns: TRANSACTION_FILTERABLE_COLUMNS,
           asyncFilterableColumns,
+          dateRangeColumns: TRANSACTION_DATE_RANGE_COLUMNS,
+          currentDateField: dateField,
+          onDateFieldChange: value =>
+            setDateField(
+              value as NonNullable<ListTransactionsParams['dateField']>,
+            ),
+          currentStartDate: table.params.start_date,
+          currentEndDate: table.params.end_date,
+          onDateRangeChange: table.onDateRangeChange,
           currentSearch: table.params.q,
           onSearchChange: table.onSearchChange,
           currentPage: table.params.page,
@@ -156,7 +176,7 @@ export function TransactionListPage() {
           onSortChange: table.onSortChange,
           currentFilters: table.params.filters,
           onFilterChange: table.onFilterChange,
-          onReset: table.onReset,
+          onReset: handleReset,
           renderRowContextMenu: row => (
             <DataTableRowContextMenuContent row={row} actions={rowActions} />
           ),

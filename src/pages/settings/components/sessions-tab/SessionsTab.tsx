@@ -83,7 +83,7 @@ export function SessionsTab({ session }: UserSettingsTabProps) {
         toast.error(error.message);
       } else {
         await logout();
-        navigate('/login', { replace: true });
+        navigate('/', { replace: true });
         toast.success('Signed out from all sessions');
       }
     } catch {

@@ -10,12 +10,17 @@ import { Empty } from '@/components/global/Empty';
 import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
-import type { CategoryListItem } from '@/types/api/category.d';
+import type {
+  CategoryListItem,
+  ListCategoriesParams,
+} from '@/types/api/category.d';
 
 import { CategoryDeleteDialog } from '@/pages/categories/components/category-delete-dialog/CategoryDeleteDialog';
 import { getCategoryRowActions } from './categories.actions';
 import { getCategoryColumns } from './categories.columns';
 import {
+  CATEGORY_DATE_RANGE_COLUMNS,
+  CATEGORY_DEFAULT_DATE_FIELD,
   CATEGORY_FILTERABLE_COLUMNS,
   CATEGORY_SEARCHABLE_COLUMNS,
 } from './categories.filters';
@@ -30,6 +35,9 @@ export function CategoryListPage() {
   const [categoryToDelete, setCategoryToDelete] =
     useState<CategoryListItem | null>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [dateField, setDateField] = useState<
+    NonNullable<ListCategoriesParams['dateField']>
+  >(CATEGORY_DEFAULT_DATE_FIELD);
 
   useEffect(() => {
     setBreadcrumbs([
@@ -62,7 +70,12 @@ export function CategoryListPage() {
 
   const columns = useMemo(() => getCategoryColumns(rowActions), [rowActions]);
 
-  const table = useCategoryServerTable(activeBusinessId);
+  const table = useCategoryServerTable(activeBusinessId, dateField);
+
+  const handleReset = () => {
+    setDateField(CATEGORY_DEFAULT_DATE_FIELD);
+    table.onReset();
+  };
 
   if (!activeBusinessId) {
     return (
@@ -102,6 +115,15 @@ export function CategoryListPage() {
           errorDescription: table.error?.message,
           searchableColumns: CATEGORY_SEARCHABLE_COLUMNS,
           filterableColumns: CATEGORY_FILTERABLE_COLUMNS,
+          dateRangeColumns: CATEGORY_DATE_RANGE_COLUMNS,
+          currentDateField: dateField,
+          onDateFieldChange: value =>
+            setDateField(
+              value as NonNullable<ListCategoriesParams['dateField']>,
+            ),
+          currentStartDate: table.params.start_date,
+          currentEndDate: table.params.end_date,
+          onDateRangeChange: table.onDateRangeChange,
           currentSearch: table.params.q,
           onSearchChange: table.onSearchChange,
           currentPage: table.params.page,
@@ -113,7 +135,7 @@ export function CategoryListPage() {
           onSortChange: table.onSortChange,
           currentFilters: table.params.filters,
           onFilterChange: table.onFilterChange,
-          onReset: table.onReset,
+          onReset: handleReset,
           renderRowContextMenu: row => (
             <DataTableRowContextMenuContent row={row} actions={rowActions} />
           ),

@@ -2,6 +2,7 @@ import { MemberAPI } from '@/api/member.api';
 import { useServerTable } from '@/components/dashboard/data-table/use-server-table';
 import type { ServerTableParams } from '@/components/dashboard/data-table/types';
 import type {
+  ListMembersParams,
   MemberListItem,
   MemberRole,
   MemberSortBy,
@@ -10,6 +11,7 @@ import type {
 export async function fetchMembersServerTable(
   businessId: string,
   tableParams: ServerTableParams,
+  dateField?: ListMembersParams['dateField'],
 ) {
   const res = await MemberAPI.getInstance().list({
     business_id: businessId,
@@ -21,6 +23,7 @@ export async function fetchMembersServerTable(
     sortOrder: tableParams.sort_dir,
     startDate: tableParams.start_date,
     endDate: tableParams.end_date,
+    dateField,
   });
 
   return {
@@ -32,9 +35,12 @@ export async function fetchMembersServerTable(
   };
 }
 
-export function useMemberServerTable(activeBusinessId: string | null) {
+export function useMemberServerTable(
+  activeBusinessId: string | null,
+  dateField?: ListMembersParams['dateField'],
+) {
   return useServerTable<MemberListItem>({
-    queryKey: ['members', activeBusinessId ?? ''],
+    queryKey: ['members', activeBusinessId ?? '', dateField ?? ''],
     queryFn: async (tableParams: ServerTableParams) => {
       if (!activeBusinessId) {
         return {
@@ -46,7 +52,7 @@ export function useMemberServerTable(activeBusinessId: string | null) {
         };
       }
 
-      return fetchMembersServerTable(activeBusinessId, tableParams);
+      return fetchMembersServerTable(activeBusinessId, tableParams, dateField);
     },
     queryOptions: {
       enabled: Boolean(activeBusinessId),

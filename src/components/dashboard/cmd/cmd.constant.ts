@@ -1,4 +1,5 @@
 import {
+  Building02Icon,
   Contact01Icon,
   Folder02Icon,
   Home01Icon,
@@ -31,6 +32,14 @@ export function useCommands(): CommandGroup[] {
           icon: Home01Icon,
           onSelect: () => {
             navigate('/dashboard');
+            close();
+          },
+        },
+        {
+          label: 'Businesses',
+          icon: Building02Icon,
+          onSelect: () => {
+            navigate('/dashboard/businesses');
             close();
           },
         },

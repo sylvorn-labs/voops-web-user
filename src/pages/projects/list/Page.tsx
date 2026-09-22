@@ -11,12 +11,17 @@ import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 import { useToggleArchiveProject } from '@/hooks/api/project.hook';
-import type { ProjectListItem } from '@/types/api/project.d';
+import type {
+  ListProjectsParams,
+  ProjectListItem,
+} from '@/types/api/project.d';
 
 import { ProjectDeleteDialog } from '@/pages/projects/components/project-delete-dialog/ProjectDeleteDialog';
 import { getProjectRowActions } from './projects.actions';
 import { getProjectColumns } from './projects.columns';
 import {
+  PROJECT_DATE_RANGE_COLUMNS,
+  PROJECT_DEFAULT_DATE_FIELD,
   PROJECT_FILTERABLE_COLUMNS,
   PROJECT_SEARCHABLE_COLUMNS,
 } from './projects.filters';
@@ -32,6 +37,9 @@ export function ProjectListPage() {
   const [projectToDelete, setProjectToDelete] =
     useState<ProjectListItem | null>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [dateField, setDateField] = useState<
+    NonNullable<ListProjectsParams['dateField']>
+  >(PROJECT_DEFAULT_DATE_FIELD);
 
   useEffect(() => {
     setBreadcrumbs([
@@ -70,7 +78,12 @@ export function ProjectListPage() {
 
   const columns = useMemo(() => getProjectColumns(rowActions), [rowActions]);
 
-  const table = useProjectServerTable(activeBusinessId);
+  const table = useProjectServerTable(activeBusinessId, dateField);
+
+  const handleReset = () => {
+    setDateField(PROJECT_DEFAULT_DATE_FIELD);
+    table.onReset();
+  };
 
   if (!activeBusinessId) {
     return (
@@ -110,6 +123,13 @@ export function ProjectListPage() {
           errorDescription: table.error?.message,
           searchableColumns: PROJECT_SEARCHABLE_COLUMNS,
           filterableColumns: PROJECT_FILTERABLE_COLUMNS,
+          dateRangeColumns: PROJECT_DATE_RANGE_COLUMNS,
+          currentDateField: dateField,
+          onDateFieldChange: value =>
+            setDateField(value as NonNullable<ListProjectsParams['dateField']>),
+          currentStartDate: table.params.start_date,
+          currentEndDate: table.params.end_date,
+          onDateRangeChange: table.onDateRangeChange,
           currentSearch: table.params.q,
           onSearchChange: table.onSearchChange,
           currentPage: table.params.page,
@@ -121,7 +141,7 @@ export function ProjectListPage() {
           onSortChange: table.onSortChange,
           currentFilters: table.params.filters,
           onFilterChange: table.onFilterChange,
-          onReset: table.onReset,
+          onReset: handleReset,
           renderRowContextMenu: row => (
             <DataTableRowContextMenuContent row={row} actions={rowActions} />
           ),

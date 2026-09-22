@@ -5,11 +5,13 @@ import type {
   CategoryListItem,
   CategoryKind,
   CategorySortBy,
+  ListCategoriesParams,
 } from '@/types/api/category.d';
 
 export async function fetchCategoriesServerTable(
   businessId: string,
   tableParams: ServerTableParams,
+  dateField?: ListCategoriesParams['dateField'],
 ) {
   const res = await CategoryAPI.getInstance().list({
     business_id: businessId,
@@ -21,6 +23,7 @@ export async function fetchCategoriesServerTable(
     sortOrder: tableParams.sort_dir,
     startDate: tableParams.start_date,
     endDate: tableParams.end_date,
+    dateField,
   });
 
   return {
@@ -32,9 +35,12 @@ export async function fetchCategoriesServerTable(
   };
 }
 
-export function useCategoryServerTable(activeBusinessId: string | null) {
+export function useCategoryServerTable(
+  activeBusinessId: string | null,
+  dateField?: ListCategoriesParams['dateField'],
+) {
   return useServerTable<CategoryListItem>({
-    queryKey: ['categories', activeBusinessId ?? ''],
+    queryKey: ['categories', activeBusinessId ?? '', dateField ?? ''],
     queryFn: async (tableParams: ServerTableParams) => {
       if (!activeBusinessId) {
         return {
@@ -46,7 +52,11 @@ export function useCategoryServerTable(activeBusinessId: string | null) {
         };
       }
 
-      return fetchCategoriesServerTable(activeBusinessId, tableParams);
+      return fetchCategoriesServerTable(
+        activeBusinessId,
+        tableParams,
+        dateField,
+      );
     },
     queryOptions: {
       enabled: Boolean(activeBusinessId),

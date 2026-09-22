@@ -5,11 +5,13 @@ import type {
   AccountListItem,
   AccountKind,
   AccountSortBy,
+  ListAccountsParams,
 } from '@/types/api/account.d';
 
 export async function fetchAccountsServerTable(
   businessId: string,
   tableParams: ServerTableParams,
+  dateField?: ListAccountsParams['dateField'],
 ) {
   let isArchived: boolean | undefined;
   if (tableParams.filters?.is_archived?.[0] !== undefined) {
@@ -27,6 +29,7 @@ export async function fetchAccountsServerTable(
     sortOrder: tableParams.sort_dir,
     startDate: tableParams.start_date,
     endDate: tableParams.end_date,
+    dateField,
   });
 
   return {
@@ -38,9 +41,12 @@ export async function fetchAccountsServerTable(
   };
 }
 
-export function useAccountServerTable(activeBusinessId: string | null) {
+export function useAccountServerTable(
+  activeBusinessId: string | null,
+  dateField?: ListAccountsParams['dateField'],
+) {
   return useServerTable<AccountListItem>({
-    queryKey: ['accounts', activeBusinessId ?? ''],
+    queryKey: ['accounts', activeBusinessId ?? '', dateField ?? ''],
     queryFn: async (tableParams: ServerTableParams) => {
       if (!activeBusinessId) {
         return {
@@ -52,7 +58,7 @@ export function useAccountServerTable(activeBusinessId: string | null) {
         };
       }
 
-      return fetchAccountsServerTable(activeBusinessId, tableParams);
+      return fetchAccountsServerTable(activeBusinessId, tableParams, dateField);
     },
     queryOptions: {
       enabled: Boolean(activeBusinessId),

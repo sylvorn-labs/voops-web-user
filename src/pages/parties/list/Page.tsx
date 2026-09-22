@@ -11,12 +11,14 @@ import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 import { useToggleArchiveParty } from '@/hooks/api/party.hook';
-import type { PartyListItem } from '@/types/api/party.d';
+import type { ListPartiesParams, PartyListItem } from '@/types/api/party.d';
 
 import { PartyDeleteDialog } from '@/pages/parties/components/party-delete-dialog/PartyDeleteDialog';
 import { getPartyRowActions } from './parties.actions';
 import { getPartyColumns } from './parties.columns';
 import {
+  PARTY_DATE_RANGE_COLUMNS,
+  PARTY_DEFAULT_DATE_FIELD,
   PARTY_FILTERABLE_COLUMNS,
   PARTY_SEARCHABLE_COLUMNS,
 } from './parties.filters';
@@ -33,6 +35,9 @@ export function PartyListPage() {
     null,
   );
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [dateField, setDateField] = useState<
+    NonNullable<ListPartiesParams['dateField']>
+  >(PARTY_DEFAULT_DATE_FIELD);
 
   useEffect(() => {
     setBreadcrumbs([
@@ -71,7 +76,12 @@ export function PartyListPage() {
 
   const columns = useMemo(() => getPartyColumns(rowActions), [rowActions]);
 
-  const table = usePartyServerTable(activeBusinessId);
+  const table = usePartyServerTable(activeBusinessId, dateField);
+
+  const handleReset = () => {
+    setDateField(PARTY_DEFAULT_DATE_FIELD);
+    table.onReset();
+  };
 
   if (!activeBusinessId) {
     return (
@@ -111,6 +121,13 @@ export function PartyListPage() {
           errorDescription: table.error?.message,
           searchableColumns: PARTY_SEARCHABLE_COLUMNS,
           filterableColumns: PARTY_FILTERABLE_COLUMNS,
+          dateRangeColumns: PARTY_DATE_RANGE_COLUMNS,
+          currentDateField: dateField,
+          onDateFieldChange: value =>
+            setDateField(value as NonNullable<ListPartiesParams['dateField']>),
+          currentStartDate: table.params.start_date,
+          currentEndDate: table.params.end_date,
+          onDateRangeChange: table.onDateRangeChange,
           currentSearch: table.params.q,
           onSearchChange: table.onSearchChange,
           currentPage: table.params.page,
@@ -122,7 +139,7 @@ export function PartyListPage() {
           onSortChange: table.onSortChange,
           currentFilters: table.params.filters,
           onFilterChange: table.onFilterChange,
-          onReset: table.onReset,
+          onReset: handleReset,
           renderRowContextMenu: row => (
             <DataTableRowContextMenuContent row={row} actions={rowActions} />
           ),

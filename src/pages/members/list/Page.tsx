@@ -10,12 +10,14 @@ import { Empty } from '@/components/global/Empty';
 import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
-import type { MemberListItem } from '@/types/api/member.d';
+import type { ListMembersParams, MemberListItem } from '@/types/api/member.d';
 
 import { MemberDeleteDialog } from '@/pages/members/components/member-delete-dialog/MemberDeleteDialog';
 import { getMemberRowActions } from './members.actions';
 import { getMemberColumns } from './members.columns';
 import {
+  MEMBER_DATE_RANGE_COLUMNS,
+  MEMBER_DEFAULT_DATE_FIELD,
   MEMBER_FILTERABLE_COLUMNS,
   MEMBER_SEARCHABLE_COLUMNS,
 } from './members.filters';
@@ -31,6 +33,9 @@ export function MemberListPage() {
     null,
   );
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [dateField, setDateField] = useState<
+    NonNullable<ListMembersParams['dateField']>
+  >(MEMBER_DEFAULT_DATE_FIELD);
 
   useEffect(() => {
     setBreadcrumbs([
@@ -63,7 +68,12 @@ export function MemberListPage() {
 
   const columns = useMemo(() => getMemberColumns(rowActions), [rowActions]);
 
-  const table = useMemberServerTable(activeBusinessId);
+  const table = useMemberServerTable(activeBusinessId, dateField);
+
+  const handleReset = () => {
+    setDateField(MEMBER_DEFAULT_DATE_FIELD);
+    table.onReset();
+  };
 
   if (!activeBusinessId) {
     return (
@@ -103,6 +113,13 @@ export function MemberListPage() {
           errorDescription: table.error?.message,
           searchableColumns: MEMBER_SEARCHABLE_COLUMNS,
           filterableColumns: MEMBER_FILTERABLE_COLUMNS,
+          dateRangeColumns: MEMBER_DATE_RANGE_COLUMNS,
+          currentDateField: dateField,
+          onDateFieldChange: value =>
+            setDateField(value as NonNullable<ListMembersParams['dateField']>),
+          currentStartDate: table.params.start_date,
+          currentEndDate: table.params.end_date,
+          onDateRangeChange: table.onDateRangeChange,
           currentSearch: table.params.q,
           onSearchChange: table.onSearchChange,
           currentPage: table.params.page,
@@ -114,7 +131,7 @@ export function MemberListPage() {
           onSortChange: table.onSortChange,
           currentFilters: table.params.filters,
           onFilterChange: table.onFilterChange,
-          onReset: table.onReset,
+          onReset: handleReset,
           renderRowContextMenu: row => (
             <DataTableRowContextMenuContent row={row} actions={rowActions} />
           ),

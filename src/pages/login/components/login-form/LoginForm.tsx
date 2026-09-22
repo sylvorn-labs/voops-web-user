@@ -65,7 +65,7 @@ export function LoginForm() {
       return;
     }
 
-    navigate('/');
+    navigate('/dashboard');
   };
 
   return (

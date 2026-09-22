@@ -1,3 +1,6 @@
+import type { DataTableDateRangeColumn } from '@/components/dashboard/data-table/types';
+import type { PartyListItem } from '@/types/api/party.d';
+
 export const PARTY_SEARCHABLE_COLUMNS = [{ id: 'name', title: 'Party name' }];
 
 export const PARTY_FILTERABLE_COLUMNS = [
@@ -28,3 +31,17 @@ export const PARTY_FILTERABLE_COLUMNS = [
     ],
   },
 ];
+
+export const PARTY_DEFAULT_DATE_FIELD = 'created_at' as const;
+
+export const PARTY_DATE_RANGE_COLUMNS: DataTableDateRangeColumn<PartyListItem>[] =
+  [
+    {
+      id: 'created_at',
+      title: 'Date',
+      fields: [
+        { label: 'Created At', value: 'created_at' },
+        { label: 'Updated At', value: 'updated_at' },
+      ],
+    },
+  ];

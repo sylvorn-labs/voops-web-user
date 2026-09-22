@@ -17,6 +17,7 @@ const DEFAULT_STATE: Omit<
   size: 'default',
   prefill: undefined,
   footerSlot: undefined,
+  onSuccess: undefined,
   _isDirty: false,
 };
 
@@ -42,6 +43,7 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
       size: config.size ?? 'default',
       prefill: config.prefill,
       footerSlot: config.footerSlot,
+      onSuccess: config.onSuccess,
       _isDirty: false,
     });
   },

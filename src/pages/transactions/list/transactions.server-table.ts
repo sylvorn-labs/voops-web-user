@@ -2,6 +2,7 @@ import { TransactionAPI } from '@/api/transaction.api';
 import { useServerTable } from '@/components/dashboard/data-table/use-server-table';
 import type { ServerTableParams } from '@/components/dashboard/data-table/types';
 import type {
+  ListTransactionsParams,
   TransactionListItem,
   TransactionSortBy,
   TransactionType,
@@ -10,6 +11,7 @@ import type {
 export async function fetchTransactionsServerTable(
   businessId: string,
   tableParams: ServerTableParams,
+  dateField?: ListTransactionsParams['dateField'],
 ) {
   let isArchived: boolean | undefined;
   if (tableParams.filters?.is_archived?.[0] !== undefined) {
@@ -31,6 +33,7 @@ export async function fetchTransactionsServerTable(
     sortOrder: tableParams.sort_dir,
     startDate: tableParams.start_date,
     endDate: tableParams.end_date,
+    dateField,
   });
 
   return {
@@ -42,9 +45,12 @@ export async function fetchTransactionsServerTable(
   };
 }
 
-export function useTransactionServerTable(activeBusinessId: string | null) {
+export function useTransactionServerTable(
+  activeBusinessId: string | null,
+  dateField?: ListTransactionsParams['dateField'],
+) {
   return useServerTable<TransactionListItem>({
-    queryKey: ['transactions', activeBusinessId ?? ''],
+    queryKey: ['transactions', activeBusinessId ?? '', dateField ?? ''],
     queryFn: async (tableParams: ServerTableParams) => {
       if (!activeBusinessId) {
         return {
@@ -56,7 +62,11 @@ export function useTransactionServerTable(activeBusinessId: string | null) {
         };
       }
 
-      return fetchTransactionsServerTable(activeBusinessId, tableParams);
+      return fetchTransactionsServerTable(
+        activeBusinessId,
+        tableParams,
+        dateField,
+      );
     },
     queryOptions: {
       enabled: Boolean(activeBusinessId),

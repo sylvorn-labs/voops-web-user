@@ -2,6 +2,7 @@ import { ProjectAPI } from '@/api/project.api';
 import { useServerTable } from '@/components/dashboard/data-table/use-server-table';
 import type { ServerTableParams } from '@/components/dashboard/data-table/types';
 import type {
+  ListProjectsParams,
   ProjectListItem,
   ProjectSortBy,
   ProjectStatus,
@@ -10,6 +11,7 @@ import type {
 export async function fetchProjectsServerTable(
   businessId: string,
   tableParams: ServerTableParams,
+  dateField?: ListProjectsParams['dateField'],
 ) {
   let isArchived: boolean | undefined;
   if (tableParams.filters?.is_archived?.[0] !== undefined) {
@@ -27,6 +29,7 @@ export async function fetchProjectsServerTable(
     sortOrder: tableParams.sort_dir,
     startDate: tableParams.start_date,
     endDate: tableParams.end_date,
+    dateField,
   });
 
   return {
@@ -38,9 +41,12 @@ export async function fetchProjectsServerTable(
   };
 }
 
-export function useProjectServerTable(activeBusinessId: string | null) {
+export function useProjectServerTable(
+  activeBusinessId: string | null,
+  dateField?: ListProjectsParams['dateField'],
+) {
   return useServerTable<ProjectListItem>({
-    queryKey: ['projects', activeBusinessId ?? ''],
+    queryKey: ['projects', activeBusinessId ?? '', dateField ?? ''],
     queryFn: async (tableParams: ServerTableParams) => {
       if (!activeBusinessId) {
         return {
@@ -52,7 +58,7 @@ export function useProjectServerTable(activeBusinessId: string | null) {
         };
       }
 
-      return fetchProjectsServerTable(activeBusinessId, tableParams);
+      return fetchProjectsServerTable(activeBusinessId, tableParams, dateField);
     },
     queryOptions: {
       enabled: Boolean(activeBusinessId),

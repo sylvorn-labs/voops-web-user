@@ -59,8 +59,8 @@ export function PartyAddSheet({ formId, prefill, onSuccess }: AddSheetProps) {
         is_archived: values.is_archived,
       },
       {
-        onSuccess: () => {
-          onSuccess?.();
+        onSuccess: res => {
+          onSuccess?.({ id: res.data.id });
         },
       },
     );

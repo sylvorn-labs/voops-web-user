@@ -1,3 +1,6 @@
+import type { DataTableDateRangeColumn } from '@/components/dashboard/data-table/types';
+import type { ProjectListItem } from '@/types/api/project.d';
+
 export const PROJECT_SEARCHABLE_COLUMNS = [
   { id: 'name', title: 'Project name' },
 ];
@@ -22,3 +25,19 @@ export const PROJECT_FILTERABLE_COLUMNS = [
     ],
   },
 ];
+
+export const PROJECT_DEFAULT_DATE_FIELD = 'created_at' as const;
+
+export const PROJECT_DATE_RANGE_COLUMNS: DataTableDateRangeColumn<ProjectListItem>[] =
+  [
+    {
+      id: 'created_at',
+      title: 'Date',
+      fields: [
+        { label: 'Created At', value: 'created_at' },
+        { label: 'Updated At', value: 'updated_at' },
+        { label: 'Start Date', value: 'start_date', allowFuture: true },
+        { label: 'End Date', value: 'end_date', allowFuture: true },
+      ],
+    },
+  ];

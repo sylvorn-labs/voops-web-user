@@ -26,7 +26,7 @@ import { ScrollArea } from '@/components/ui/scroll-area/ScrollArea';
 import { Separator } from '@/components/ui/separator/Separator';
 import { Spinner } from '@/components/ui/spinner/Spinner';
 import { Button } from '@/components/ui/button/Button';
-import type { SheetSize } from '@/types/sheet';
+import type { SheetSize, SheetSuccessResult } from '@/types/sheet';
 import { cn } from '@/lib/utils';
 
 import { SheetRenderer } from './SheetRenderer';
@@ -178,6 +178,7 @@ export function GlobalSheet() {
   const size = useSheetStore(s => s.size) ?? 'default';
   const prefill = useSheetStore(s => s.prefill);
   const footerSlot = useSheetStore(s => s.footerSlot);
+  const storedOnSuccess = useSheetStore(s => s.onSuccess);
   const _isDirty = useSheetStore(s => s._isDirty);
 
   const close = useSheetStore(s => s.close);
@@ -262,6 +263,25 @@ export function GlobalSheet() {
   const showFooter = mode === 'edit' || mode === 'add';
   const showBackArrow = mode === 'edit' && canGoBack;
 
+  /**
+   * Success handler forwarded to `SheetRenderer`.
+   * When the opener supplied an `onSuccess` callback (e.g. quick-add from
+   * another sheet that must restore its draft), delegate to it — the
+   * callback owns what happens next (usually re-opening the parent sheet).
+   * Otherwise fall back to simply closing the sheet.
+   */
+  const handleSuccess = useCallback(
+    (result?: SheetSuccessResult) => {
+      if (storedOnSuccess) {
+        storedOnSuccess(result);
+      } else {
+        close();
+        setCanGoBack(false);
+      }
+    },
+    [storedOnSuccess, close],
+  );
+
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
@@ -315,10 +335,7 @@ export function GlobalSheet() {
                 id={id}
                 formId={formId}
                 prefill={prefill}
-                onSuccess={() => {
-                  close();
-                  setCanGoBack(false);
-                }}
+                onSuccess={handleSuccess}
               />
             ) : null}
           </ScrollArea>
