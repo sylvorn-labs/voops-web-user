@@ -2,7 +2,11 @@ import { CategoryAPI } from '@/api/category.api';
 import { AccountAPI } from '@/api/account.api';
 import { ProjectAPI } from '@/api/project.api';
 import { PartyAPI } from '@/api/party.api';
-import type { DataTableAsyncFilterableColumn } from '@/components/dashboard/data-table/types';
+import type {
+  DataTableAsyncFilterableColumn,
+  DataTableDateRangeColumn,
+} from '@/components/dashboard/data-table/types';
+import type { TransactionListItem } from '@/types/api/transaction.d';
 
 export const TRANSACTION_SEARCHABLE_COLUMNS = [
   { id: 'description', title: 'Description' },
@@ -26,6 +30,21 @@ export const TRANSACTION_FILTERABLE_COLUMNS = [
     ],
   },
 ];
+
+export const TRANSACTION_DEFAULT_DATE_FIELD = 'occurred_on' as const;
+
+export const TRANSACTION_DATE_RANGE_COLUMNS: DataTableDateRangeColumn<TransactionListItem>[] =
+  [
+    {
+      id: 'occurred_on',
+      title: 'Date',
+      fields: [
+        { label: 'Occurred On', value: 'occurred_on' },
+        { label: 'Created At', value: 'created_at' },
+        { label: 'Updated At', value: 'updated_at' },
+      ],
+    },
+  ];
 
 export function getTransactionAsyncFilterableColumns(
   businessId: string | null,

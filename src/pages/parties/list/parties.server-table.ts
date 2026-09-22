@@ -2,6 +2,7 @@ import { PartyAPI } from '@/api/party.api';
 import { useServerTable } from '@/components/dashboard/data-table/use-server-table';
 import type { ServerTableParams } from '@/components/dashboard/data-table/types';
 import type {
+  ListPartiesParams,
   PartyKind,
   PartyListItem,
   PartySortBy,
@@ -11,6 +12,7 @@ import type {
 export async function fetchPartiesServerTable(
   businessId: string,
   tableParams: ServerTableParams,
+  dateField?: ListPartiesParams['dateField'],
 ) {
   let isArchived: boolean | undefined;
   if (tableParams.filters?.is_archived?.[0] !== undefined) {
@@ -29,6 +31,7 @@ export async function fetchPartiesServerTable(
     sortOrder: tableParams.sort_dir,
     startDate: tableParams.start_date,
     endDate: tableParams.end_date,
+    dateField,
   });
 
   return {
@@ -40,9 +43,12 @@ export async function fetchPartiesServerTable(
   };
 }
 
-export function usePartyServerTable(activeBusinessId: string | null) {
+export function usePartyServerTable(
+  activeBusinessId: string | null,
+  dateField?: ListPartiesParams['dateField'],
+) {
   return useServerTable<PartyListItem>({
-    queryKey: ['parties', activeBusinessId ?? ''],
+    queryKey: ['parties', activeBusinessId ?? '', dateField ?? ''],
     queryFn: async (tableParams: ServerTableParams) => {
       if (!activeBusinessId) {
         return {
@@ -54,7 +60,7 @@ export function usePartyServerTable(activeBusinessId: string | null) {
         };
       }
 
-      return fetchPartiesServerTable(activeBusinessId, tableParams);
+      return fetchPartiesServerTable(activeBusinessId, tableParams, dateField);
     },
     queryOptions: {
       enabled: Boolean(activeBusinessId),

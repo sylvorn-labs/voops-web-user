@@ -1,3 +1,6 @@
+import type { DataTableDateRangeColumn } from '@/components/dashboard/data-table/types';
+import type { MemberListItem } from '@/types/api/member.d';
+
 export const MEMBER_SEARCHABLE_COLUMNS = [{ id: 'email', title: 'Email' }];
 
 export const MEMBER_FILTERABLE_COLUMNS = [
@@ -12,3 +15,18 @@ export const MEMBER_FILTERABLE_COLUMNS = [
     ],
   },
 ];
+
+export const MEMBER_DEFAULT_DATE_FIELD = 'joined_at' as const;
+
+export const MEMBER_DATE_RANGE_COLUMNS: DataTableDateRangeColumn<MemberListItem>[] =
+  [
+    {
+      id: 'joined_at',
+      title: 'Date',
+      fields: [
+        { label: 'Joined At', value: 'joined_at' },
+        { label: 'Created At', value: 'created_at' },
+        { label: 'Updated At', value: 'updated_at' },
+      ],
+    },
+  ];

@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch } from 'react-hook-form';
+import { PlusSignIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 
 import {
   Form,
@@ -17,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select/Select';
+import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
 import { Textarea } from '@/components/ui/textarea/Textarea';
 import { DatePicker } from '@/components/ui/date-picker/DatePicker';
@@ -28,6 +31,7 @@ import { listCategoriesOptions } from '@/hooks/api/category.hook';
 import { listProjectsOptions } from '@/hooks/api/project.hook';
 import { listPartiesOptions } from '@/hooks/api/party.hook';
 import { useActiveBusinessId } from '@/stores/business/business.selectors';
+import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import type { AddSheetProps } from '@/types/sheet.d';
 
 import {
@@ -44,6 +48,7 @@ export function TransactionAddSheet({
 }: AddSheetProps) {
   const activeBusinessId = useActiveBusinessId();
   const createMutation = useCreateTransaction();
+  const openSheet = useSheetOpen();
 
   const { data: accountsData } = useQuery(
     listAccountsOptions({
@@ -96,6 +101,43 @@ export function TransactionAddSheet({
     name: 'type',
     defaultValue: 'debit',
   });
+
+  /**
+   * Opens an add sheet for a related entity (category / project / party).
+   * The current transaction draft is captured before navigating away; when
+   * the child sheet succeeds, the transaction sheet is re-opened with the
+   * draft restored and the newly created record pre-selected.
+   */
+  const handleQuickAdd = (
+    field: 'category_id' | 'project_id' | 'party_id',
+    sheetKey: 'category' | 'project' | 'party',
+    title: string,
+    description: string,
+  ) => {
+    const draft = form.getValues();
+    const isCredit = draft.type === 'credit';
+
+    openSheet({
+      sheetKey,
+      mode: 'add',
+      title,
+      description,
+      onSuccess: result => {
+        openSheet({
+          sheetKey: 'transaction',
+          mode: 'add',
+          title: isCredit ? 'Add Credit (Income)' : 'Add Debit (Expense)',
+          description: isCredit
+            ? 'Record a new incoming financial transaction.'
+            : 'Record a new outgoing expense transaction.',
+          prefill: {
+            ...draft,
+            ...(result?.id ? { [field]: result.id } : {}),
+          },
+        });
+      },
+    });
+  };
 
   const onSubmit = (values: TransactionFormValues) => {
     if (!activeBusinessId) return;
@@ -254,7 +296,26 @@ export function TransactionAddSheet({
               name="category_id"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Category (Optional)</FormLabel>
+                  <div className="flex items-center justify-between gap-2">
+                    <FormLabel>Category (Optional)</FormLabel>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-xs"
+                      onClick={() =>
+                        handleQuickAdd(
+                          'category_id',
+                          'category',
+                          'Add Category',
+                          'Create a new category to organize income and expenses.',
+                        )
+                      }
+                      aria-label="Create new category"
+                      title="Create new category"
+                    >
+                      <HugeiconsIcon icon={PlusSignIcon} />
+                    </Button>
+                  </div>
                   <Select
                     onValueChange={value =>
                       field.onChange(value === 'none' ? '' : value)
@@ -286,7 +347,26 @@ export function TransactionAddSheet({
               name="project_id"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Project (Optional)</FormLabel>
+                  <div className="flex items-center justify-between gap-2">
+                    <FormLabel>Project (Optional)</FormLabel>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-xs"
+                      onClick={() =>
+                        handleQuickAdd(
+                          'project_id',
+                          'project',
+                          'Add Project',
+                          'Create a new project to organize tasks and finances.',
+                        )
+                      }
+                      aria-label="Create new project"
+                      title="Create new project"
+                    >
+                      <HugeiconsIcon icon={PlusSignIcon} />
+                    </Button>
+                  </div>
                   <Select
                     onValueChange={value =>
                       field.onChange(value === 'none' ? '' : value)
@@ -319,11 +399,30 @@ export function TransactionAddSheet({
             name="party_id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  {selectedType === 'debit'
-                    ? 'Paid To Party (Optional)'
-                    : 'Received From Party (Optional)'}
-                </FormLabel>
+                <div className="flex items-center justify-between gap-2">
+                  <FormLabel>
+                    {selectedType === 'debit'
+                      ? 'Paid To Party (Optional)'
+                      : 'Received From Party (Optional)'}
+                  </FormLabel>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon-xs"
+                    onClick={() =>
+                      handleQuickAdd(
+                        'party_id',
+                        'party',
+                        'Add Party',
+                        'Create a new customer, vendor, employee, or contact.',
+                      )
+                    }
+                    aria-label="Create new party"
+                    title="Create new party"
+                  >
+                    <HugeiconsIcon icon={PlusSignIcon} />
+                  </Button>
+                </div>
                 <Select
                   onValueChange={value =>
                     field.onChange(value === 'none' ? '' : value)

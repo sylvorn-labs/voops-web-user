@@ -2,6 +2,7 @@ import React from 'react';
 
 import type {
   SheetRegistry,
+  SheetSuccessResult,
   ViewSheetProps,
   EditSheetProps,
   AddSheetProps,
@@ -220,7 +221,7 @@ export interface SheetRendererProps {
   id?: string;
   formId?: string;
   prefill?: Record<string, unknown>;
-  onSuccess?: () => void;
+  onSuccess?: (result?: SheetSuccessResult) => void;
 }
 
 export function SheetRenderer({

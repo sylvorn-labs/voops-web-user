@@ -60,8 +60,8 @@ export function CategoryAddSheet({
         color: values.color || null,
       },
       {
-        onSuccess: () => {
-          onSuccess?.();
+        onSuccess: res => {
+          onSuccess?.({ id: res.data.id });
         },
       },
     );

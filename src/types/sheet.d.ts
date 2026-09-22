@@ -7,6 +7,11 @@ export type SheetMode = 'view' | 'edit' | 'add';
 
 export type SheetSize = 'sm' | 'default' | 'lg' | 'xl' | '2xl' | 'full';
 
+/** Payload delivered to `onSuccess` callbacks when an add sheet creates a record. */
+export interface SheetSuccessResult {
+  id?: string;
+}
+
 export interface OpenSheetConfig {
   sheetKey: string;
   mode: SheetMode;
@@ -16,6 +21,7 @@ export interface OpenSheetConfig {
   size?: SheetSize;
   prefill?: Record<string, unknown>;
   footerSlot?: React.ReactNode;
+  onSuccess?: (result?: SheetSuccessResult) => void;
 }
 
 export interface SheetStoreState {
@@ -28,6 +34,7 @@ export interface SheetStoreState {
   size?: SheetSize;
   prefill?: Record<string, unknown>;
   footerSlot?: React.ReactNode;
+  onSuccess?: (result?: SheetSuccessResult) => void;
   _isDirty: boolean;
 }
 
@@ -49,13 +56,13 @@ export interface ViewSheetProps {
 export interface EditSheetProps {
   id: string;
   formId: string;
-  onSuccess?: () => void;
+  onSuccess?: (result?: SheetSuccessResult) => void;
 }
 
 export interface AddSheetProps {
   formId: string;
   prefill?: Record<string, unknown>;
-  onSuccess?: () => void;
+  onSuccess?: (result?: SheetSuccessResult) => void;
 }
 
 export interface SheetFeatureConfig {

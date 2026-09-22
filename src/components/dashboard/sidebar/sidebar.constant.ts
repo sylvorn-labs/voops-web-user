@@ -1,4 +1,5 @@
 import {
+  Building02Icon,
   Contact01Icon,
   Folder02Icon,
   Home01Icon,
@@ -21,6 +22,12 @@ export const SIDEBAR_MENU_GROUPS: SidebarMenuGroup[] = [
         tooltip: 'View overview',
         route: `${BASE}`,
         hugeicon: Home01Icon,
+      },
+      {
+        name: 'Businesses',
+        tooltip: 'Manage businesses',
+        route: `${BASE}/businesses`,
+        hugeicon: Building02Icon,
       },
     ],
   },

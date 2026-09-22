@@ -11,12 +11,17 @@ import { useActiveBusinessId } from '@/stores/business/business.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 import { useToggleArchiveAccount } from '@/hooks/api/account.hook';
-import type { AccountListItem } from '@/types/api/account.d';
+import type {
+  AccountListItem,
+  ListAccountsParams,
+} from '@/types/api/account.d';
 
 import { AccountDeleteDialog } from '@/pages/accounts/components/account-delete-dialog/AccountDeleteDialog';
 import { getAccountRowActions } from './accounts.actions';
 import { getAccountColumns } from './accounts.columns';
 import {
+  ACCOUNT_DATE_RANGE_COLUMNS,
+  ACCOUNT_DEFAULT_DATE_FIELD,
   ACCOUNT_FILTERABLE_COLUMNS,
   ACCOUNT_SEARCHABLE_COLUMNS,
 } from './accounts.filters';
@@ -32,6 +37,9 @@ export function AccountListPage() {
   const [accountToDelete, setAccountToDelete] =
     useState<AccountListItem | null>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [dateField, setDateField] = useState<
+    NonNullable<ListAccountsParams['dateField']>
+  >(ACCOUNT_DEFAULT_DATE_FIELD);
 
   useEffect(() => {
     setBreadcrumbs([
@@ -71,7 +79,12 @@ export function AccountListPage() {
 
   const columns = useMemo(() => getAccountColumns(rowActions), [rowActions]);
 
-  const table = useAccountServerTable(activeBusinessId);
+  const table = useAccountServerTable(activeBusinessId, dateField);
+
+  const handleReset = () => {
+    setDateField(ACCOUNT_DEFAULT_DATE_FIELD);
+    table.onReset();
+  };
 
   if (!activeBusinessId) {
     return (
@@ -111,6 +124,13 @@ export function AccountListPage() {
           errorDescription: table.error?.message,
           searchableColumns: ACCOUNT_SEARCHABLE_COLUMNS,
           filterableColumns: ACCOUNT_FILTERABLE_COLUMNS,
+          dateRangeColumns: ACCOUNT_DATE_RANGE_COLUMNS,
+          currentDateField: dateField,
+          onDateFieldChange: value =>
+            setDateField(value as NonNullable<ListAccountsParams['dateField']>),
+          currentStartDate: table.params.start_date,
+          currentEndDate: table.params.end_date,
+          onDateRangeChange: table.onDateRangeChange,
           currentSearch: table.params.q,
           onSearchChange: table.onSearchChange,
           currentPage: table.params.page,
@@ -122,7 +142,7 @@ export function AccountListPage() {
           onSortChange: table.onSortChange,
           currentFilters: table.params.filters,
           onFilterChange: table.onFilterChange,
-          onReset: table.onReset,
+          onReset: handleReset,
           renderRowContextMenu: row => (
             <DataTableRowContextMenuContent row={row} actions={rowActions} />
           ),
