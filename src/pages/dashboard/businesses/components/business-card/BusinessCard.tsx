@@ -19,6 +19,7 @@ import {
 import { Badge } from '@/components/ui/badge/Badge';
 import { Button } from '@/components/ui/button/Button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar/Avatar';
+import { useAuthUser } from '@/stores/auth/auth.selectors';
 import { cn } from '@/lib/utils';
 import type { BusinessCardProps } from './business-card.d';
 
@@ -29,6 +30,9 @@ export function BusinessCard({
   onEdit,
   onDelete,
 }: BusinessCardProps) {
+  const user = useAuthUser();
+  const isOwner = user?.id === business.owner_id;
+
   const formattedDate = business.created_at
     ? format(new Date(business.created_at), 'MMM dd, yyyy')
     : 'Unknown';
@@ -146,16 +150,18 @@ export function BusinessCard({
             <HugeiconsIcon icon={Edit02Icon} size={16} />
             <span className="sr-only">Edit</span>
           </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-muted-foreground hover:text-destructive size-8"
-            title="Delete Business"
-            onClick={() => onDelete(business)}
-          >
-            <HugeiconsIcon icon={Delete02Icon} size={16} />
-            <span className="sr-only">Delete</span>
-          </Button>
+          {isOwner && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-destructive size-8"
+              title="Delete Business (Owner only)"
+              onClick={() => onDelete(business)}
+            >
+              <HugeiconsIcon icon={Delete02Icon} size={16} />
+              <span className="sr-only">Delete</span>
+            </Button>
+          )}
         </div>
       </CardFooter>
     </Card>

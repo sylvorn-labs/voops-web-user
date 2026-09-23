@@ -1,6 +1,7 @@
 import type { ApiResponse, PaginatedResponse } from '@/types/api.d';
 
 export type MemberRole = 'owner' | 'admin' | 'member' | 'viewer';
+export type InvitationStatus = 'pending' | 'accepted' | 'revoked' | 'expired';
 
 export interface Member {
   id: string;
@@ -16,6 +17,20 @@ export interface Member {
 }
 
 export type MemberListItem = Member;
+
+export interface BusinessInvitation {
+  id: string;
+  business_id: string;
+  email: string;
+  role: MemberRole;
+  token: string;
+  invited_by: string;
+  invited_by_email?: string | null;
+  status: InvitationStatus;
+  expires_at: string;
+  created_at: string;
+  updated_at: string;
+}
 
 export type MemberSortBy =
   'email' | 'role' | 'joined_at' | 'created_at' | 'updated_at';
@@ -46,7 +61,13 @@ export interface UpdateMemberRequest {
 }
 
 export interface CreateMemberResponse {
-  id: string;
+  id?: string;
+  status?: 'joined' | 'invited';
+  member_id?: string;
+  invitation_id?: string;
+  token?: string;
+  email?: string;
+  message?: string;
 }
 
 export interface DeleteMemberResponse {
@@ -64,4 +85,8 @@ export interface IMemberAPI {
     payload: UpdateMemberRequest,
   ): Promise<ApiResponse<Member>>;
   delete(id: string): Promise<ApiResponse<DeleteMemberResponse>>;
+  listInvitations(
+    businessId: string,
+  ): Promise<ApiResponse<BusinessInvitation[]>>;
+  revokeInvitation(invitationId: string): Promise<ApiResponse<{ id: string }>>;
 }

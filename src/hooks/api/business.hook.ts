@@ -69,10 +69,35 @@ export function useUpdateBusiness() {
 
 export function useDeleteBusiness() {
   return useMutation({
-    mutationFn: (id: string) => businessAPI.delete(id),
-    onSuccess: () => {
+    mutationFn: (param: string | { id: string; hard?: boolean }) => {
+      if (typeof param === 'string') {
+        return businessAPI.delete(param, false);
+      }
+      return businessAPI.delete(param.id, param.hard);
+    },
+    onSuccess: (_, variables) => {
+      const businessId =
+        typeof variables === 'string' ? variables : variables.id;
+      // Invalidate all businesses queries
       queryClient.invalidateQueries({
-        queryKey: [...businessQueryKeys.all, 'list'],
+        queryKey: businessQueryKeys.all,
+      });
+      // Invalidate all business sub-resource queries
+      queryClient.invalidateQueries({
+        predicate: query => {
+          const key = query.queryKey;
+          return (
+            key.includes('transactions') ||
+            key.includes('accounts') ||
+            key.includes('categories') ||
+            key.includes('projects') ||
+            key.includes('parties') ||
+            key.includes('members')
+          );
+        },
+      });
+      queryClient.removeQueries({
+        queryKey: businessQueryKeys.detail(businessId),
       });
       toast.success('Business deleted successfully!');
     },
