@@ -10,6 +10,7 @@ import {
   MoreHorizontalIcon,
   RefreshIcon,
 } from '@hugeicons/core-free-icons';
+import { format } from 'date-fns';
 import { HugeiconsIcon } from '@hugeicons/react';
 
 import { DetailsLayout } from '@/layouts/dashboard-detail/DetailsLayout';
@@ -22,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu/DropdownMenu';
 import { Loading } from '@/components/global/Loading';
+import { parseDateOnly } from '@/lib/date';
 import { Error } from '@/components/global/Error';
 import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
@@ -131,7 +133,7 @@ export function TransactionDetailsPage() {
       <DetailsLayout
         header={{
           title,
-          description: `Occurred on ${new Date(transaction.occurred_on).toLocaleDateString()} · ${transaction.type === 'credit' ? 'Income' : 'Expense'}`,
+          description: `Occurred on ${format(parseDateOnly(transaction.occurred_on), 'PP')} · ${transaction.type === 'credit' ? 'Income' : 'Expense'}`,
           opposite: (
             <div className="flex items-center gap-2">
               <Button

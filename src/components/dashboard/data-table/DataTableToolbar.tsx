@@ -13,6 +13,7 @@ import {
 
 import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
+import { parseDateOnly } from '@/lib/date';
 import { cn } from '@/lib/utils';
 
 import type {
@@ -93,15 +94,17 @@ export function DataTableToolbar<TData>({
   }, [currentSearch]);
 
   const [dateRange, setDateRange] = React.useState<DateRange>({
-    from: currentStartDate ? new Date(currentStartDate) : undefined,
-    to: currentEndDate ? new Date(currentEndDate) : undefined,
+    from: currentStartDate ? parseDateOnly(currentStartDate) : undefined,
+    to: currentEndDate ? parseDateOnly(currentEndDate) : undefined,
   });
 
   const prevCurrentStartDate = React.useRef(currentStartDate);
   const prevCurrentEndDate = React.useRef(currentEndDate);
 
   React.useEffect(() => {
-    const nextFrom = currentStartDate ? new Date(currentStartDate) : undefined;
+    const nextFrom = currentStartDate
+      ? parseDateOnly(currentStartDate)
+      : undefined;
     if (prevCurrentStartDate.current !== currentStartDate) {
       prevCurrentStartDate.current = currentStartDate;
       setDateRange(prev => ({ ...prev, from: nextFrom }));
@@ -109,7 +112,7 @@ export function DataTableToolbar<TData>({
   }, [currentStartDate]);
 
   React.useEffect(() => {
-    const nextTo = currentEndDate ? new Date(currentEndDate) : undefined;
+    const nextTo = currentEndDate ? parseDateOnly(currentEndDate) : undefined;
     if (prevCurrentEndDate.current !== currentEndDate) {
       prevCurrentEndDate.current = currentEndDate;
       setDateRange(prev => ({ ...prev, to: nextTo }));

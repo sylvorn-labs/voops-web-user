@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase';
+import { formatDateOnly } from '@/lib/date';
 import type {
   CreateTransactionRequest,
   CreateTransactionResponse,
@@ -259,7 +260,7 @@ export class TransactionAPI implements ITransactionAPI {
       business_id: payload.business_id,
       type: payload.type,
       amount: payload.amount,
-      occurred_on: payload.occurred_on || new Date().toISOString().slice(0, 10),
+      occurred_on: payload.occurred_on || formatDateOnly(new Date()),
       description: payload.description?.trim() || null,
       created_by: user.id,
       paid_from_account_id: isDebit ? payload.account_id : null,

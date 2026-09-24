@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import { parseDateOnly } from '@/lib/date';
 import {
   Edit02Icon,
   ArrowRight01Icon,
@@ -128,7 +130,7 @@ export function TransactionViewSheet({ id }: ViewSheetProps) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <SheetDetailRow
             label="Transaction Date"
-            value={new Date(transaction.occurred_on).toLocaleDateString()}
+            value={format(parseDateOnly(transaction.occurred_on), 'PP')}
           />
           <SheetDetailRow
             label="Status"

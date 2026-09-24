@@ -1,3 +1,4 @@
+import { formatDateOnly } from '@/lib/date';
 import type { TransactionFormValues } from './transaction.d';
 
 export const TRANSACTION_TYPE_OPTIONS = [
@@ -8,7 +9,7 @@ export const TRANSACTION_TYPE_OPTIONS = [
 export const TRANSACTION_FORM_DEFAULT_VALUES: TransactionFormValues = {
   type: 'debit',
   amount: 0,
-  occurred_on: new Date().toISOString().slice(0, 10),
+  occurred_on: formatDateOnly(new Date()),
   account_id: '',
   category_id: '',
   project_id: '',

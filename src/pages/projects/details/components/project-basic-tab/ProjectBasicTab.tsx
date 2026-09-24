@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch } from 'react-hook-form';
-import { format } from 'date-fns';
 import { FloppyDiskIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import type { DateRange } from 'react-day-picker';
@@ -33,6 +32,7 @@ import { Checkbox } from '@/components/ui/checkbox/Checkbox';
 import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
 import { DateRangePicker } from '@/components/ui/date-picker/DateRangePicker';
+import { formatDateOnly, parseDateOnly } from '@/lib/date';
 import { useUpdateProject } from '@/hooks/api/project.hook';
 
 import { ProjectStatusBadge } from '@/pages/projects/list/components/project-status-badge/ProjectStatusBadge';
@@ -91,13 +91,13 @@ export function ProjectBasicTab({ project }: ProjectBasicTabProps) {
   });
 
   const dateRangeValue: DateRange | undefined = {
-    from: startDateStr ? new Date(`${startDateStr}T00:00:00`) : undefined,
-    to: endDateStr ? new Date(`${endDateStr}T00:00:00`) : undefined,
+    from: startDateStr ? parseDateOnly(startDateStr) : undefined,
+    to: endDateStr ? parseDateOnly(endDateStr) : undefined,
   };
 
   const handleDateRangeChange = (range?: DateRange) => {
-    const fromStr = range?.from ? format(range.from, 'yyyy-MM-dd') : '';
-    const toStr = range?.to ? format(range.to, 'yyyy-MM-dd') : '';
+    const fromStr = range?.from ? formatDateOnly(range.from) : '';
+    const toStr = range?.to ? formatDateOnly(range.to) : '';
     form.setValue('start_date', fromStr, {
       shouldDirty: true,
       shouldValidate: true,

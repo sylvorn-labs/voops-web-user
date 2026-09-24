@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { useForm, useWatch } from 'react-hook-form';
-import { format } from 'date-fns';
 import type { DateRange } from 'react-day-picker';
 
 import { Checkbox } from '@/components/ui/checkbox/Checkbox';
@@ -28,6 +27,7 @@ import { SheetFieldGroup } from '@/components/dashboard/sheet/SheetFieldGroup';
 import { SheetLoadingSkeleton } from '@/components/dashboard/sheet/SheetLoadingSkeleton';
 import { useSheetDirty } from '@/components/dashboard/sheet/useSheetDirty';
 import { DateRangePicker } from '@/components/ui/date-picker/DateRangePicker';
+import { formatDateOnly, parseDateOnly } from '@/lib/date';
 import {
   getProjectByIdOptions,
   useUpdateProject,
@@ -112,13 +112,13 @@ export function ProjectEditSheet({ id, formId, onSuccess }: EditSheetProps) {
   };
 
   const dateRangeValue: DateRange | undefined = {
-    from: startDateStr ? new Date(`${startDateStr}T00:00:00`) : undefined,
-    to: endDateStr ? new Date(`${endDateStr}T00:00:00`) : undefined,
+    from: startDateStr ? parseDateOnly(startDateStr) : undefined,
+    to: endDateStr ? parseDateOnly(endDateStr) : undefined,
   };
 
   const handleDateRangeChange = (range?: DateRange) => {
-    const fromStr = range?.from ? format(range.from, 'yyyy-MM-dd') : '';
-    const toStr = range?.to ? format(range.to, 'yyyy-MM-dd') : '';
+    const fromStr = range?.from ? formatDateOnly(range.from) : '';
+    const toStr = range?.to ? formatDateOnly(range.to) : '';
     form.setValue('start_date', fromStr, {
       shouldDirty: true,
       shouldValidate: true,

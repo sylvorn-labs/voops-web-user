@@ -1,6 +1,8 @@
+import { format } from 'date-fns';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import { DataTableColumnHeader } from '@/components/dashboard/data-table/DataTableColumnHeader';
+import { parseDateOnly } from '@/lib/date';
 import { DataTableRowActions } from '@/components/dashboard/data-table/data-table-row-actions';
 import type { RowActionConfig } from '@/components/dashboard/data-table/types';
 import type {
@@ -23,7 +25,7 @@ export function getTransactionColumns(
         const val = row.getValue<string>('occurred_on');
         return (
           <span className="font-medium">
-            {val ? new Date(val).toLocaleDateString() : '—'}
+            {val ? format(parseDateOnly(val), 'PP') : '—'}
           </span>
         );
       },
