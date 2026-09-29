@@ -1,4 +1,4 @@
-import { ArrowRight01Icon, SparklesIcon } from '@hugeicons/core-free-icons';
+import { ArrowRight01Icon, Layers01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Link } from 'react-router';
 import { cn } from 'cn';
@@ -51,7 +51,7 @@ export function FeatureHero({
               className="bg-card text-foreground gap-2 rounded-full px-4 py-1.5 text-xs font-semibold shadow-xs"
             >
               <HugeiconsIcon
-                icon={SparklesIcon}
+                icon={Layers01Icon}
                 className="text-primary size-3.5"
               />
               <span>{badge}</span>

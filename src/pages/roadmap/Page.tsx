@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, Sparkles } from 'lucide-react';
+import { CheckCircle2, Clock, Milestone } from 'lucide-react';
 
 import { ResourceLayout } from '@/layouts/resource/ResourceLayout';
 import { roadmapSidebarConfig } from './page.constants';
@@ -114,7 +114,7 @@ export function RoadmapPage() {
         <section className="border-border/60 bg-card rounded-2xl border p-6 shadow-xs">
           <div className="flex items-center gap-2">
             <span className="bg-muted text-muted-foreground inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold">
-              <Sparkles className="size-3.5" />
+              <Milestone className="size-3.5" />
               Planned
             </span>
             <span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">

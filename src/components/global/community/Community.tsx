@@ -1,4 +1,4 @@
-import { SparklesIcon } from '@hugeicons/core-free-icons';
+import { UserGroupIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
@@ -20,7 +20,7 @@ export function Community({
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
           {logo ?? (
             <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-2xl shadow-sm">
-              <HugeiconsIcon icon={SparklesIcon} className="size-6" />
+              <HugeiconsIcon icon={UserGroupIcon} className="size-6" />
             </div>
           )}
 

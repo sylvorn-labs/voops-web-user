@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router';
 import {
-  SparklesIcon,
+  FileSearchIcon,
   ArrowLeft01Icon,
   Idea01Icon,
 } from '@hugeicons/core-free-icons';
@@ -27,7 +27,7 @@ export function BlogPostPage() {
     return (
       <div className="container mx-auto px-4 py-32 text-center">
         <div className="bg-primary/10 text-primary mx-auto mb-6 flex size-14 items-center justify-center rounded-2xl">
-          <HugeiconsIcon icon={SparklesIcon} className="size-7" />
+          <HugeiconsIcon icon={FileSearchIcon} className="size-7" />
         </div>
         <h1 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl">
           Article Not Found
