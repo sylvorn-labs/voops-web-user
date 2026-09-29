@@ -15,7 +15,7 @@ const contactFaqs = [
     id: 'contact-faq-2',
     question: 'Where can I report a bug or suggest a new feature?',
     answer:
-      'We track all bug reports and feature suggestions publicly on GitHub issues and discussions at https://github.com/Sylvorn-Labs/voops-web-user.',
+      'We track all bug reports and feature suggestions publicly on GitHub issues and discussions at https://github.com/sylvorn-labs/voops-web-user.',
   },
   {
     id: 'contact-faq-3',

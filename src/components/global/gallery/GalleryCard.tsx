@@ -10,12 +10,12 @@ export function GalleryCard({ item }: GalleryCardProps) {
   const cardContent = (
     <div className="border-border/60 bg-card text-card-foreground group flex h-full flex-col justify-between overflow-hidden rounded-2xl border p-5 shadow-xs transition-all duration-300 hover:shadow-md">
       <div>
-        <div className="bg-muted/30 aspect-3/2 overflow-hidden rounded-xl">
-          <div className="relative h-full w-full origin-bottom transition-transform duration-300 group-hover:scale-105">
+        <div className="bg-muted/30 flex aspect-3/2 items-center justify-center overflow-hidden rounded-xl p-4">
+          <div className="relative flex h-full w-full origin-bottom items-center justify-center transition-transform duration-300 group-hover:scale-105">
             <img
               src={item.image}
               alt={item.title}
-              className="h-full w-full object-cover object-center"
+              className="max-h-full max-w-full object-contain object-center"
             />
           </div>
         </div>

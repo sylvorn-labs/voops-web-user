@@ -11,7 +11,7 @@ import type { PricingProps } from './pricing.d';
 export function Pricing({
   id = 'pricing',
   heading = 'Free During Development & Beta',
-  description = 'All features are 100% free with zero artificial limits during beta testing. In the future, managed cloud instances will offer flexible paid plans while maintaining full open-source self-hosting.',
+  description = 'All features are 100% free with zero artificial limits during our public beta. Post-beta, hosted cloud infrastructure and premium team tiers will introduce structured plans with guaranteed data export.',
   plan = defaultPlan,
   featureGroups = defaultFeatureGroups,
   className,

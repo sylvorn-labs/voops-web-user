@@ -23,8 +23,8 @@ export function Footer({ className }: FooterProps) {
               Oops! There goes the money.
             </p>
             <p className="text-muted-foreground mt-1 text-xs font-medium">
-              Open source multi-business expense tracker engineered by Sylvorn
-              Labs.
+              Limited-time open source multi-business expense tracker engineered
+              by Sylvorn Labs during Public Beta.
             </p>
           </div>
 
@@ -86,6 +86,17 @@ export function Footer({ className }: FooterProps) {
               <Link to="/privacy">Privacy & Policy</Link>
             </li>
           </ul>
+          <div className="flex items-center gap-1.5 font-medium">
+            <span>Built By</span>
+            <a
+              href="http://labs.sylvorn.com"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="text-foreground hover:text-primary font-semibold underline underline-offset-4 transition-colors"
+            >
+              Sylvorn Labs
+            </a>
+          </div>
         </div>
       </div>
     </footer>

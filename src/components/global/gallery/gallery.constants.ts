@@ -7,8 +7,7 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Switch effortlessly between corporate entities, agencies, and side projects with instant balance aggregation.',
     url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape1.jpeg',
+    image: '/images/illustrations/dashboard.svg',
   },
   {
     id: 'item-2',
@@ -16,8 +15,7 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Track client project profitability, milestones, contractor expenses, and revenue margins without messy spreadsheets.',
     url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape2.jpeg',
+    image: '/images/illustrations/growth_analytics.svg',
   },
   {
     id: 'item-3',
@@ -25,8 +23,7 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Deep dive into recurring SaaS subscriptions, operating costs, and tax-deductible expense distributions.',
     url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape3.jpeg',
+    image: '/images/illustrations/visual_data.svg',
   },
   {
     id: 'item-4',
@@ -34,8 +31,7 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Invite teammates, managers, and external accountants with strict role restrictions and comprehensive audit logs.',
     url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape4.jpeg',
+    image: '/images/illustrations/authentication.svg',
   },
   {
     id: 'item-5',
@@ -43,7 +39,6 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Snap receipts on iOS and Android via Flutter with instant synchronization directly to your React desktop workspace.',
     url: '/register',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/landscape5.jpeg',
+    image: '/images/illustrations/transfer_files.svg',
   },
 ];

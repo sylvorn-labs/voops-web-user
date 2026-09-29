@@ -141,7 +141,7 @@ export function BlogPostPage() {
                   Proprietary vendor lock-in
                 </td>
                 <td className="text-primary p-3 font-medium">
-                  100% Open source MIT license
+                  Limited-time open source during Beta
                 </td>
               </tr>
             </tbody>
@@ -180,7 +180,7 @@ export function BlogPostPage() {
 
         <p>
           Ready to streamline your financial operations? Explore our interactive
-          documentation or try out the demo workspace today.
+          documentation or create your free beta workspace today.
         </p>
       </BlogPostLayout>
 

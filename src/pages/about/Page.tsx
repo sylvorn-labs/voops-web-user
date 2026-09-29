@@ -15,8 +15,8 @@ export function AboutPage() {
       <Gallery
         id="lab-moments"
         heading="Behind the Scenes at Sylvorn Labs"
-        demoText="Explore our GitHub Repository"
-        demoUrl="https://github.com/Sylvorn-Labs/voops-web-user"
+        actionText="Explore our GitHub Repository"
+        actionUrl="https://github.com/sylvorn-labs/voops-web-user"
         items={aboutGalleryItems}
       />
       <Team />

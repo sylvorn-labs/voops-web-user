@@ -5,13 +5,13 @@ export const pricingFaqs: FaqItem[] = [
     id: 'pricing-1',
     question: 'Why is Voops currently free?',
     answer:
-      'All features are completely free for a limited time during active development and beta testing. We want operators and teams to test, give feedback, and experience seamless expense tracking without paywalls.',
+      'All features are completely free for a limited time during active development and public beta testing. We want operators and teams to test, give feedback, and experience seamless expense tracking without paywalls.',
   },
   {
     id: 'pricing-2',
     question: 'What will pricing look like in the future?',
     answer:
-      'In the future, managed cloud instances will offer paid tiers with options tailored for various team sizes and workloads. Self-hosting the open-source platform will remain freely available.',
+      'In the future, hosted cloud instances and premium team features will offer tiered pricing tailored for various business sizes. During the public beta, all capabilities remain completely free with full data export rights.',
   },
   {
     id: 'pricing-3',

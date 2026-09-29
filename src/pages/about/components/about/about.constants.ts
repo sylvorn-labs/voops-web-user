@@ -26,13 +26,13 @@ export const defaultSections: AboutBasicSection[] = [
     label: 'Our Core Mission',
     title: 'Solving Timelines, Maintenance, Scale & Economy',
     content:
-      'We brainstormed our daily routines to eliminate manual friction and chose Supabase (PostgreSQL, Auth/OAuth, RLS security, Object Storage) alongside React and Flutter to deliver a scalable, open-source platform.',
+      'We brainstormed our daily routines to eliminate manual friction and chose Supabase (PostgreSQL, Auth/OAuth, RLS security, Object Storage) alongside React and Flutter to deliver a scalable platform.',
   },
   {
     label: 'Rebranded to Voops',
     title: 'Oops! There goes the money.',
     content:
-      'What began as an internal "Expense Tracker" evolved into Voops — born directly from our own relatable problem statement. We made it open source so every founder and team can gain effortless financial visibility.',
+      'What began as an internal "Expense Tracker" evolved into Voops — born directly from our own relatable problem statement. We made it open source during our beta phase so every founder and team can gain effortless financial visibility.',
   },
 ];
 

@@ -165,7 +165,7 @@ export function RoadmapPage() {
             We build Voops in the open. If you have an idea for a feature,
             integration, or improvement, participate in our discussions on{' '}
             <a
-              href="https://github.com/Sylvorn-Labs/voops-web-user"
+              href="https://github.com/sylvorn-labs/voops-web-user"
               target="_blank"
               rel="noreferrer noopener"
               className="text-primary font-semibold underline"

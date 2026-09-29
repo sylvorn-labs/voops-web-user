@@ -9,6 +9,8 @@ export interface GalleryItem {
 export interface GalleryProps {
   id?: string;
   heading?: string;
+  actionUrl?: string;
+  actionText?: string;
   demoUrl?: string;
   demoText?: string;
   items?: GalleryItem[];
