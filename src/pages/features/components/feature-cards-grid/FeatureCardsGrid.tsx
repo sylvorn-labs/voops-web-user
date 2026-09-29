@@ -10,10 +10,10 @@ import { FeatureCardGridItem } from './FeatureCardGridItem';
 export function FeatureCardsGrid({
   id = 'capabilities',
   heading = 'Built for Scalable Multi-Business Operations',
-  description = 'Open-source expense tracking engineered by Sylvorn Labs with strict data privacy, enterprise-grade architecture, and zero bloat.',
+  description = 'Limited-time open source expense tracking engineered by Sylvorn Labs during Public Beta with strict data privacy and enterprise-grade architecture.',
   primaryAction = {
-    text: 'Explore open source code',
-    url: 'https://github.com/Sylvorn-Labs/voops-web-user',
+    text: 'Explore beta codebase',
+    url: 'https://github.com/sylvorn-labs/voops-web-user',
     isExternal: true,
   },
   features = defaultFeatures,

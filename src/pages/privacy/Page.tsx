@@ -5,7 +5,7 @@ export function PrivacyPage() {
   return (
     <ResourceLayout
       title="Privacy & Policy"
-      subtitle="Last updated: September 19, 2026 • Privacy Commitment by Sylvorn Labs"
+      subtitle="Last updated: September 29, 2026 • Privacy Commitment by Sylvorn Labs"
       badge="Data Protection & Privacy"
       sidebar={privacySidebarConfig}
     >
@@ -19,7 +19,10 @@ export function PrivacyPage() {
             to you and your organization. Voops is designed from the ground up
             with strict tenant isolation, end-to-end transport encryption, and
             zero data monetization practices. We never sell your personal data
-            or transaction history to advertisers or third-party brokers.
+            or transaction history to advertisers, data brokers, or third-party
+            marketers. All account interactions occur within authenticated live
+            workspaces; Voops does not maintain public or unauthenticated demo
+            sandboxes.
           </p>
         </section>
 
@@ -53,10 +56,11 @@ export function PrivacyPage() {
             </li>
             <li>
               <strong className="text-foreground">
-                Telemetry & Diagnostic Logs:
+                Public Beta Telemetry & Diagnostic Logs:
               </strong>{' '}
-              Anonymized performance metrics and error logs used exclusively to
-              diagnose application instability and optimize sync latency.
+              Anonymized crash logs, synchronization timings, and performance
+              metrics used strictly to diagnose stability issues and optimize
+              sync throughput during our beta release.
             </li>
           </ul>
         </section>
@@ -126,11 +130,11 @@ export function PrivacyPage() {
 
         <section>
           <h2 className="text-foreground text-2xl font-bold tracking-tight">
-            5. Your Privacy Rights & GDPR / CCPA Compliance
+            5. Your Privacy Rights & Data Portability
           </h2>
           <p className="text-muted-foreground mt-2 leading-relaxed">
-            Regardless of your geographic location, we provide comprehensive
-            data autonomy rights:
+            Regardless of your geographic location or future licensing models,
+            we provide comprehensive data autonomy rights:
           </p>
           <ul className="text-muted-foreground mt-3 list-disc space-y-2 pl-6">
             <li>
@@ -139,14 +143,16 @@ export function PrivacyPage() {
               through the application.
             </li>
             <li>
-              <strong className="text-foreground">Right to Portability:</strong>{' '}
-              Export your full transaction data in standard machine-readable CSV
-              / JSON formats.
+              <strong className="text-foreground">
+                Right to Data Portability:
+              </strong>{' '}
+              Export your complete transaction history, ledgers, and accounts in
+              standard machine-readable CSV / JSON formats at any time.
             </li>
             <li>
               <strong className="text-foreground">Right to Erasure:</strong>{' '}
-              Request permanent deletion of your user profile and associated
-              workspace data.
+              Request permanent deletion of your user profile, receipts, and
+              associated workspace data.
             </li>
           </ul>
         </section>

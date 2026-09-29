@@ -9,8 +9,7 @@ export const defaultIndustries: IndustryItem[] = [
     name: 'Agencies & Studios',
     description:
       'Manage multiple client projects, track contractor expenses, and monitor exact project profitability without mixing client financials.',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg',
+    image: '/images/illustrations/creative_team.svg',
     imageAlt: 'Agencies illustration',
     url: '#features',
   },
@@ -18,8 +17,7 @@ export const defaultIndustries: IndustryItem[] = [
     name: 'Multi-Brand Founders',
     description:
       'Consolidate finances across multiple incorporated entities and online stores with segregated balance accounts and a unified single login.',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg',
+    image: '/images/illustrations/business_deal.svg',
     imageAlt: 'Founders illustration',
     url: '#features',
   },
@@ -27,8 +25,7 @@ export const defaultIndustries: IndustryItem[] = [
     name: 'Freelancers & Creators',
     description:
       'Categorize business expenses, track deductible write-offs, and generate ready-to-file quarterly reports in seconds.',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-3.svg',
+    image: '/images/illustrations/freelancer.svg',
     imageAlt: 'Freelancers illustration',
     url: '#features',
   },
@@ -36,8 +33,7 @@ export const defaultIndustries: IndustryItem[] = [
     name: 'Startups & Core Teams',
     description:
       'Assign granular role-based permissions, delegate receipt captures to teammates, and maintain transparent audit trails.',
-    image:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-4.svg',
+    image: '/images/illustrations/startup_life.svg',
     imageAlt: 'Startups illustration',
     url: '#features',
   },

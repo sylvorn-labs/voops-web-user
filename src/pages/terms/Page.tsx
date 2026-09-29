@@ -5,21 +5,24 @@ export function TermsPage() {
   return (
     <ResourceLayout
       title="Terms & Conditions"
-      subtitle="Last updated: September 19, 2026 • Effective Date: January 1, 2026"
+      subtitle="Last updated: September 29, 2026 • Effective Date: January 1, 2026"
       badge="Legal & Compliance"
       sidebar={termsSidebarConfig}
     >
       <div className="space-y-8">
         <section>
           <h2 className="text-foreground text-2xl font-bold tracking-tight">
-            1. Acceptance of Terms
+            1. Acceptance of Terms & Public Beta Notice
           </h2>
           <p className="text-muted-foreground mt-2 leading-relaxed">
             By creating an account, accessing, or using Voops
             (&quot;Service&quot;, &quot;Platform&quot;), operated by Sylvorn
             Labs (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree
-            to be bound by these Terms and Conditions. If you do not agree with
-            any part of these terms, you may not access or use the platform.
+            to be bound by these Terms and Conditions. The platform is currently
+            operating in <strong>Public Beta</strong>. Features, sync protocols,
+            and interfaces are continuously iterated and optimized. If you do
+            not agree with any part of these terms, you may not access or use
+            the platform.
           </p>
         </section>
 
@@ -30,8 +33,10 @@ export function TermsPage() {
           <p className="text-muted-foreground mt-2 leading-relaxed">
             Voops provides multi-entity expense tracking, financial
             categorization, team role management, and analytical reporting
-            tools. You may create or join multiple business workspaces under a
-            single user authentication identity.
+            tools. All accounts created are live registered user workspaces;
+            Voops does not offer unauthenticated public demo sandboxes. You may
+            create or join multiple business workspaces under a single user
+            authentication identity.
           </p>
           <ul className="text-muted-foreground mt-3 list-disc space-y-2 pl-6">
             <li>
@@ -82,57 +87,71 @@ export function TermsPage() {
 
         <section>
           <h2 className="text-foreground text-2xl font-bold tracking-tight">
-            4. Open Source & Commercial Usage
+            4. Limited-Time Open Source Beta & Intellectual Property
           </h2>
           <p className="text-muted-foreground mt-2 leading-relaxed">
-            Portions of the Voops software suite are distributed under
-            permissive open-source licenses by Sylvorn Labs. Managed cloud
-            services, hosted synchronization endpoints, automated backups, and
-            proprietary analytical features are subject to our hosted service
-            tier guidelines and fair usage policies.
+            The software source code for Voops is made available on GitHub under
+            a <strong>limited-time open-source model</strong> strictly for the
+            duration of the Public Beta evaluation phase. Sylvorn Labs retains
+            all proprietary rights, patents, trademarks, and trade dress
+            associated with Voops.
+          </p>
+          <p className="text-muted-foreground mt-2 leading-relaxed">
+            Sylvorn Labs reserves the absolute and unencumbered right to amend,
+            restrict, or transition source code licensing models (including
+            transitioning future releases, managed cloud instances, enterprise
+            modules, and automated sync infrastructure to commercial,
+            dual-license, or source-available frameworks) upon conclusion of or
+            during the Public Beta. Participation in the beta does not convey
+            any perpetual commercial exploitation rights, nor does it guarantee
+            perpetual open-source availability of subsequent software versions.
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground text-2xl font-bold tracking-tight">
-            5. Limitation of Liability & Financial Disclaimer
+            5. Limitation of Liability & &quot;AS IS&quot; Disclaimer
           </h2>
           <blockquote className="border-border/60 bg-muted/30 border-l-primary my-4 rounded-r-lg border-l-4 p-4 text-sm italic">
-            Voops is an expense tracking and financial analysis utility. Voops
-            and Sylvorn Labs do not provide certified financial, accounting,
-            legal, or tax advice. Always consult a qualified professional for
-            regulatory compliance and audit filings.
+            Voops is provided on an &quot;AS IS&quot; and &quot;AS
+            AVAILABLE&quot; basis during Public Beta. Voops and Sylvorn Labs do
+            not provide certified financial, accounting, legal, or tax advisory
+            services. Always verify all calculations and consult a certified
+            public accountant (CPA) or licensed legal professional for
+            regulatory tax filings.
           </blockquote>
           <p className="text-muted-foreground mt-2 leading-relaxed">
             To the maximum extent permitted by applicable law, Sylvorn Labs
             shall not be liable for any indirect, incidental, special,
             consequential, or punitive damages resulting from loss of profits,
-            data corruption, or business disruption.
+            data corruption, system downtime, sync delays, or business
+            disruption occurring during or in connection with the beta service.
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground text-2xl font-bold tracking-tight">
-            6. Account Termination & Data Export
+            6. Account Termination & Data Export Guarantee
           </h2>
           <p className="text-muted-foreground mt-2 leading-relaxed">
-            You may terminate your account at any time. Prior to account
-            closure, you have the right to export all workspace transaction
-            records and receipts in open formats (JSON/CSV). Upon termination,
-            your active access will cease in accordance with our retention
-            policy.
+            You may terminate your account at any time. Regardless of future
+            licensing transitions, you retain complete ownership over your
+            financial transaction records, receipts, and ledger files. Prior to
+            account closure or during normal usage, you possess the unencumbered
+            right to export all workspace transaction records and receipts in
+            standard open formats (JSON/CSV).
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground text-2xl font-bold tracking-tight">
-            7. Modifications to Terms
+            7. Modifications to Terms & Platform Evolution
           </h2>
           <p className="text-muted-foreground mt-2 leading-relaxed">
-            We reserve the right to revise or update these terms at our
-            discretion. Notice of material changes will be provided via platform
-            notifications or by updating the revision date at the top of this
-            document.
+            We reserve the right to revise or update these terms and service
+            tier structures at our discretion. Notice of material changes will
+            be communicated via platform announcements, email notifications, or
+            by updating the revision date at the top of this document.
           </p>
         </section>
 

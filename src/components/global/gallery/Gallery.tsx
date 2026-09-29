@@ -22,14 +22,19 @@ import { GalleryCard } from './GalleryCard';
 export function Gallery({
   id = 'gallery',
   heading = 'Take a Tour Inside Voops',
-  demoUrl = '/register',
-  demoText = 'Explore live interactive demo',
+  actionUrl,
+  actionText,
+  demoUrl,
+  demoText,
   items = defaultItems,
   className,
 }: GalleryProps) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const resolvedUrl = actionUrl ?? demoUrl ?? '/register';
+  const resolvedText = actionText ?? demoText ?? 'Get Started Free';
 
   useEffect(() => {
     if (!carouselApi) {
@@ -46,7 +51,8 @@ export function Gallery({
     };
   }, [carouselApi]);
 
-  const isDemoInternal = demoUrl.startsWith('/') && !demoUrl.startsWith('/#');
+  const isInternal =
+    resolvedUrl.startsWith('/') && !resolvedUrl.startsWith('/#');
 
   return (
     <section
@@ -59,12 +65,12 @@ export function Gallery({
             <h2 className="text-foreground mb-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
               {heading}
             </h2>
-            {isDemoInternal ? (
+            {isInternal ? (
               <Link
-                to={demoUrl}
+                to={resolvedUrl}
                 className="group text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors md:text-base"
               >
-                <span>{demoText}</span>
+                <span>{resolvedText}</span>
                 <HugeiconsIcon
                   icon={ArrowUpRight01Icon}
                   className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -72,12 +78,12 @@ export function Gallery({
               </Link>
             ) : (
               <a
-                href={demoUrl}
+                href={resolvedUrl}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="group text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors md:text-base"
               >
-                <span>{demoText}</span>
+                <span>{resolvedText}</span>
                 <HugeiconsIcon
                   icon={ArrowUpRight01Icon}
                   className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

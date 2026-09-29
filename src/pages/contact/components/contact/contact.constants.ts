@@ -17,5 +17,5 @@ export const defaultContactValues = {
   chatLabel: 'Community & Discussions',
   chatDescription: 'Explore our GitHub repository and open discussions.',
   chatLink: 'GitHub Repository',
-  chatUrl: 'https://github.com/Sylvorn-Labs/voops-web-user',
+  chatUrl: 'https://github.com/sylvorn-labs/voops-web-user',
 };

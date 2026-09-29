@@ -11,8 +11,8 @@ import type { TrustItem } from './trust-strip.d';
 export const defaultItems: TrustItem[] = [
   {
     icon: <HugeiconsIcon icon={GithubIcon} className="size-5" />,
-    title: '100% Open Source',
-    description: 'Public codebase by Sylvorn Labs',
+    title: 'Limited-Time Open Source',
+    description: 'Public codebase during Beta release',
   },
   {
     icon: <HugeiconsIcon icon={SecurityCheckIcon} className="size-5" />,

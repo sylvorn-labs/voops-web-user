@@ -28,7 +28,9 @@ export function Hero({ className }: HeroProps = {}) {
             {/* Top Leading Badge / Icon */}
             <div className="bg-primary/10 border-primary/20 text-primary flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold shadow-xs">
               <HugeiconsIcon icon={Coins01Icon} className="size-4" />
-              <span>Open Source Expense Tracker by Sylvorn Labs</span>
+              <span>
+                Limited-Time Open Source (Beta) • Engineered by Sylvorn Labs
+              </span>
             </div>
 
             {/* Headline */}

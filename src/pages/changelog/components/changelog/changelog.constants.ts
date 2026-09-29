@@ -14,7 +14,7 @@ export const defaultEntries: ChangelogEntry[] = [
       'Built multi-business and multi-store money management interfaces',
     ],
     button: {
-      url: 'https://github.com/Sylvorn-Labs/voops-web-user',
+      url: 'https://github.com/sylvorn-labs/voops-web-user',
       text: 'View Web Repository',
     },
   },

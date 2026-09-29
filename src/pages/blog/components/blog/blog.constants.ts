@@ -10,7 +10,7 @@ export const defaultBlogPosts: BlogPost[] = [
     label: 'Architecture',
     author: {
       name: 'Sarah Chen',
-      website: 'https://github.com/Sylvorn-Labs',
+      website: 'https://github.com/sylvorn-labs',
       websiteName: 'Sylvorn Labs',
       image:
         'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80',
@@ -30,7 +30,7 @@ export const defaultBlogPosts: BlogPost[] = [
     label: 'Engineering',
     author: {
       name: 'Marcus Rodriguez',
-      website: 'https://github.com/Sylvorn-Labs',
+      website: 'https://github.com/sylvorn-labs',
       websiteName: 'Sylvorn Labs',
       image:
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80',
@@ -50,7 +50,7 @@ export const defaultBlogPosts: BlogPost[] = [
     label: 'Security',
     author: {
       name: 'Emma Thompson',
-      website: 'https://github.com/Sylvorn-Labs',
+      website: 'https://github.com/sylvorn-labs',
       websiteName: 'Sylvorn Labs',
       image:
         'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80',
@@ -70,7 +70,7 @@ export const defaultBlogPosts: BlogPost[] = [
     label: 'Productivity',
     author: {
       name: 'Alex Rivera',
-      website: 'https://github.com/Sylvorn-Labs',
+      website: 'https://github.com/sylvorn-labs',
       websiteName: 'Sylvorn Labs',
       image:
         'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80',
@@ -90,7 +90,7 @@ export const defaultBlogPosts: BlogPost[] = [
     label: 'Open Source',
     author: {
       name: 'Sylvorn Labs Core',
-      website: 'https://github.com/Sylvorn-Labs/voops-web-user',
+      website: 'https://github.com/sylvorn-labs/voops-web-user',
       websiteName: 'Voops Project',
       image:
         'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80',
@@ -110,7 +110,7 @@ export const defaultBlogPosts: BlogPost[] = [
     label: 'Finance Ops',
     author: {
       name: 'Elena Rostova',
-      website: 'https://github.com/Sylvorn-Labs',
+      website: 'https://github.com/sylvorn-labs',
       websiteName: 'Sylvorn Labs',
       image:
         'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80',

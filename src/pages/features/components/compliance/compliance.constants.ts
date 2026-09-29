@@ -12,7 +12,7 @@ export const defaultBadges: ComplianceBadge[] = [
     icon: Supabase,
   },
   {
-    title: 'Open Source GitHub',
+    title: 'Public Beta Codebase',
     icon: Github,
   },
 ];
@@ -26,17 +26,17 @@ export const defaultFeatures: ComplianceFeature[] = [
     badgeAlt: 'PostgreSQL RLS',
   },
   {
-    title: 'Open-Source & Permissive License',
+    title: 'Limited-Time Open Source (Beta)',
     description:
-      '100% open source under a permissive license. No proprietary black boxes or vendor lock-in — inspect and audit every line of code.',
+      'Inspect and audit the codebase during our public beta release on GitHub. Full architectural transparency with zero hidden black boxes.',
     icon: Github,
-    badgeAlt: 'Open Source',
+    badgeAlt: 'Limited-Time Open Source',
   },
   {
-    title: 'Self-Hostable & Full Data Sovereignty',
+    title: 'Data Sovereignty & Portability',
     description:
-      'Retain complete ownership of your business financials. Self-host on your own infrastructure or run on your own Supabase instance.',
+      'Retain complete ownership of your business financials with unencumbered rights to export your entire ledger data anytime.',
     icon: Supabase,
-    badgeAlt: 'Self Hostable',
+    badgeAlt: 'Data Sovereignty',
   },
 ];

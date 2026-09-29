@@ -26,7 +26,7 @@ export const defaultSections: FooterSection[] = [
       { name: 'Road Map', href: '/roadmap' },
       {
         name: 'GitHub (Web)',
-        href: 'https://github.com/Sylvorn-Labs/voops-web-user',
+        href: 'https://github.com/sylvorn-labs/voops-web-user',
       },
       {
         name: 'GitHub (Mobile)',

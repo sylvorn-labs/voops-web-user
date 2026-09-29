@@ -9,9 +9,9 @@ export const defaultFaqItems: FaqItem[] = [
   },
   {
     id: 'faq-2',
-    question: 'Is Voops completely open source?',
+    question: 'Is Voops open source?',
     answer:
-      'Yes! Voops is an open-source financial tracking platform crafted by Sylvorn Labs. You have full transparency over your data, can audit the source code on GitHub, and self-host if desired.',
+      'Voops is currently available as a limited-time open source release during our public beta. You have full transparency over your data, can audit the source code on GitHub, and evaluate the architecture during the beta phase. Future hosted enterprise services and post-beta releases may transition to commercial or source-available licensing models.',
   },
   {
     id: 'faq-3',
