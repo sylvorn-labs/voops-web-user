@@ -10,13 +10,12 @@ import type {
   ListAccountsParams,
   UpdateAccountRequest,
 } from '@/types/api/account.d';
-import { AccountAPI } from '@/api/account.api';
-
-export const accountAPI = AccountAPI.getInstance();
+import { accountAPI } from '@/api/account.api';
+import { businessQueryKeys } from './business.hook';
 
 export const accountQueryKeys = {
   all: ['accounts'] as const,
-  list: (params?: ListAccountsParams) =>
+  list: (params: ListAccountsParams) =>
     [...accountQueryKeys.all, 'list', params] as const,
   detail: (id: string) => [...accountQueryKeys.all, 'detail', id] as const,
 };
@@ -48,6 +47,9 @@ export function useCreateAccount() {
       queryClient.invalidateQueries({
         queryKey: accountQueryKeys.all,
       });
+      queryClient.invalidateQueries({
+        queryKey: businessQueryKeys.all,
+      });
       toast.success('Account created successfully!');
     },
     onError: (error: Error) => {
@@ -66,6 +68,9 @@ export function useUpdateAccount() {
       queryClient.invalidateQueries({
         queryKey: accountQueryKeys.all,
       });
+      queryClient.invalidateQueries({
+        queryKey: businessQueryKeys.all,
+      });
       toast.success('Account updated successfully!');
     },
     onError: (error: Error) => {
@@ -83,6 +88,9 @@ export function useToggleArchiveAccount() {
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
         queryKey: accountQueryKeys.all,
+      });
+      queryClient.invalidateQueries({
+        queryKey: businessQueryKeys.all,
       });
       toast.success(
         variables.is_archived
@@ -104,6 +112,9 @@ export function useDeleteAccount() {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: accountQueryKeys.all,
+      });
+      queryClient.invalidateQueries({
+        queryKey: businessQueryKeys.all,
       });
       toast.success('Account deleted successfully!');
     },

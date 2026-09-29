@@ -4,6 +4,7 @@ import { DataTableColumnHeader } from '@/components/dashboard/data-table/DataTab
 import { DataTableRowActions } from '@/components/dashboard/data-table/data-table-row-actions';
 import type { RowActionConfig } from '@/components/dashboard/data-table/types';
 import type { AccountListItem } from '@/types/api/account.d';
+import { cn } from '@/lib/utils';
 
 import { AccountKindBadge } from './components/account-kind-badge/AccountKindBadge';
 import { AccountStatusBadge } from './components/account-status-badge/AccountStatusBadge';
@@ -34,17 +35,49 @@ export function getAccountColumns(
       cell: ({ row }) => <AccountKindBadge kind={row.original.kind} />,
     },
     {
+      accessorKey: 'current_balance',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Current Balance" />
+      ),
+      cell: ({ row }) => {
+        const val = Number(
+          row.original.current_balance ?? row.original.opening_balance ?? 0,
+        );
+        const formatted = new Intl.NumberFormat('en-IN', {
+          style: 'currency',
+          currency: 'INR',
+        }).format(val);
+
+        return (
+          <span
+            className={cn(
+              'font-mono text-sm font-semibold',
+              val >= 0
+                ? 'text-emerald-600 dark:text-emerald-400'
+                : 'text-rose-600 dark:text-rose-400',
+            )}
+          >
+            {formatted}
+          </span>
+        );
+      },
+    },
+    {
       accessorKey: 'opening_balance',
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Opening Balance" />
       ),
       cell: ({ row }) => {
-        const formatted = new Intl.NumberFormat('en-US', {
+        const formatted = new Intl.NumberFormat('en-IN', {
           style: 'currency',
-          currency: 'USD',
+          currency: 'INR',
         }).format(Number(row.original.opening_balance));
 
-        return <span className="text-foreground font-medium">{formatted}</span>;
+        return (
+          <span className="text-muted-foreground font-mono text-xs">
+            {formatted}
+          </span>
+        );
       },
     },
     {

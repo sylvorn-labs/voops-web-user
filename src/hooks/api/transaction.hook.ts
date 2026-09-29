@@ -15,6 +15,8 @@ import type {
   Transaction,
   UpdateTransactionRequest,
 } from '@/types/api/transaction.d';
+import { businessQueryKeys } from './business.hook';
+import { accountQueryKeys } from './account.hook';
 
 export const transactionKeys = {
   all: ['transactions'] as const,
@@ -49,7 +51,8 @@ export function useCreateTransaction(): UseMutationResult<
       TransactionAPI.getInstance().create(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: transactionKeys.all });
-      queryClient.invalidateQueries({ queryKey: ['accounts'] });
+      queryClient.invalidateQueries({ queryKey: accountQueryKeys.all });
+      queryClient.invalidateQueries({ queryKey: businessQueryKeys.all });
       toast.success('Transaction created successfully.');
     },
     onError: (error: Error) => {
@@ -75,7 +78,8 @@ export function useUpdateTransaction(): UseMutationResult<
     }) => TransactionAPI.getInstance().update(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: transactionKeys.all });
-      queryClient.invalidateQueries({ queryKey: ['accounts'] });
+      queryClient.invalidateQueries({ queryKey: accountQueryKeys.all });
+      queryClient.invalidateQueries({ queryKey: businessQueryKeys.all });
       toast.success('Transaction updated successfully.');
     },
     onError: (error: Error) => {
@@ -96,7 +100,8 @@ export function useToggleArchiveTransaction(): UseMutationResult<
       TransactionAPI.getInstance().toggleArchive(id, is_archived),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: transactionKeys.all });
-      queryClient.invalidateQueries({ queryKey: ['accounts'] });
+      queryClient.invalidateQueries({ queryKey: accountQueryKeys.all });
+      queryClient.invalidateQueries({ queryKey: businessQueryKeys.all });
       toast.success(
         `Transaction ${variables.is_archived ? 'archived' : 'restored'} successfully.`,
       );
@@ -118,7 +123,8 @@ export function useDeleteTransaction(): UseMutationResult<
     mutationFn: (id: string) => TransactionAPI.getInstance().delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: transactionKeys.all });
-      queryClient.invalidateQueries({ queryKey: ['accounts'] });
+      queryClient.invalidateQueries({ queryKey: accountQueryKeys.all });
+      queryClient.invalidateQueries({ queryKey: businessQueryKeys.all });
       toast.success('Transaction deleted successfully.');
     },
     onError: (error: Error) => {

@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase';
 import type {
   Account,
+  AccountKind,
   AccountListItem,
   CreateAccountRequest,
   CreateAccountResponse,
@@ -10,6 +11,27 @@ import type {
   UpdateAccountRequest,
 } from '@/types/api/account.d';
 import type { ApiResponse, PaginatedResponse } from '@/types/api.d';
+
+function formatAccount(row: Record<string, unknown>): Account {
+  const opening = Number(row.opening_balance ?? 0);
+  const current =
+    row.current_balance !== undefined && row.current_balance !== null
+      ? Number(row.current_balance)
+      : opening;
+
+  return {
+    id: String(row.id),
+    business_id: String(row.business_id),
+    name: String(row.name),
+    kind: row.kind as AccountKind,
+    opening_balance: opening,
+    current_balance: current,
+    is_archived: Boolean(row.is_archived),
+    created_at: String(row.created_at),
+    updated_at: String(row.updated_at),
+    deleted_at: row.deleted_at ? String(row.deleted_at) : null,
+  };
+}
 
 export class AccountAPI implements IAccountAPI {
   private static instance: AccountAPI;
@@ -33,7 +55,7 @@ export class AccountAPI implements IAccountAPI {
     let query = supabase
       .from('accounts')
       .select(
-        'id, business_id, name, kind, opening_balance, is_archived, created_at, updated_at',
+        'id, business_id, name, kind, opening_balance, current_balance, is_archived, created_at, updated_at, deleted_at',
         {
           count: 'exact',
         },
@@ -76,11 +98,14 @@ export class AccountAPI implements IAccountAPI {
 
     const total = count ?? 0;
     const totalPages = Math.ceil(total / limit);
+    const items = ((data || []) as Record<string, unknown>[]).map(row =>
+      formatAccount(row),
+    );
 
     return {
       success: true,
       data: {
-        items: (data as AccountListItem[]) || [],
+        items,
         page,
         limit,
         total,
@@ -103,20 +128,23 @@ export class AccountAPI implements IAccountAPI {
 
     return {
       success: true,
-      data: data as Account,
+      data: formatAccount(data as Record<string, unknown>),
     };
   }
 
   public async create(
     data: CreateAccountRequest,
   ): Promise<ApiResponse<CreateAccountResponse>> {
+    const openingBalance = data.opening_balance ?? 0;
+
     const { data: inserted, error } = await supabase
       .from('accounts')
       .insert({
         business_id: data.business_id,
         name: data.name.trim(),
         kind: data.kind,
-        opening_balance: data.opening_balance ?? 0,
+        opening_balance: openingBalance,
+        current_balance: openingBalance,
         is_archived: data.is_archived ?? false,
       })
       .select('id')
@@ -157,7 +185,7 @@ export class AccountAPI implements IAccountAPI {
 
     return {
       success: true,
-      data: updated as Account,
+      data: formatAccount(updated as Record<string, unknown>),
     };
   }
 
@@ -180,3 +208,5 @@ export class AccountAPI implements IAccountAPI {
     };
   }
 }
+
+export const accountAPI = AccountAPI.getInstance();
