@@ -36,8 +36,8 @@ import { AccountKindBadge } from '@/pages/accounts/list/components/account-kind-
 import { AccountStatusBadge } from '@/pages/accounts/list/components/account-status-badge/AccountStatusBadge';
 import { accountFormSchema } from '@/pages/accounts/components/schema/account.schema';
 import { ACCOUNT_KIND_OPTIONS } from '@/pages/accounts/components/schema/account.constants';
-import type { AccountFormValues } from '@/pages/accounts/components/schema/account.d';
 import type { AccountBasicTabProps } from './account-basic-tab.d';
+import type { AccountFormValues } from '@/pages/accounts/components/schema/account.d';
 
 export function AccountBasicTab({ account }: AccountBasicTabProps) {
   const updateMutation = useUpdateAccount();
@@ -205,9 +205,14 @@ export function AccountBasicTab({ account }: AccountBasicTabProps) {
     </div>
   );
 
-  const formattedOpeningBalance = new Intl.NumberFormat('en-US', {
+  const formattedCurrentBalance = new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
+  }).format(Number(account.current_balance ?? account.opening_balance ?? 0));
+
+  const formattedOpeningBalance = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
   }).format(Number(account.opening_balance));
 
   const rightContent = (
@@ -233,9 +238,17 @@ export function AccountBasicTab({ account }: AccountBasicTabProps) {
             value={<AccountStatusBadge isArchived={account.is_archived} />}
           />
           <DataCardPropertyRow
+            label="Current Balance"
+            value={
+              <span className="font-mono text-base font-semibold text-emerald-600 dark:text-emerald-400">
+                {formattedCurrentBalance}
+              </span>
+            }
+          />
+          <DataCardPropertyRow
             label="Opening Balance"
             value={
-              <span className="text-foreground font-semibold">
+              <span className="text-muted-foreground font-mono text-sm">
                 {formattedOpeningBalance}
               </span>
             }

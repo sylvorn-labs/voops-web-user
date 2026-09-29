@@ -2,11 +2,12 @@ import { useMemo } from 'react';
 import { Link } from 'react-router';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
-  ArrowRight01Icon,
   BankIcon,
-  Coins01Icon,
   CreditCardIcon,
+  Money03Icon,
   Wallet02Icon,
+  Building06Icon,
+  ArrowRight01Icon,
   PlusSignIcon,
 } from '@hugeicons/core-free-icons';
 
@@ -20,7 +21,7 @@ import {
 import { Badge } from '@/components/ui/badge/Badge';
 import { Button } from '@/components/ui/button/Button';
 import { Skeleton } from '@/components/ui/skeleton/Skeleton';
-import type { AccountListItem } from '@/types/api/account.d';
+import type { AccountListItem, AccountKind } from '@/types/api/account.d';
 import { useSheetOpen } from '@/stores/sheet/sheet.selectors';
 
 interface AccountsSnapshotCardProps {
@@ -29,19 +30,20 @@ interface AccountsSnapshotCardProps {
   isLoading?: boolean;
 }
 
-const getAccountIcon = (kind: string) => {
+function getAccountIcon(kind: AccountKind) {
   switch (kind) {
     case 'bank':
       return BankIcon;
     case 'card':
       return CreditCardIcon;
+    case 'cash':
+      return Money03Icon;
     case 'wallet':
       return Wallet02Icon;
-    case 'cash':
     default:
-      return Coins01Icon;
+      return Building06Icon;
   }
-};
+}
 
 export function AccountsSnapshotCard({
   accounts,
@@ -61,22 +63,22 @@ export function AccountsSnapshotCard({
     [currencyCode],
   );
 
+  const handleRowClick = (acc: AccountListItem) => {
+    openSheet({
+      sheetKey: 'account',
+      mode: 'view',
+      id: acc.id,
+      title: 'Account Details',
+      description: 'View details of this financial account.',
+    });
+  };
+
   const handleAddAccount = () => {
     openSheet({
       sheetKey: 'account',
       mode: 'add',
       title: 'Add Account',
-      description: 'Create a new bank, cash, or wallet account.',
-    });
-  };
-
-  const handleRowClick = (account: AccountListItem) => {
-    openSheet({
-      sheetKey: 'account',
-      mode: 'view',
-      id: account.id,
-      title: 'Account Details',
-      description: 'View details of this account.',
+      description: 'Add a new bank, wallet, or cash account to track funds.',
     });
   };
 
@@ -88,10 +90,10 @@ export function AccountsSnapshotCard({
             Accounts Snapshot
           </CardTitle>
           <CardDescription className="text-xs">
-            Liquidity breakdown across your financial channels.
+            Overview of liquidity and balances across active accounts.
           </CardDescription>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <Button
             variant="ghost"
             size="sm"
@@ -120,7 +122,7 @@ export function AccountsSnapshotCard({
             {Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between gap-4 border-b border-border/40 py-2.5 last:border-0"
+                className="border-border/40 flex items-center justify-between gap-4 border-b py-2.5 last:border-0"
               >
                 <div className="flex items-center gap-3">
                   <Skeleton className="size-9 rounded-xl" />
@@ -134,7 +136,7 @@ export function AccountsSnapshotCard({
             ))}
           </div>
         ) : accounts.length === 0 ? (
-          <div className="flex h-[200px] flex-col items-center justify-center gap-3 text-center text-muted-foreground">
+          <div className="text-muted-foreground flex h-[200px] flex-col items-center justify-center gap-3 text-center">
             <HugeiconsIcon icon={Wallet02Icon} className="size-8 opacity-40" />
             <p className="text-sm">No payment accounts created yet.</p>
             <Button size="sm" variant="outline" onClick={handleAddAccount}>
@@ -143,19 +145,21 @@ export function AccountsSnapshotCard({
             </Button>
           </div>
         ) : (
-          <div className="divide-y divide-border/40">
+          <div className="divide-border/40 divide-y">
             {accounts.slice(0, 5).map(acc => {
               const Icon = getAccountIcon(acc.kind);
-              const balance = Number(acc.opening_balance ?? 0);
+              const balance = Number(
+                acc.current_balance ?? acc.opening_balance ?? 0,
+              );
 
               return (
                 <div
                   key={acc.id}
                   onClick={() => handleRowClick(acc)}
-                  className="group flex cursor-pointer items-center justify-between gap-4 py-3 transition-colors hover:bg-muted/40 rounded-xl px-2 -mx-2"
+                  className="group hover:bg-muted/40 -mx-2 flex cursor-pointer items-center justify-between gap-4 rounded-xl px-2 py-3 transition-colors"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-105">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <div className="bg-primary/10 text-primary flex size-9 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-105">
                       <HugeiconsIcon icon={Icon} className="size-4" />
                     </div>
                     <div className="min-w-0 space-y-0.5">
@@ -164,7 +168,7 @@ export function AccountsSnapshotCard({
                       </p>
                       <Badge
                         variant="secondary"
-                        className="text-[10px] font-normal capitalize py-0 px-1.5"
+                        className="px-1.5 py-0 text-[10px] font-normal capitalize"
                       >
                         {acc.kind}
                       </Badge>
@@ -172,7 +176,7 @@ export function AccountsSnapshotCard({
                   </div>
 
                   <div className="shrink-0 text-right">
-                    <p className="font-mono text-sm font-semibold tracking-tight text-foreground">
+                    <p className="text-foreground font-mono text-sm font-semibold tracking-tight">
                       {formatCurrency(balance)}
                     </p>
                   </div>

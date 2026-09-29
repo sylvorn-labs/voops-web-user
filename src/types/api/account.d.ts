@@ -6,6 +6,7 @@ export type AccountSortBy =
   | 'name'
   | 'kind'
   | 'opening_balance'
+  | 'current_balance'
   | 'is_archived'
   | 'created_at'
   | 'updated_at';
@@ -16,6 +17,7 @@ export interface AccountListItem {
   name: string;
   kind: AccountKind;
   opening_balance: number;
+  current_balance: number;
   is_archived: boolean;
   created_at: string;
   updated_at: string;
@@ -28,6 +30,7 @@ export interface Account {
   name: string;
   kind: AccountKind;
   opening_balance: number;
+  current_balance: number;
   is_archived: boolean;
   created_at: string;
   updated_at: string;

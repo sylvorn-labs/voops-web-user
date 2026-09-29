@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { subDays, startOfMonth, parseISO, isAfter } from 'date-fns';
 
@@ -25,6 +25,7 @@ import { RecentTransactionsCard } from './components/recent-activity/RecentTrans
 import { AccountsSnapshotCard } from './components/recent-activity/AccountsSnapshotCard';
 import { DashboardQuickActions } from './components/quick-actions/DashboardQuickActions';
 import { DashboardEmptyState } from './components/empty-state/DashboardEmptyState';
+import { useSetBreadcrumbs } from '@/stores/breadcrumbs/breadcrumbs.selectors';
 
 const TIMEFRAME_LABELS: Record<DashboardTimeframe, string> = {
   '30d': 'Last 30 Days',
@@ -34,8 +35,9 @@ const TIMEFRAME_LABELS: Record<DashboardTimeframe, string> = {
 };
 
 export function DashboardPage() {
-  const activeBusinessId = useActiveBusinessId();
   const [timeframe, setTimeframe] = useState<DashboardTimeframe>('30d');
+  const activeBusinessId = useActiveBusinessId();
+  const setBreadcrumbs = useSetBreadcrumbs();
 
   // 1. Fetch Business Details
   const { data: businessData, isLoading: isBusinessLoading } = useQuery({
@@ -218,6 +220,10 @@ export function DashboardPage() {
       })
       .sort((a, b) => b.amount - a.amount);
   }, [filteredTransactions, allCategories]);
+
+  useEffect(() => {
+    setBreadcrumbs([{ label: 'Dashboard', href: '/dashboard', isPage: true }]);
+  }, [setBreadcrumbs]);
 
   // Loading indicator
   const isLoading = isBusinessLoading || isTxLoading || isAccountsLoading;

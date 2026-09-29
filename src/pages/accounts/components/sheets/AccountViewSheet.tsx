@@ -3,15 +3,16 @@ import { useQuery } from '@tanstack/react-query';
 import { Edit02Icon, ArrowRight01Icon } from '@hugeicons/core-free-icons';
 
 import { SheetLoadingSkeleton } from '@/components/dashboard/sheet/SheetLoadingSkeleton';
-import { SheetFieldGroup } from '@/components/dashboard/sheet/SheetFieldGroup';
 import { SheetErrorState } from '@/components/dashboard/sheet/SheetErrorState';
+import { SheetFieldGroup } from '@/components/dashboard/sheet/SheetFieldGroup';
 import { SheetDetailRow } from '@/components/dashboard/sheet/SheetDetailRow';
 import { SheetActionBar } from '@/components/dashboard/sheet/SheetActionBar';
 import { useSheetStore } from '@/stores/sheet/sheet.store';
 import { getAccountByIdOptions } from '@/hooks/api/account.hook';
-import { AccountKindBadge } from '@/pages/accounts/list/components/account-kind-badge/AccountKindBadge';
-import { AccountStatusBadge } from '@/pages/accounts/list/components/account-status-badge/AccountStatusBadge';
 import type { ViewSheetProps } from '@/types/sheet.d';
+
+import { AccountKindBadge } from '../../list/components/account-kind-badge/AccountKindBadge';
+import { AccountStatusBadge } from '../../list/components/account-status-badge/AccountStatusBadge';
 
 export function AccountViewSheet({ id }: ViewSheetProps) {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export function AccountViewSheet({ id }: ViewSheetProps) {
   const closeSheet = useSheetStore(state => state.close);
 
   const { data, isLoading, isError, refetch } = useQuery(
-    getAccountByIdOptions(id),
+    getAccountByIdOptions(id ?? ''),
   );
 
   const account = data?.data;
@@ -42,13 +43,18 @@ export function AccountViewSheet({ id }: ViewSheetProps) {
     navigate(`/dashboard/accounts/${account.id}`);
   };
 
-  const formattedOpeningBalance = new Intl.NumberFormat('en-US', {
+  const formattedCurrentBalance = new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
+  }).format(account.current_balance ?? account.opening_balance);
+
+  const formattedOpeningBalance = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
   }).format(account.opening_balance);
 
   const formattedCreatedAt = new Date(account.created_at).toLocaleString(
-    'en-US',
+    'en-IN',
     {
       year: 'numeric',
       month: 'short',
@@ -59,7 +65,7 @@ export function AccountViewSheet({ id }: ViewSheetProps) {
   );
 
   const formattedUpdatedAt = new Date(account.updated_at).toLocaleString(
-    'en-US',
+    'en-IN',
     {
       year: 'numeric',
       month: 'short',
@@ -97,21 +103,32 @@ export function AccountViewSheet({ id }: ViewSheetProps) {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <SheetDetailRow
-            label="Opening Balance"
+            label="Current Balance"
             value={
-              <span className="text-foreground font-semibold">
-                {formattedOpeningBalance}
+              <span className="font-mono text-base font-semibold text-emerald-600 dark:text-emerald-400">
+                {formattedCurrentBalance}
               </span>
             }
           />
           <SheetDetailRow
-            label="Status"
-            value={<AccountStatusBadge isArchived={account.is_archived} />}
+            label="Opening Balance"
+            value={
+              <span className="text-muted-foreground font-mono text-sm">
+                {formattedOpeningBalance}
+              </span>
+            }
           />
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <SheetDetailRow
+            label="Status"
+            value={<AccountStatusBadge isArchived={account.is_archived} />}
+          />
           <SheetDetailRow label="Account ID" value={account.id} copyable />
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <SheetDetailRow
             label="Workspace ID"
             value={account.business_id}
@@ -123,7 +140,7 @@ export function AccountViewSheet({ id }: ViewSheetProps) {
       <SheetFieldGroup title="Audit Information">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <SheetDetailRow label="Created At" value={formattedCreatedAt} />
-          <SheetDetailRow label="Last Updated" value={formattedUpdatedAt} />
+          <SheetDetailRow label="Updated At" value={formattedUpdatedAt} />
         </div>
       </SheetFieldGroup>
     </div>
