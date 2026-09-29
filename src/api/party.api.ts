@@ -179,15 +179,13 @@ export class PartyAPI implements IPartyAPI {
   }
 
   public async delete(id: string): Promise<ApiResponse<DeletePartyResponse>> {
-    const { data: deleted, error } = await supabase
+    const { error } = await supabase
       .from('parties')
       .update({
         deleted_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })
-      .eq('id', id)
-      .select('id')
-      .single();
+      .eq('id', id);
 
     if (error) {
       throw new Error(error.message);
@@ -195,7 +193,7 @@ export class PartyAPI implements IPartyAPI {
 
     return {
       success: true,
-      data: { id: deleted.id },
+      data: { id },
     };
   }
 }

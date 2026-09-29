@@ -77,8 +77,7 @@ function formatTransaction(
 }
 
 const TXN_SELECT_QUERY = `
-  *,
-  paid_from_account:accounts!paid_from_account_id(name),
+  *,\n  paid_from_account:accounts!paid_from_account_id(name),
   received_in_account:accounts!received_in_account_id(name),
   category:categories(name, color),
   project:projects(name),
@@ -378,15 +377,13 @@ export class TransactionAPI implements ITransactionAPI {
   public async delete(
     id: string,
   ): Promise<ApiResponse<DeleteTransactionResponse>> {
-    const { data: deleted, error } = await supabase
+    const { error } = await supabase
       .from('transactions')
       .update({
         deleted_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })
-      .eq('id', id)
-      .select('id')
-      .single();
+      .eq('id', id);
 
     if (error) {
       throw new Error(error.message);
@@ -394,7 +391,7 @@ export class TransactionAPI implements ITransactionAPI {
 
     return {
       success: true,
-      data: { id: deleted.id },
+      data: { id },
     };
   }
 }

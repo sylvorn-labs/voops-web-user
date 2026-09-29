@@ -162,12 +162,13 @@ export class AccountAPI implements IAccountAPI {
   }
 
   public async delete(id: string): Promise<ApiResponse<DeleteAccountResponse>> {
-    const { data: deleted, error } = await supabase
+    const { error } = await supabase
       .from('accounts')
-      .update({ deleted_at: new Date().toISOString() })
-      .eq('id', id)
-      .select('id')
-      .single();
+      .update({
+        deleted_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
 
     if (error) {
       throw new Error(error.message);
@@ -175,7 +176,7 @@ export class AccountAPI implements IAccountAPI {
 
     return {
       success: true,
-      data: { id: deleted.id },
+      data: { id },
     };
   }
 }

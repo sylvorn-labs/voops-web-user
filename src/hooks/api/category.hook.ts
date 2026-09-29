@@ -1,7 +1,10 @@
-import { queryOptions, useMutation } from '@tanstack/react-query';
+import {
+  queryOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { queryClient } from '@/providers/query/query-client';
 import type {
   CreateCategoryRequest,
   ListCategoriesParams,
@@ -37,11 +40,13 @@ export function getCategoryByIdOptions(id: string) {
 }
 
 export function useCreateCategory() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (data: CreateCategoryRequest) => categoryAPI.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...categoryQueryKeys.all, 'list'],
+        queryKey: categoryQueryKeys.all,
       });
       toast.success('Category created successfully!');
     },
@@ -52,15 +57,14 @@ export function useCreateCategory() {
 }
 
 export function useUpdateCategory() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: UpdateCategoryRequest }) =>
       categoryAPI.update(id, data),
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...categoryQueryKeys.all, 'list'],
-      });
-      queryClient.invalidateQueries({
-        queryKey: categoryQueryKeys.detail(variables.id),
+        queryKey: categoryQueryKeys.all,
       });
       toast.success('Category updated successfully!');
     },
@@ -71,11 +75,13 @@ export function useUpdateCategory() {
 }
 
 export function useDeleteCategory() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (id: string) => categoryAPI.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...categoryQueryKeys.all, 'list'],
+        queryKey: categoryQueryKeys.all,
       });
       toast.success('Category deleted successfully!');
     },

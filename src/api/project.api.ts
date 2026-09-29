@@ -165,12 +165,13 @@ export class ProjectAPI implements IProjectAPI {
   }
 
   public async delete(id: string): Promise<ApiResponse<DeleteProjectResponse>> {
-    const { data: deleted, error } = await supabase
+    const { error } = await supabase
       .from('projects')
-      .update({ deleted_at: new Date().toISOString() })
-      .eq('id', id)
-      .select('id')
-      .single();
+      .update({
+        deleted_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
 
     if (error) {
       throw new Error(error.message);
@@ -178,7 +179,7 @@ export class ProjectAPI implements IProjectAPI {
 
     return {
       success: true,
-      data: { id: deleted.id },
+      data: { id },
     };
   }
 }
