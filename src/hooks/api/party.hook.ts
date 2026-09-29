@@ -5,8 +5,9 @@ import {
 } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { PartyAPI } from '@/api/party.api';
 import type { ApiResponse } from '@/types/api.d';
+import { PartyAPI } from '@/api/party.api';
+
 import type {
   CreatePartyRequest,
   CreatePartyResponse,
@@ -15,6 +16,8 @@ import type {
   Party,
   UpdatePartyRequest,
 } from '@/types/api/party.d';
+
+export const partyAPI = PartyAPI.getInstance();
 
 export const partyKeys = {
   all: ['parties'] as const,
@@ -26,13 +29,13 @@ export const partyKeys = {
 
 export const listPartiesOptions = (params: ListPartiesParams) => ({
   queryKey: partyKeys.list(params),
-  queryFn: () => PartyAPI.getInstance().list(params),
+  queryFn: () => partyAPI.list(params),
   enabled: Boolean(params.business_id),
 });
 
 export const getPartyByIdOptions = (id: string) => ({
   queryKey: partyKeys.detail(id),
-  queryFn: () => PartyAPI.getInstance().getById(id),
+  queryFn: () => partyAPI.getById(id),
   enabled: Boolean(id),
 });
 
@@ -44,8 +47,7 @@ export function useCreateParty(): UseMutationResult<
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: CreatePartyRequest) =>
-      PartyAPI.getInstance().create(payload),
+    mutationFn: (payload: CreatePartyRequest) => partyAPI.create(payload),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: partyKeys.all });
       toast.success(`Party "${variables.name}" created successfully.`);
@@ -65,7 +67,7 @@ export function useUpdateParty(): UseMutationResult<
 
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: UpdatePartyRequest }) =>
-      PartyAPI.getInstance().update(id, data),
+      partyAPI.update(id, data),
     onSuccess: data => {
       queryClient.invalidateQueries({ queryKey: partyKeys.all });
       toast.success(`Party "${data.data.name}" updated successfully.`);
@@ -85,7 +87,7 @@ export function useToggleArchiveParty(): UseMutationResult<
 
   return useMutation({
     mutationFn: ({ id, is_archived }: { id: string; is_archived: boolean }) =>
-      PartyAPI.getInstance().update(id, { is_archived }),
+      partyAPI.update(id, { is_archived }),
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: partyKeys.all });
       toast.success(
@@ -106,7 +108,7 @@ export function useDeleteParty(): UseMutationResult<
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: string) => PartyAPI.getInstance().delete(id),
+    mutationFn: (id: string) => partyAPI.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: partyKeys.all });
       toast.success('Party deleted successfully.');

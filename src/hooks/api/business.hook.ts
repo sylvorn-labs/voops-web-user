@@ -1,7 +1,10 @@
-import { queryOptions, useMutation } from '@tanstack/react-query';
+import {
+  queryOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { queryClient } from '@/providers/query/query-client';
 import type {
   CreateBusinessRequest,
   ListBusinessesParams,
@@ -34,11 +37,13 @@ export function getBusinessByIdOptions(id: string) {
 }
 
 export function useCreateBusiness() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (data: CreateBusinessRequest) => businessAPI.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...businessQueryKeys.all, 'list'],
+        queryKey: businessQueryKeys.all,
       });
       toast.success('Business created successfully!');
     },
@@ -49,15 +54,14 @@ export function useCreateBusiness() {
 }
 
 export function useUpdateBusiness() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: UpdateBusinessRequest }) =>
       businessAPI.update(id, data),
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...businessQueryKeys.all, 'list'],
-      });
-      queryClient.invalidateQueries({
-        queryKey: businessQueryKeys.detail(variables.id),
+        queryKey: businessQueryKeys.all,
       });
       toast.success('Business updated successfully!');
     },
@@ -68,6 +72,8 @@ export function useUpdateBusiness() {
 }
 
 export function useDeleteBusiness() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (param: string | { id: string; hard?: boolean }) => {
       if (typeof param === 'string') {

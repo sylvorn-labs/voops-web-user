@@ -33,6 +33,7 @@ import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
 import { Textarea } from '@/components/ui/textarea/Textarea';
 import { DatePicker } from '@/components/ui/date-picker/DatePicker';
+import { formatDateOnly, parseDateOnly } from '@/lib/date';
 import { useUpdateTransaction } from '@/hooks/api/transaction.hook';
 import { listAccountsOptions } from '@/hooks/api/account.hook';
 import { listCategoriesOptions } from '@/hooks/api/category.hook';
@@ -233,11 +234,11 @@ export function TransactionBasicTab({ transaction }: TransactionBasicTabProps) {
                     <FormLabel>Transaction Date</FormLabel>
                     <FormControl>
                       <DatePicker
-                        date={field.value ? new Date(field.value) : undefined}
+                        date={
+                          field.value ? parseDateOnly(field.value) : undefined
+                        }
                         onSelect={date => {
-                          field.onChange(
-                            date ? date.toISOString().slice(0, 10) : '',
-                          );
+                          field.onChange(date ? formatDateOnly(date) : '');
                         }}
                         disabled={updateMutation.isPending}
                         placeholder="Pick transaction date"

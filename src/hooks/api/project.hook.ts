@@ -1,7 +1,10 @@
-import { queryOptions, useMutation } from '@tanstack/react-query';
+import {
+  queryOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { queryClient } from '@/providers/query/query-client';
 import type {
   CreateProjectRequest,
   ListProjectsParams,
@@ -37,30 +40,29 @@ export function getProjectByIdOptions(id: string) {
 }
 
 export function useCreateProject() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (data: CreateProjectRequest) => projectAPI.create(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [...projectQueryKeys.all, 'list'],
-      });
+      queryClient.invalidateQueries({ queryKey: projectQueryKeys.all });
       toast.success('Project created successfully!');
     },
-    onError: (error: Error) => {
+    onError: error => {
       toast.error(error.message || 'Failed to create project');
     },
   });
 }
 
 export function useUpdateProject() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: UpdateProjectRequest }) =>
       projectAPI.update(id, data),
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...projectQueryKeys.all, 'list'],
-      });
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.detail(variables.id),
+        queryKey: projectQueryKeys.all,
       });
       toast.success('Project updated successfully!');
     },
@@ -71,15 +73,14 @@ export function useUpdateProject() {
 }
 
 export function useToggleArchiveProject() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ id, is_archived }: { id: string; is_archived: boolean }) =>
       projectAPI.update(id, { is_archived }),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: [...projectQueryKeys.all, 'list'],
-      });
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.detail(variables.id),
+        queryKey: projectQueryKeys.all,
       });
       toast.success(
         variables.is_archived
@@ -94,15 +95,15 @@ export function useToggleArchiveProject() {
 }
 
 export function useDeleteProject() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (id: string) => projectAPI.delete(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [...projectQueryKeys.all, 'list'],
-      });
+      queryClient.invalidateQueries({ queryKey: projectQueryKeys.all });
       toast.success('Project deleted successfully!');
     },
-    onError: (error: Error) => {
+    onError: error => {
       toast.error(error.message || 'Failed to delete project');
     },
   });

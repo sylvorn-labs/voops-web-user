@@ -1,7 +1,10 @@
-import { queryOptions, useMutation } from '@tanstack/react-query';
+import {
+  queryOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { queryClient } from '@/providers/query/query-client';
 import type {
   CreateAccountRequest,
   ListAccountsParams,
@@ -37,11 +40,13 @@ export function getAccountByIdOptions(id: string) {
 }
 
 export function useCreateAccount() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (data: CreateAccountRequest) => accountAPI.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...accountQueryKeys.all, 'list'],
+        queryKey: accountQueryKeys.all,
       });
       toast.success('Account created successfully!');
     },
@@ -52,15 +57,14 @@ export function useCreateAccount() {
 }
 
 export function useUpdateAccount() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: UpdateAccountRequest }) =>
       accountAPI.update(id, data),
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...accountQueryKeys.all, 'list'],
-      });
-      queryClient.invalidateQueries({
-        queryKey: accountQueryKeys.detail(variables.id),
+        queryKey: accountQueryKeys.all,
       });
       toast.success('Account updated successfully!');
     },
@@ -71,15 +75,14 @@ export function useUpdateAccount() {
 }
 
 export function useToggleArchiveAccount() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ id, is_archived }: { id: string; is_archived: boolean }) =>
       accountAPI.update(id, { is_archived }),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: [...accountQueryKeys.all, 'list'],
-      });
-      queryClient.invalidateQueries({
-        queryKey: accountQueryKeys.detail(variables.id),
+        queryKey: accountQueryKeys.all,
       });
       toast.success(
         variables.is_archived
@@ -94,11 +97,13 @@ export function useToggleArchiveAccount() {
 }
 
 export function useDeleteAccount() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (id: string) => accountAPI.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [...accountQueryKeys.all, 'list'],
+        queryKey: accountQueryKeys.all,
       });
       toast.success('Account deleted successfully!');
     },

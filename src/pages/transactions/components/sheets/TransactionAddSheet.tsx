@@ -23,6 +23,7 @@ import { Button } from '@/components/ui/button/Button';
 import { Input } from '@/components/ui/input/Input';
 import { Textarea } from '@/components/ui/textarea/Textarea';
 import { DatePicker } from '@/components/ui/date-picker/DatePicker';
+import { formatDateOnly, parseDateOnly } from '@/lib/date';
 import { SheetFieldGroup } from '@/components/dashboard/sheet/SheetFieldGroup';
 import { useSheetDirty } from '@/components/dashboard/sheet/useSheetDirty';
 import { useCreateTransaction } from '@/hooks/api/transaction.hook';
@@ -239,11 +240,11 @@ export function TransactionAddSheet({
                   <FormLabel>Transaction Date</FormLabel>
                   <FormControl>
                     <DatePicker
-                      date={field.value ? new Date(field.value) : undefined}
+                      date={
+                        field.value ? parseDateOnly(field.value) : undefined
+                      }
                       onSelect={date => {
-                        field.onChange(
-                          date ? date.toISOString().slice(0, 10) : '',
-                        );
+                        field.onChange(date ? formatDateOnly(date) : '');
                       }}
                       disabled={createMutation.isPending}
                       placeholder="Pick transaction date"
