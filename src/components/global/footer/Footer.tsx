@@ -78,14 +78,6 @@ export function Footer({ className }: FooterProps) {
             © {new Date().getFullYear()} Voops by Sylvorn Labs. All rights
             reserved.
           </p>
-          <ul className="flex gap-4">
-            <li className="hover:text-primary underline">
-              <Link to="/terms">Terms & Conditions</Link>
-            </li>
-            <li className="hover:text-primary underline">
-              <Link to="/privacy">Privacy & Policy</Link>
-            </li>
-          </ul>
           <div className="flex items-center gap-1.5 font-medium">
             <span>Built By</span>
             <a

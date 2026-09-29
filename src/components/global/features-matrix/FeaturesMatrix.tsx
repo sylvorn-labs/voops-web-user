@@ -42,7 +42,7 @@ export function FeaturesMatrix({
                   <img
                     src={feature1.image}
                     alt={feature1.title}
-                    className="aspect-[1.5] h-full w-full rounded-lg object-contain p-4 lg:aspect-[2.4]"
+                    className="aspect-[1.5] h-full w-full rounded-lg object-cover lg:aspect-[2.4]"
                   />
                 </div>
               </div>
@@ -60,7 +60,7 @@ export function FeaturesMatrix({
                   <img
                     src={feature2.image}
                     alt={feature2.title}
-                    className="aspect-[1.45] h-full w-full rounded-lg object-contain p-4"
+                    className="aspect-[1.45] h-full w-full rounded-lg object-cover"
                   />
                 </div>
               </div>
@@ -81,7 +81,7 @@ export function FeaturesMatrix({
                   <img
                     src={feature3.image}
                     alt={feature3.title}
-                    className="aspect-[1.45] h-full w-full rounded-lg object-contain p-4"
+                    className="aspect-[1.45] h-full w-full rounded-lg object-cover"
                   />
                 </div>
               </div>
@@ -99,7 +99,7 @@ export function FeaturesMatrix({
                   <img
                     src={feature4.image}
                     alt={feature4.title}
-                    className="aspect-[1.5] h-full w-full rounded-lg object-contain p-4 lg:aspect-[2.4]"
+                    className="aspect-[1.5] h-full w-full rounded-lg object-cover lg:aspect-[2.4]"
                   />
                 </div>
               </div>

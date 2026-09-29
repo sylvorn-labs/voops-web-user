@@ -7,7 +7,8 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Switch effortlessly between corporate entities, agencies, and side projects with instant balance aggregation.',
     url: '/register',
-    image: '/images/illustrations/dashboard.svg',
+    image:
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
   },
   {
     id: 'item-2',
@@ -15,7 +16,8 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Track client project profitability, milestones, contractor expenses, and revenue margins without messy spreadsheets.',
     url: '/register',
-    image: '/images/illustrations/growth_analytics.svg',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
   },
   {
     id: 'item-3',
@@ -23,7 +25,8 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Deep dive into recurring SaaS subscriptions, operating costs, and tax-deductible expense distributions.',
     url: '/register',
-    image: '/images/illustrations/visual_data.svg',
+    image:
+      'https://images.unsplash.com/photo-1560221328-12fe60f83ab8?auto=format&fit=crop&w=1200&q=80',
   },
   {
     id: 'item-4',
@@ -31,7 +34,8 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Invite teammates, managers, and external accountants with strict role restrictions and comprehensive audit logs.',
     url: '/register',
-    image: '/images/illustrations/authentication.svg',
+    image:
+      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
   },
   {
     id: 'item-5',
@@ -39,6 +43,7 @@ export const defaultItems: GalleryItem[] = [
     summary:
       'Snap receipts on iOS and Android via Flutter with instant synchronization directly to your React desktop workspace.',
     url: '/register',
-    image: '/images/illustrations/transfer_files.svg',
+    image:
+      'https://images.unsplash.com/photo-1591088761584-d3f8540fc587?auto=format&fit=crop&w=1200&q=80',
   },
 ];

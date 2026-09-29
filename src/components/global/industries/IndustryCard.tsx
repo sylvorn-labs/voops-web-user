@@ -28,7 +28,7 @@ export function IndustryCard({
     >
       <motion.div
         key={index}
-        className="bg-card group border-border/60 relative min-h-112 overflow-hidden border shadow-xs lg:min-h-128 xl:min-h-112"
+        className="bg-card group border-border/60 relative min-h-112 overflow-hidden rounded-2xl border shadow-xs lg:min-h-128 xl:min-h-112"
         initial="initial"
         animate={isActive ? 'hover' : 'initial'}
         whileHover="hover"
@@ -48,16 +48,16 @@ export function IndustryCard({
             },
           }}
           transition={{ duration: 0.4, ease: easeTransition }}
-          className="relative z-0 flex h-full min-h-112 flex-col items-center justify-center p-6 lg:min-h-128 xl:min-h-112"
+          className="relative z-0 flex h-full min-h-112 flex-col items-center justify-between p-6 lg:min-h-128 xl:min-h-112"
         >
-          <div className="flex h-full w-full items-center justify-center">
+          <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-xl">
             <img
               src={industry.image}
               alt={industry.imageAlt}
-              className="max-h-56 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-56 w-full rounded-xl object-cover shadow-xs transition-transform duration-300 group-hover:scale-105"
             />
           </div>
-          <h3 className="text-foreground absolute bottom-8 text-center text-xl font-bold tracking-tight">
+          <h3 className="text-foreground mt-4 text-center text-xl font-bold tracking-tight">
             {industry.name}
           </h3>
         </motion.div>
