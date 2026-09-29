@@ -9,12 +9,12 @@ export function FeatureCardGridItem({ feature }: FeatureCardGridItemProps) {
         rel={
           feature.href?.startsWith('http') ? 'noreferrer noopener' : undefined
         }
-        className="bg-muted/30 flex aspect-4/3 items-center justify-center overflow-hidden p-6"
+        className="bg-muted/30 flex aspect-4/3 items-center justify-center overflow-hidden"
       >
         <img
           src={feature.image.src}
           alt={feature.image.alt}
-          className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
+          className="size-full object-cover transition-transform duration-300 hover:scale-105"
         />
       </a>
       <div className="flex flex-1 flex-col p-6 sm:p-8 lg:p-10">

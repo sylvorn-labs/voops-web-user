@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Menu } from 'lucide-react';
-import { SparklesIcon } from '@hugeicons/core-free-icons';
+import { Coins01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
@@ -40,7 +40,7 @@ export function Navbar({ className }: NavbarProps) {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5">
               <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                <HugeiconsIcon icon={SparklesIcon} className="size-4" />
+                <HugeiconsIcon icon={Coins01Icon} className="size-4" />
               </div>
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
@@ -57,12 +57,12 @@ export function Navbar({ className }: NavbarProps) {
             </div>
           </div>
 
-          {/* Desktop Auth Buttons & Theme Toggle */}
-          <div className="flex items-center gap-2">
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3">
             <ThemeToggle />
             {isAuthenticated ? (
               <>
-                <Button variant="outline" size="sm" onClick={() => logout()}>
+                <Button variant="ghost" size="sm" onClick={() => logout()}>
                   Log Out
                 </Button>
                 <Button size="sm" asChild>
@@ -71,11 +71,11 @@ export function Navbar({ className }: NavbarProps) {
               </>
             ) : (
               <>
-                <Button variant="outline" size="sm" asChild>
-                  <Link to="/login">Login</Link>
+                <Button asChild variant="ghost" size="sm">
+                  <Link to="/login">Log In</Link>
                 </Button>
                 <Button size="sm" asChild>
-                  <Link to="/register">Start Now</Link>
+                  <Link to="/register">Get Started</Link>
                 </Button>
               </>
             )}
@@ -88,7 +88,7 @@ export function Navbar({ className }: NavbarProps) {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5">
               <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                <HugeiconsIcon icon={SparklesIcon} className="size-4" />
+                <HugeiconsIcon icon={Coins01Icon} className="size-4" />
               </div>
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
@@ -108,7 +108,7 @@ export function Navbar({ className }: NavbarProps) {
                       <Link to="/" className="flex items-center gap-2.5">
                         <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
                           <HugeiconsIcon
-                            icon={SparklesIcon}
+                            icon={Coins01Icon}
                             className="size-4"
                           />
                         </div>

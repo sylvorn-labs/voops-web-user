@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { SparklesIcon } from '@hugeicons/core-free-icons';
+import { Coins01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
@@ -15,7 +15,7 @@ export function Footer({ className }: FooterProps) {
           <div className="col-span-2 mb-8 lg:mb-0">
             <Link to="/" className="flex items-center gap-2.5">
               <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                <HugeiconsIcon icon={SparklesIcon} className="size-4" />
+                <HugeiconsIcon icon={Coins01Icon} className="size-4" />
               </div>
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
@@ -78,14 +78,6 @@ export function Footer({ className }: FooterProps) {
             © {new Date().getFullYear()} Voops by Sylvorn Labs. All rights
             reserved.
           </p>
-          <ul className="flex gap-4">
-            <li className="hover:text-primary underline">
-              <Link to="/terms">Terms & Conditions</Link>
-            </li>
-            <li className="hover:text-primary underline">
-              <Link to="/privacy">Privacy & Policy</Link>
-            </li>
-          </ul>
           <div className="flex items-center gap-1.5 font-medium">
             <span>Built By</span>
             <a
