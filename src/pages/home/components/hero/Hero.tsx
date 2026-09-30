@@ -1,4 +1,4 @@
-import { ArrowRight01Icon, Coins01Icon } from '@hugeicons/core-free-icons';
+import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Link } from 'react-router';
 import { cn } from 'cn';
@@ -27,7 +27,11 @@ export function Hero({ className }: HeroProps = {}) {
 
             {/* Top Leading Badge / Icon */}
             <div className="bg-primary/10 border-primary/20 text-primary flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold shadow-xs">
-              <HugeiconsIcon icon={Coins01Icon} className="size-4" />
+              <img
+                src="/favicon.svg"
+                alt="Voops"
+                className="size-4 object-contain dark:brightness-0 dark:invert"
+              />
               <span>
                 Limited-Time Open Source (Beta) • Engineered by Sylvorn Labs
               </span>
