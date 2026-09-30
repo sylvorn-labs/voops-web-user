@@ -1,7 +1,5 @@
 import { Link } from 'react-router';
 import { Menu } from 'lucide-react';
-import { Coins01Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
 import {
@@ -39,9 +37,11 @@ export function Navbar({ className }: NavbarProps) {
           <div className="flex items-center gap-6">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                <HugeiconsIcon icon={Coins01Icon} className="size-4" />
-              </div>
+              <img
+                src="/favicon.svg"
+                alt="Voops"
+                className="size-7 object-contain dark:brightness-0 dark:invert"
+              />
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
 
@@ -87,9 +87,11 @@ export function Navbar({ className }: NavbarProps) {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                <HugeiconsIcon icon={Coins01Icon} className="size-4" />
-              </div>
+              <img
+                src="/favicon.svg"
+                alt="Voops"
+                className="size-7 object-contain dark:brightness-0 dark:invert"
+              />
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
 
@@ -106,12 +108,11 @@ export function Navbar({ className }: NavbarProps) {
                   <SheetHeader>
                     <SheetTitle>
                       <Link to="/" className="flex items-center gap-2.5">
-                        <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                          <HugeiconsIcon
-                            icon={Coins01Icon}
-                            className="size-4"
-                          />
-                        </div>
+                        <img
+                          src="/favicon.svg"
+                          alt="Voops"
+                          className="size-7 object-contain dark:brightness-0 dark:invert"
+                        />
                         <span className="text-lg font-bold tracking-tight">
                           Voops
                         </span>

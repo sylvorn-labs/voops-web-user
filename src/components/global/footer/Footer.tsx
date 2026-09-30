@@ -1,6 +1,4 @@
 import { Link } from 'react-router';
-import { Coins01Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
 import { defaultSections } from './footer.constants';
@@ -14,9 +12,11 @@ export function Footer({ className }: FooterProps) {
           {/* Logo & Tagline */}
           <div className="col-span-2 mb-8 lg:mb-0">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-                <HugeiconsIcon icon={Coins01Icon} className="size-4" />
-              </div>
+              <img
+                src="/favicon.svg"
+                alt="Voops"
+                className="size-7 object-contain dark:brightness-0 dark:invert"
+              />
               <span className="text-lg font-bold tracking-tight">Voops</span>
             </Link>
             <p className="text-foreground mt-3 text-sm font-semibold">

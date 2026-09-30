@@ -1,6 +1,4 @@
 import { Link } from 'react-router';
-import { Coins01Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from 'cn';
 
 import type { AuthBrandLogoProps } from './auth-brand-logo.d';
@@ -14,9 +12,11 @@ export function AuthBrandLogo({ className }: AuthBrandLogoProps) {
         to="/"
         className="text-foreground flex items-center gap-2.5 font-bold tracking-tight transition-opacity hover:opacity-90"
       >
-        <div className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg shadow-xs">
-          <HugeiconsIcon icon={Coins01Icon} className="size-4" />
-        </div>
+        <img
+          src="/favicon.svg"
+          alt="Voops"
+          className="size-7 object-contain dark:brightness-0 dark:invert"
+        />
         <span className="text-lg font-extrabold">Voops</span>
       </Link>
     </div>
